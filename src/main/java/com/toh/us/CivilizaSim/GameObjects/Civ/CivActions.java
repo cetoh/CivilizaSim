@@ -1,0 +1,20 @@
+package com.toh.us.CivilizaSim.GameObjects.Civ;
+
+public enum CivActions {
+    TRADE("TRADE"),
+    TRAIN("TRAIN"),
+    PRODUCE("PRODUCE"),
+    ATTACK("ATTACK"),
+    DEFEND("DEFEND");
+
+    public final String action;
+
+    private CivActions(String action) {
+        this.action = action;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+}
