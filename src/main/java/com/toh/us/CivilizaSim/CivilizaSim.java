@@ -4,20 +4,22 @@ import com.toh.us.CivilizaSim.GameObjects.Civ.CivActions;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivPayouts;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Strategy;
+import com.toh.us.CivilizaSim.GameObjects.Simulate.Simulation;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CivilizaSim {
 
     public static void main(String[] args) {
-        HashMap<Civilization, Integer> score = new HashMap<Civilization, Integer>();
-        int numRounds = 100;
+        List<Civilization> score = new ArrayList<Civilization>();
+
 
         Civilization rome = new Civilization("Rome");
         Civilization greece = new Civilization("Greece");
 
-        score.put(rome, 0);
-        score.put(greece, 0);
+        score.add(rome);
+        score.add(greece);
 
         rome.setStrategy(new Strategy() {
             @Override
@@ -69,8 +71,11 @@ public class CivilizaSim {
             }
         });
 
-        for (int i = 0; i < numRounds; i++) {
+        Simulation simulation = new Simulation();
+        simulation.runSim(score);
 
-        }
+        simulation.printScore();
     }
+
+
 }
