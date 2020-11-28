@@ -17,9 +17,13 @@ public class CivilizaSim {
 
         Civilization rome = new Civilization("Rome");
         Civilization greece = new Civilization("Greece");
+        Civilization huns = new Civilization("Huns");
+        Civilization egypt = new Civilization("Egypt");
 
         score.add(rome);
         score.add(greece);
+        score.add(huns);
+        score.add(egypt);
 
         rome.setStrategy(new Strategy() {
             @Override
@@ -71,6 +75,22 @@ public class CivilizaSim {
             }
         });
 
+        huns.setStrategy(new Strategy() {
+            @Override
+            public CivActions executeStrategy(CivPayouts lastPayout) {
+                return CivActions.ATTACK;
+            }
+        });
+
+        egypt.setStrategy(new Strategy() {
+            @Override
+            public CivActions executeStrategy(CivPayouts lastPayout) {
+                if (lastPayout == CivPayouts.VERY_LOW) {
+                    return CivActions.DEFEND;
+                }
+                return CivActions.PRODUCE;
+            }
+        });
         Simulation simulation = new Simulation();
         simulation.runSim(score);
 

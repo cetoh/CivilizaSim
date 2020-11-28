@@ -4,6 +4,7 @@ import com.toh.us.CivilizaSim.GameObjects.Civ.CivActions;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivPayouts;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,15 +32,13 @@ public class Simulation {
 
     public void runSim (List<Civilization> civilizationList) {
         for (int i = 0; i < civilizationList.size(); i++) {
+            List<Civilization> opponents = new ArrayList<>(civilizationList);
             Civilization civ1 = civilizationList.get(i);
-            Civilization civ2;
-            if (i < civilizationList.size() - 1) {
-                civ2 = civilizationList.get(i + 1);
+            opponents.remove(civ1);
+            for (Civilization civ2 : opponents) {
+                headToHead(civ1, civ2);
             }
-            else {
-                civ2 = civilizationList.get(0);
-            }
-            headToHead(civ1, civ2);
+
         }
     }
 
