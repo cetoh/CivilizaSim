@@ -19,11 +19,13 @@ public class CivilizaSim {
         Civilization greece = new Civilization("Greece");
         Civilization huns = new Civilization("Huns");
         Civilization egypt = new Civilization("Egypt");
+        Civilization gauls = new Civilization("Gauls");
 
         score.add(rome);
         score.add(greece);
         score.add(huns);
         score.add(egypt);
+        score.add(gauls);
 
         rome.setStrategy(new Strategy() {
             @Override
@@ -91,6 +93,30 @@ public class CivilizaSim {
                 return CivActions.PRODUCE;
             }
         });
+
+        gauls.setStrategy(new Strategy() {
+            @Override
+            public CivActions executeStrategy(CivPayouts lastPayout) {
+                double rand = Math.random();
+
+                if (rand < 0.2) {
+                    return CivActions.ATTACK;
+                }
+                else if (rand >= 0.2  && rand < 0.4) {
+                    return CivActions.PRODUCE;
+                }
+                else if (rand >= 0.4 && rand < 0.6) {
+                    return CivActions.TRADE;
+                }
+                else if (rand >= 0.6 && rand < 0.8)  {
+                    return CivActions.DEFEND;
+                }
+                else {
+                    return CivActions.TRAIN;
+                }
+            }
+        });
+
         Simulation simulation = new Simulation();
         simulation.runSim(score);
 

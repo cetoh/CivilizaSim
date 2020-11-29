@@ -13,7 +13,7 @@ public class Simulation {
     HashMap<Civilization, Integer> score = new HashMap<Civilization, Integer>();
 
     //Default 100 rounds
-    private int numRounds = 100;
+    private int numRounds = 10;
 
     public Simulation() {
 
