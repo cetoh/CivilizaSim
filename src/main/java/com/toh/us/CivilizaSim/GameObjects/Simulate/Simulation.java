@@ -13,7 +13,7 @@ public class Simulation {
 
     HashMap<Civilization, Integer> score = new HashMap<Civilization, Integer>();
 
-    //Default 100 rounds
+    //Default 10 rounds
     private int numRounds = 10;
 
     public Simulation() {
@@ -26,6 +26,7 @@ public class Simulation {
 
     public void printScore() {
         for (Civilization civ : score.keySet()) {
+            calculateAdditionalPoints(civ);
             System.out.println(civ.getName() + ": " + score.get(civ));
             System.out.println("\tCitizens:");
             List<Person> people = civ.getPeople();
@@ -33,6 +34,11 @@ public class Simulation {
                 System.out.println("\t\t" + person.getName().toString() + " - " + person.getOriginalCivilization());
             }
         }
+    }
+
+    public void calculateAdditionalPoints(Civilization civ) {
+        //Award points for population (2 per person)
+        score.put(civ, score.get(civ) + (2 * civ.getPeople().size()));
     }
 
     public void runSim (List<Civilization> civilizationList) {

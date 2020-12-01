@@ -96,20 +96,39 @@ public class Civilization {
     private void growPopulation() {
         int growAmt = (int) (Math.ceil(Math.random()) * 10);
 
+        int actualGrown = 0;
         for (int i = 0; i < growAmt; i++) {
-            Civilian civilian = new Civilian(getName());
-            people.add(civilian);
-        }
-        System.out.println(this.name + "'s population grew by " + growAmt + "!");
+            if (warehouse.getWheat().getAmount() >=10) {
+                Civilian civilian = new Civilian(getName());
+                people.add(civilian);
+                warehouse.getWheat().removeAmount(10);
+                actualGrown++;
+            }
+                    }
+        System.out.println(this.name + "'s population grew by " + actualGrown + "!");
     }
 
     public void train() {
         for (Person person : people) {
-            if (person instanceof Civilian) {
-                Soldier soldier = new Soldier((Civilian) person);
-                people.add(soldier);
-                people.remove(person);
-                System.out.println(this.name + " trained " + soldier.getName() + " into a soldier.");
+            if (person instanceof Civilian){
+                if (warehouse.getIron().getAmount() >= 25
+                        && warehouse.getWood().getAmount() >= 20
+                        && warehouse.getWheat().getAmount() >= 20
+                        && warehouse.getGold().getAmount() >= 5) {
+                    Soldier soldier = new Soldier((Civilian) person);
+                    people.add(soldier);
+                    people.remove(person);
+
+                    warehouse.getWheat().removeAmount(20);
+                    warehouse.getIron().removeAmount(25);
+                    warehouse.getWood().removeAmount(20);
+                    warehouse.getGold().removeAmount(5);
+
+                    System.out.println(this.name + " trained " + soldier.getName() + " into a soldier.");
+                }
+                else {
+                    System.out.println(this.name + " tried to train a soldier but had insufficient resources.");
+                }
                 break;
             }
         }
@@ -117,27 +136,48 @@ public class Civilization {
 
     public void attack(Civilization civilization, boolean defended) {
         List<Soldier> theirSoldiers = civilization.getSoldiers();
-        if (defended) {
-            List<Soldier> ourSoldiers = getSoldiers();
+        List<Soldier> ourSoldiers = getSoldiers();
+        if (ourSoldiers.size() > 0) {
+            if (defended) {
+                theirSoldiers = theirSoldiers.subList(0, (int) (theirSoldiers.size() * 0.25));
+                ourSoldiers = ourSoldiers.subList(0, (ourSoldiers.size() / 2));
 
-            theirSoldiers = theirSoldiers.subList(0, (int) (theirSoldiers.size() * 0.25));
-            ourSoldiers = ourSoldiers.subList(0, (ourSoldiers.size() / 2));
+                civilization.getPeople().removeAll(theirSoldiers);
+                people.removeAll(ourSoldiers);
+                System.out.println(this.name + " attacked " + civilization.getName() + " but " + civilization.getName() + " defended successfully!");
+            } else {
+                theirSoldiers = theirSoldiers.subList(0, (int) (theirSoldiers.size() * 0.75));
 
-            civilization.getPeople().removeAll(theirSoldiers);
-            people.removeAll(ourSoldiers);
-            System.out.println(this.name + " attacked " + civilization.getName() + " but " + civilization.getName() + " defended successfully!");
-        } else {
-            theirSoldiers = theirSoldiers.subList(0, (int) (theirSoldiers.size() * 0.75));
+                civilization.getPeople().removeAll(theirSoldiers);
 
-            civilization.getPeople().removeAll(theirSoldiers);
+                List<Person> theirRemainingPeople = civilization.getPeople();
+                List<Person> peopleToExile = theirRemainingPeople.subList(0, (int) (theirRemainingPeople.size() * 0.3));
 
-            List<Person> theirRemainingPeople = civilization.getPeople();
-            List<Person> peopleToExile = theirRemainingPeople.subList(0, (int) (theirRemainingPeople.size() * 0.3));
+                people.addAll(peopleToExile);
+                civilization.getPeople().removeAll(peopleToExile);
 
-            people.addAll(peopleToExile);
-            civilization.getPeople().removeAll(peopleToExile);
+                //Steal their resources (75%)
+                Warehouse theirWarehouse = civilization.getWarehouse();
+                int gold = (int) (theirWarehouse.getGold().getAmount() * 0.75);
+                int wheat = (int) (theirWarehouse.getWheat().getAmount() * 0.75);
+                int wood = (int) (theirWarehouse.getWood().getAmount() * 0.75);
+                int iron = (int) (theirWarehouse.getIron().getAmount() * 0.75);
+                int clay = (int) (theirWarehouse.getClay().getAmount() * 0.75);
 
-            System.out.println(this.name + " attacked and raided " + civilization.getName() + " exiling a portion of their people!");
+                theirWarehouse.getGold().removeAmount(gold);
+                theirWarehouse.getWheat().removeAmount(wheat);
+                theirWarehouse.getWood().removeAmount(wood);
+                theirWarehouse.getIron().removeAmount(iron);
+                theirWarehouse.getClay().removeAmount(clay);
+
+                this.warehouse.getGold().addAmount(gold);
+                this.warehouse.getWheat().addAmount(wheat);
+                this.warehouse.getWood().addAmount(wood);
+                this.warehouse.getIron().addAmount(iron);
+                this.warehouse.getClay().addAmount(clay);
+
+                System.out.println(this.name + " attacked and raided " + civilization.getName() + " exiling a portion of their people!");
+            }
         }
     }
 
