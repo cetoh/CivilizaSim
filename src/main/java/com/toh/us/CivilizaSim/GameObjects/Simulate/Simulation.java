@@ -3,9 +3,11 @@ package com.toh.us.CivilizaSim.GameObjects.Simulate;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivActions;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivPayouts;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
+import com.toh.us.CivilizaSim.GameObjects.People.Person;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public class Simulation {
@@ -26,8 +28,12 @@ public class Simulation {
     public void printScore() {
         for (Civilization civ : score.keySet()) {
             System.out.println(civ.getName() + ": " + score.get(civ));
+            System.out.println("\tCitizens:");
+            HashSet<Person> people = civ.getPeople();
+            for (Person person : people) {
+                System.out.println("\t\t" + person.getName().toString());
+            }
         }
-
     }
 
     public void runSim (List<Civilization> civilizationList) {
@@ -187,11 +193,7 @@ public class Simulation {
                 }
                 break;
             case NONE:
-                if (score.containsKey(civ)) {
-                    score.put(civ, score.get(civ));
-                } else {
-                    score.put(civ, 0);
-                }
+                score.put(civ, score.getOrDefault(civ, 0));
                 break;
         }
     }

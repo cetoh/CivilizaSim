@@ -79,4 +79,27 @@ public class Civilization {
     }
 
     public Warehouse getWarehouse() { return warehouse; }
+
+    public void produce() {
+        growResources();
+        growPopulation();
+    }
+
+    private void growResources() {
+        warehouse.getClay().setAmount(warehouse.getClay().getAmount() + 100);
+        warehouse.getWheat().setAmount(warehouse.getWheat().getAmount() + 100);
+        warehouse.getIron().setAmount(warehouse.getIron().getAmount() + 100);
+        warehouse.getWood().setAmount(warehouse.getWood().getAmount() + 100);
+        warehouse.getGold().setAmount(warehouse.getGold().getAmount() + 10);
+    }
+
+    private void growPopulation() {
+        int growAmt = people.size();
+
+        for (int i = 0; i < growAmt; i++) {
+            Civilian civilian = new Civilian();
+            people.add(civilian);
+        }
+    }
+
 }
