@@ -10,7 +10,10 @@ public abstract class Person {
 
     private Name name;
 
-    protected Person() {
+    private String originalCivilization = "";
+
+    protected Person(String originalCivilization) {
+        this.originalCivilization = originalCivilization;
         double chanceCheck = Math.random();
         Gender gender;
         if (chanceCheck <= 0.5) {
@@ -38,5 +41,13 @@ public abstract class Person {
 
     public void setName(Name name) {
         this.name = name;
+    }
+
+    public String getOriginalCivilization() {
+        return originalCivilization;
+    }
+
+    public void setOriginalCivilization(String originalCivilization) {
+        this.originalCivilization = originalCivilization;
     }
 }
