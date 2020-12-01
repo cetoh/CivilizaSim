@@ -36,9 +36,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/People/NameGen" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\GBC-Mandarin\Documents\GitHub\CivilizaSim\src\main\java\com\toh\us\CivilizaSim\GameObjects\People\NameGen" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="CivilizaSim" type="Application" factoryName="Application" nameIsGenerated="true">
@@ -71,10 +77,10 @@
       <screen x="1920" y="5" width="1536" height="864" />
     </state>
     <state x="2145" y="93" width="1086" height="736" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606525646422" />
-    <state x="2495" y="154" key="#com.intellij.ide.util.MemberChooser" timestamp="1606262298970">
+    <state x="2495" y="154" key="#com.intellij.ide.util.MemberChooser" timestamp="1606779758026">
       <screen x="1920" y="5" width="1536" height="864" />
     </state>
-    <state x="2495" y="154" key="#com.intellij.ide.util.MemberChooser/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606262298970" />
+    <state x="2495" y="154" key="#com.intellij.ide.util.MemberChooser/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606779758026" />
     <state x="2419" y="240" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1606525598794">
       <screen x="1920" y="5" width="1536" height="864" />
     </state>
@@ -83,22 +89,22 @@
       <screen x="1920" y="5" width="1536" height="864" />
     </state>
     <state x="2412" y="127" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606078846142" />
-    <state width="1493" height="224" key="GridCell.Tab.0.bottom" timestamp="1606607224274">
+    <state width="1493" height="224" key="GridCell.Tab.0.bottom" timestamp="1606859449670">
       <screen x="1920" y="5" width="1536" height="864" />
     </state>
-    <state width="1493" height="224" key="GridCell.Tab.0.bottom/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606607224274" />
-    <state width="1493" height="224" key="GridCell.Tab.0.center" timestamp="1606607224274">
+    <state width="1493" height="224" key="GridCell.Tab.0.bottom/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606859449670" />
+    <state width="1493" height="224" key="GridCell.Tab.0.center" timestamp="1606859449670">
       <screen x="1920" y="5" width="1536" height="864" />
     </state>
-    <state width="1493" height="224" key="GridCell.Tab.0.center/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606607224274" />
-    <state width="1493" height="224" key="GridCell.Tab.0.left" timestamp="1606607224274">
+    <state width="1493" height="224" key="GridCell.Tab.0.center/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606859449670" />
+    <state width="1493" height="224" key="GridCell.Tab.0.left" timestamp="1606859449670">
       <screen x="1920" y="5" width="1536" height="864" />
     </state>
-    <state width="1493" height="224" key="GridCell.Tab.0.left/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606607224274" />
-    <state width="1493" height="224" key="GridCell.Tab.0.right" timestamp="1606607224274">
+    <state width="1493" height="224" key="GridCell.Tab.0.left/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606859449670" />
+    <state width="1493" height="224" key="GridCell.Tab.0.right" timestamp="1606859449670">
       <screen x="1920" y="5" width="1536" height="864" />
     </state>
-    <state width="1493" height="224" key="GridCell.Tab.0.right/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606607224274" />
+    <state width="1493" height="224" key="GridCell.Tab.0.right/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606859449670" />
     <state width="1493" height="277" key="GridCell.Tab.1.bottom" timestamp="1606525818151">
       <screen x="1920" y="5" width="1536" height="864" />
     </state>
@@ -115,9 +121,9 @@
       <screen x="1920" y="5" width="1536" height="864" />
     </state>
     <state width="1493" height="277" key="GridCell.Tab.1.right/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606525818151" />
-    <state x="2484" y="186" key="refactoring.ChangeSignatureDialog" timestamp="1606079400080">
+    <state x="2484" y="186" key="refactoring.ChangeSignatureDialog" timestamp="1606779844614">
       <screen x="1920" y="5" width="1536" height="864" />
     </state>
-    <state x="2484" y="186" key="refactoring.ChangeSignatureDialog/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606079400080" />
+    <state x="2484" y="186" key="refactoring.ChangeSignatureDialog/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606779844614" />
   </component>
 </project>

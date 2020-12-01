@@ -3,6 +3,7 @@ package com.toh.us.CivilizaSim.GameObjects.Simulate;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivActions;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivPayouts;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
+import com.toh.us.CivilizaSim.GameObjects.People.Person;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,16 +27,20 @@ public class Simulation {
     public void printScore() {
         for (Civilization civ : score.keySet()) {
             System.out.println(civ.getName() + ": " + score.get(civ));
+            System.out.println("\tCitizens:");
+            List<Person> people = civ.getPeople();
+            for (Person person : people) {
+                System.out.println("\t\t" + person.getName().toString() + " - " + person.getOriginalCivilization());
+            }
         }
-
     }
 
     public void runSim (List<Civilization> civilizationList) {
-        for (int i = 0; i < civilizationList.size(); i++) {
-            List<Civilization> opponents = new ArrayList<>(civilizationList);
-            Civilization civ1 = civilizationList.get(i);
+        List<Civilization> opponents = new ArrayList<>(civilizationList);
+        for (Civilization civ1 : civilizationList) {
             opponents.remove(civ1);
             for (Civilization civ2 : opponents) {
+                System.out.println(civ1.getName() + " vs. " + civ2.getName());
                 headToHead(civ1, civ2);
             }
 
@@ -52,15 +57,21 @@ public class Simulation {
             if (civActions1.equals(CivActions.ATTACK) && civActions2.equals(CivActions.ATTACK)) {
                 lastPayout1 = CivPayouts.VERY_LOW;
                 lastPayout2 = CivPayouts.VERY_LOW;
+
+                civ1.battle(civ2);
             }
             else if (civActions1.equals(CivActions.ATTACK) && civActions2.equals(CivActions.DEFEND)) {
                 lastPayout1 = CivPayouts.LOW;
                 lastPayout2 = CivPayouts.MODERATE;
+
+                civ1.attack(civ2, true);
             }
             else if (civActions1.equals(CivActions.ATTACK) &&
                     (civActions2.equals(CivActions.PRODUCE) || civActions2.equals(CivActions.TRADE) || civActions2.equals(CivActions.TRAIN))) {
                 lastPayout1 = CivPayouts.VERY_HIGH;
                 lastPayout2 = CivPayouts.VERY_LOW;
+
+                civ1.attack(civ2, false);
             }
             else if (civActions1.equals(CivActions.TRADE) && civActions2.equals(CivActions.TRADE)) {
                 lastPayout1 = CivPayouts.VERY_HIGH;
@@ -69,10 +80,14 @@ public class Simulation {
             else if (civActions1.equals(CivActions.TRADE) && civActions2.equals(CivActions.PRODUCE)) {
                 lastPayout1 = CivPayouts.MODERATE;
                 lastPayout2 = CivPayouts.MODERATE;
+
+                civ2.produce();
             }
             else if (civActions1.equals(CivActions.TRADE) && civActions2.equals(CivActions.ATTACK)) {
                 lastPayout1 = CivPayouts.VERY_LOW;
                 lastPayout2 = CivPayouts.VERY_HIGH;
+
+                civ2.attack(civ1, false);
             }
             else if (civActions1.equals(CivActions.TRADE) && civActions2.equals(CivActions.DEFEND)) {
                 lastPayout1 = CivPayouts.LOW;
@@ -81,14 +96,22 @@ public class Simulation {
             else if (civActions1.equals(CivActions.TRADE) && civActions2.equals(CivActions.TRAIN)) {
                 lastPayout1 = CivPayouts.LOW;
                 lastPayout2 = CivPayouts.MODERATE;
+
+                civ2.train();
             }
             else if (civActions1.equals(CivActions.PRODUCE) && civActions2.equals(CivActions.PRODUCE)) {
                 lastPayout1 = CivPayouts.HIGH;
                 lastPayout2 = CivPayouts.HIGH;
+
+                //Both civs produced
+                civ1.produce();
+                civ2.produce();
             }
             else if (civActions1.equals(CivActions.PRODUCE) && civActions2.equals(CivActions.ATTACK)) {
                 lastPayout1 = CivPayouts.VERY_LOW;
                 lastPayout2 = CivPayouts.VERY_HIGH;
+
+                civ2.attack(civ1, false);
             }
             else if (civActions1.equals(CivActions.PRODUCE) && civActions2.equals(CivActions.TRADE)) {
                 lastPayout1 = CivPayouts.MODERATE;
@@ -97,34 +120,54 @@ public class Simulation {
             else if (civActions1.equals(CivActions.PRODUCE) && civActions2.equals(CivActions.TRAIN)) {
                 lastPayout1 = CivPayouts.HIGH;
                 lastPayout2 = CivPayouts.LOW;
+
+                civ1.produce();
+                civ2.train();
             }
             else if (civActions1.equals(CivActions.PRODUCE) && civActions2.equals(CivActions.DEFEND)) {
                 lastPayout1 = CivPayouts.HIGH;
                 lastPayout2 = CivPayouts.VERY_LOW;
+
+                civ1.produce();
             }
             else if (civActions1.equals(CivActions.TRAIN) && civActions2.equals(CivActions.TRAIN)) {
                 lastPayout1 = CivPayouts.LOW;
                 lastPayout2 = CivPayouts.LOW;
+
+                //Both trained soldiers
+                civ1.train();
+                civ2.train();
             }
             else if (civActions1.equals(CivActions.TRAIN) && civActions2.equals(CivActions.TRADE)) {
                 lastPayout1 = CivPayouts.MODERATE;
                 lastPayout2 = CivPayouts.LOW;
+
+                civ1.train();
             }
             else if (civActions1.equals(CivActions.TRAIN) && civActions2.equals(CivActions.PRODUCE)) {
                 lastPayout1 = CivPayouts.LOW;
                 lastPayout2 = CivPayouts.HIGH;
+
+                civ1.train();
+                civ2.produce();
             }
             else if (civActions1.equals(CivActions.TRAIN) && civActions2.equals(CivActions.ATTACK)) {
                 lastPayout1 = CivPayouts.VERY_LOW;
                 lastPayout2 = CivPayouts.HIGH;
+
+                civ2.attack(civ1, false);
             }
             else if (civActions1.equals(CivActions.TRAIN) && civActions2.equals(CivActions.DEFEND)) {
                 lastPayout1 = CivPayouts.MODERATE;
                 lastPayout2 = CivPayouts.LOW;
+
+                civ1.train();
             }
             else if (civActions1.equals(CivActions.DEFEND) && civActions2.equals(CivActions.ATTACK)) {
                 lastPayout1 = CivPayouts.MODERATE;
                 lastPayout2 = CivPayouts.LOW;
+
+                civ2.attack(civ1, true);
             }
             else if (civActions1.equals(CivActions.DEFEND) && civActions2.equals(CivActions.DEFEND)) {
                 lastPayout1 = CivPayouts.LOW;
@@ -133,6 +176,8 @@ public class Simulation {
             else if (civActions1.equals(CivActions.DEFEND) && civActions2.equals(CivActions.PRODUCE)) {
                 lastPayout1 = CivPayouts.VERY_LOW;
                 lastPayout2 = CivPayouts.HIGH;
+
+                civ2.produce();
             }
             else if (civActions1.equals(CivActions.DEFEND) && civActions2.equals(CivActions.TRADE)) {
                 lastPayout1 = CivPayouts.VERY_LOW;
@@ -141,6 +186,8 @@ public class Simulation {
             else if (civActions1.equals(CivActions.DEFEND) && civActions2.equals(CivActions.TRAIN)) {
                 lastPayout1 = CivPayouts.LOW;
                 lastPayout2 = CivPayouts.MODERATE;
+
+                civ2.train();
             }
 
 
@@ -187,11 +234,7 @@ public class Simulation {
                 }
                 break;
             case NONE:
-                if (score.containsKey(civ)) {
-                    score.put(civ, score.get(civ));
-                } else {
-                    score.put(civ, 0);
-                }
+                score.put(civ, score.getOrDefault(civ, 0));
                 break;
         }
     }
