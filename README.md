@@ -36,3 +36,10 @@ I have no idea what the best strategy is and as more civilizations are added you
 
 ## Future Plans
 I intend to eventually implement more complicated game mechanics such as scoring based off population, possibly buildings and resources as well. For example during produce you could potentially see a Civ also growing in population but during an a successful attack some Civilians are carried off into exile into the new Civilization that wins.
+
+## v1.0.1
+* Implemented Naming of Persons
+* Implemented Growing of civilization population
+* Changed game rules to have civilizations only face each other once instead of twice
+* Implemented Attacking, Defending, and Battling, including exiling of persons into another Civilization
+* Added more messages to give an idea of whats going on.
