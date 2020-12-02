@@ -34,6 +34,28 @@ At the end of running the simulation, the Civilizations will be listed with thei
 
 I have no idea what the best strategy is and as more civilizations are added you could potentially seeing other some strategies gaining precedence while others falter.
 
+# How To Play The Game
+You can instantiate your own civilization in the `GenerateCivilizations.java` class.
+
+Within this class you can create a `new Civilization()` as follows:
+
+```java
+Civilization myCivilization = new Civilization("Name My Civ");
+
+//Add Civilization to the list of civs
+civilization.add(myCivilization);
+
+//Set up a strategy for your civ
+myCivilization.setStrategy(new Strategy() {
+            @Override
+            public CivActions executeStrategy(CivPayouts lastPayout) {
+                CivActions ourAction;
+                // You are given your last reward payout for your last action and you must return a valid CivAction for your next action. How you decide to do this is up to you! You can create aditional methods if you wish!
+                return ourAction;
+            }
+        });
+```
+
 ## Future Plans
 I intend to eventually implement more complicated game mechanics such as scoring based off population, possibly buildings and resources as well. For example during produce you could potentially see a Civ also growing in population but during an a successful attack some Civilians are carried off into exile into the new Civilization that wins.
 
