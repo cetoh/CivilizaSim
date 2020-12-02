@@ -94,7 +94,7 @@ public class Civilization {
     }
 
     private void growPopulation() {
-        int growAmt = (int) (Math.ceil(Math.random()) * 10);
+        int growAmt = (int) (Math.ceil(Math.random() * 10));
 
         int actualGrown = 0;
         for (int i = 0; i < growAmt; i++) {

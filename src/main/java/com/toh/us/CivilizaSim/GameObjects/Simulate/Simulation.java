@@ -4,6 +4,7 @@ import com.toh.us.CivilizaSim.GameObjects.Civ.CivActions;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivPayouts;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
 import com.toh.us.CivilizaSim.GameObjects.People.Person;
+import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,8 +38,36 @@ public class Simulation {
     }
 
     public void calculateAdditionalPoints(Civilization civ) {
+        int additionalPoints = 0;
         //Award points for population (2 per person)
-        score.put(civ, score.get(civ) + (2 * civ.getPeople().size()));
+        additionalPoints += calculatePopulationPoints(civ);
+        score.put(civ, score.get(civ) + calculatePopulationPoints(civ));
+
+        //Award points for resources
+        additionalPoints += calculateResourcePoints(civ);
+
+        //Add to score
+        score.put(civ, score.get(civ) + additionalPoints);
+    }
+
+    private int calculatePopulationPoints(Civilization civ) {
+        return 2 * civ.getPeople().size();
+    }
+
+    private int calculateResourcePoints(Civilization civ) {
+        int points = 0;
+        Warehouse warehouse = civ.getWarehouse();
+
+        // Normal Resources
+        points += warehouse.getWheat().getAmount() / 100;
+        points += warehouse.getClay().getAmount() / 100;
+        points += warehouse.getIron().getAmount() / 100;
+        points += warehouse.getWood().getAmount() / 100;
+
+        // Luxury Resources
+        points += warehouse.getGold().getAmount() / 10;
+
+        return points;
     }
 
     public void runSim (List<Civilization> civilizationList) {
