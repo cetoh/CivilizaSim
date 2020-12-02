@@ -1,5 +1,5 @@
 # CivilizaSim
- A Java Based Civilation Simulation
+ A Java Based Civilization Simulation
 
 The game is as follows. Make civilization. Implement a strategy. Strategies are given the last Payout your Civilization received and must return one of the 5 CivActions:
 
@@ -45,4 +45,4 @@ I intend to eventually implement more complicated game mechanics such as scoring
 * Implemented Growing of civilization population
 * Changed game rules to have civilizations only face each other once instead of twice
 * Implemented Attacking, Defending, and Battling, including exiling of persons into another Civilization
-* Added more messages to give an idea of whats going on.
+* Added more messages to give an idea of what's going on.
