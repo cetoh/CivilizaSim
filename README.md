@@ -46,3 +46,7 @@ I intend to eventually implement more complicated game mechanics such as scoring
 * Changed game rules to have civilizations only face each other once instead of twice
 * Implemented Attacking, Defending, and Battling, including exiling of persons into another Civilization
 * Added more messages to give an idea of what's going on.
+
+## [v1.0.2](https://github.com/cetoh/CivilizaSim/tree/v1.0.1) (Bleeding Edge - Experimental)
+* Working on getting resources involved
+* Working on updated scoring
