@@ -9,7 +9,7 @@ The game is as follows. Make civilization. Implement a strategy. Strategies are 
 * TRADE
 * TRAIN
 
-Civiliazations are instantiated and must have a strategy to compete. All Civilizations will complete twice against the other civilization in a head-to-head. During the head to head, each Civilization can take 10 actions. Based on these actions, and the action of the opposing civilization, a reward or Payout will be given and added to the Civ's point total.
+Civiliazations are instantiated and must have a strategy to compete. All Civilizations will complete ~~twice~~ once (this was changed in v1.0.1) against the other civilization in a head-to-head. During the head to head, each Civilization can take 10 actions. Based on these actions, and the action of the opposing civilization, a reward or Payout will be given and added to the Civ's point total.
 
 * VERY_HIGH = 5 pts
 * HIGH = 4 pts
@@ -37,10 +37,10 @@ I have no idea what the best strategy is and as more civilizations are added you
 ## Future Plans
 I intend to eventually implement more complicated game mechanics such as scoring based off population, possibly buildings and resources as well. For example during produce you could potentially see a Civ also growing in population but during an a successful attack some Civilians are carried off into exile into the new Civilization that wins.
 
-## v1.0.0
+## [v1.0.0] (https://github.com/cetoh/CivilizaSim/tree/v1.0.0)
 * This version has a basic game with only the 5 actions in the table and the basic scoring mentioned.
 
-## v1.0.1
+## [v1.0.1] (https://github.com/cetoh/CivilizaSim/tree/v1.0.1)
 * Implemented Naming of Persons
 * Implemented Growing of civilization population
 * Changed game rules to have civilizations only face each other once instead of twice
