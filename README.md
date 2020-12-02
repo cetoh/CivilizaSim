@@ -52,12 +52,15 @@ myCivilization.setStrategy(new Strategy() {
                 CivActions ourAction;
                 // You are given your last reward payout for your last action and you must return a valid CivAction for your next action. 
                 // How you decide to do this is up to you! You can create aditional methods if you wish!
+                ourAction = otherMethodToHelpDecideStrategy();
+                
                 return ourAction;
             }
             
-            private void otherMethodToHelpDecideStrategy() {
+            private CivActions otherMethodToHelpDecideStrategy() {
                 // You can declare other methods to make your strategy more robust or complicated!
                 // Up to you!
+                return CivActions.NONE;
             }
         });
 ```
