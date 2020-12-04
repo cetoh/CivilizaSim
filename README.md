@@ -1,5 +1,5 @@
 # CivilizaSim
- A Java Based Civilation Simulation
+ A Java Based Civilization Simulation
 
 The game is as follows. Make civilization. Implement a strategy. Strategies are given the last Payout your Civilization received and must return one of the 5 CivActions:
 
@@ -9,7 +9,7 @@ The game is as follows. Make civilization. Implement a strategy. Strategies are 
 * TRADE
 * TRAIN
 
-Civiliazations are instantiated and must have a strategy to compete. All Civilizations will complete twice against the other civilization in a head-to-head. During the head to head, each Civilization can take 10 actions. Based on these actions, and the action of the opposing civilization, a reward or Payout will be given and added to the Civ's point total.
+Civiliazations are instantiated and must have a strategy to compete. All Civilizations will complete ~~twice~~ once (this was changed in v1.0.1) against the other civilization in a head-to-head. During the head to head, each Civilization can take 10 actions. Based on these actions, and the action of the opposing civilization, a reward or Payout will be given and added to the Civ's point total.
 
 * VERY_HIGH = 5 pts
 * HIGH = 4 pts
@@ -34,5 +34,73 @@ At the end of running the simulation, the Civilizations will be listed with thei
 
 I have no idea what the best strategy is and as more civilizations are added you could potentially seeing other some strategies gaining precedence while others falter.
 
+# How To Play The Game
+You can instantiate your own civilization in the `GenerateCivilizations.java` class.
+
+Within this class you can create a `new Civilization()` as follows:
+
+```java
+Civilization myCivilization = new Civilization("Name My Civ");
+
+//Add Civilization to the list of civs
+civilization.add(myCivilization);
+
+//Set up a strategy for your civ
+myCivilization.setStrategy(new Strategy() {
+            @Override
+            public CivActions executeStrategy(CivPayouts lastPayout) {
+                CivActions ourAction;
+                // You are given your last reward payout for your last action and you must return a valid CivAction for your next action. 
+                // How you decide to do this is up to you! You can create aditional methods if you wish!
+                ourAction = otherMethodToHelpDecideStrategy();
+                
+                return ourAction;
+            }
+            
+            private CivActions otherMethodToHelpDecideStrategy() {
+                // You can declare other methods to make your strategy more robust or complicated!
+                // Up to you!
+                return CivActions.NONE;
+            }
+        });
+```
+
+### Training
+When attempting to train the Civilization must have a Civilian who is not already Soldier available. The Train Action will only ever produce one soldier. Training will only be successful if the Civilization has available 25 Iron, 20 Wood, 20 Wheat, and 5 Gold.
+
+### Producing
+Producing will give the Civilization 100 of each basic resource (Iron, Wood, Wheat, & Clay) and 10 of each luxury resource (GOLD). The Civilization will also give birth to a random number between 1-10 Civilians.
+
+### Trading
+TODO
+
+### Attacking
+When Attacking, if the other Civilization also Attacked then both Civilizations will put their Soldiers head-to-head. The Civilization's will kill each other sodliers on a 1 to 1 basis and any Civilization that has Soldiers remaing is declared the "winner", although you don't really win much except losing all your people.
+
+When Attacking, if the other Civilization chose to Produce, Train, or Defend, then the Attacking Civilization will steal 75% of each resource from the other Civilization. The Attacking Civilization also Exile 30% of the other Civilization's population, assimilating them into their own Civilization.
+
+When Attacking, if the other Civilization chose, to Defend see Defending below.
+
+### Defending
+When Defending, nothing happens unless the Civilization successfully Defends against another Attack. The Attacking Civilization will lose 75% of their Soldiers while the Defending Civilization will lose 50% of their Soldiers.
+
 ## Future Plans
 I intend to eventually implement more complicated game mechanics such as scoring based off population, possibly buildings and resources as well. For example during produce you could potentially see a Civ also growing in population but during an a successful attack some Civilians are carried off into exile into the new Civilization that wins.
+
+## [v1.0.0](https://github.com/cetoh/CivilizaSim/tree/v1.0.0)
+* This version has a basic game with only the 5 actions in the table and the basic scoring mentioned.
+
+## [v1.0.1](https://github.com/cetoh/CivilizaSim/tree/v1.0.1)
+* Implemented Naming of Persons
+* Implemented Growing of civilization population
+* Changed game rules to have civilizations only face each other once instead of twice
+* Implemented Attacking, Defending, and Battling, including exiling of persons into another Civilization
+* Added more messages to give an idea of what's going on.
+
+## [v1.0.2](https://github.com/cetoh/CivilizaSim/tree/v1.0.2) (Latest Release)
+* Resources are now involved in Attacking and Training
+* Updated Scoring to include calculation of Population and Resources remaining at the end
+* Implemented an actual round robin tournament play to prevent any one Civ from getting an advantage from going first
+* GUI Framework to display results in a window instead of just console
+* Updated several calcuation of Soldiers after battle
+* Will now add a NPC Civilization called Nomads which will only produce in the case that their are an odd number of Civilizations
