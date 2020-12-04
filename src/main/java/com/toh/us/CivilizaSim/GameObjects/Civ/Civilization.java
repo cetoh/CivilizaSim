@@ -115,6 +115,26 @@ public class Civilization {
         }
     }
 
+    public void trade(Civilization otherCiv, CivActions otherCivAction) {
+        // Get other warehouse
+        Warehouse otherCivWarehouse = otherCiv.getWarehouse();
+
+        switch (otherCivAction) {
+            case TRADE:
+                //Both Civs will get a random amount of resources for each resource type
+                otherCivWarehouse.getWheat()
+                break;
+            case PRODUCE:
+
+                break;
+            case TRAIN:
+                break;
+            case DEFEND:
+                break;
+
+        }
+    }
+
     public void attack(Civilization civilization, boolean defended) {
         List<Soldier> theirSoldiers = civilization.getSoldiers();
         if (defended) {

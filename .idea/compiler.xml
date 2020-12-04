@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="CivilizaSim" target="11.0.8" />
+      <module name="CivilizaSim" target="11.0.9" />
     </bytecodeTargetLevel>
   </component>
 </project>
