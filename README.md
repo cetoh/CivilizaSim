@@ -97,8 +97,10 @@ I intend to eventually implement more complicated game mechanics such as scoring
 * Implemented Attacking, Defending, and Battling, including exiling of persons into another Civilization
 * Added more messages to give an idea of what's going on.
 
-## [v1.0.2](https://github.com/cetoh/CivilizaSim/tree/v1.0.1) (Bleeding Edge - Experimental)
-* Working on getting resources involved
-* Working on updated scoring
-* Working on implementing an actual round robin tournament play
-* Working on a GUI
+## [v1.0.2](https://github.com/cetoh/CivilizaSim/tree/v1.0.2) (Latest Release)
+* Resources are now involved in Attacking and Training
+* Updated Scoring to include calculation of Population and Resources remaining at the end
+* Implemented an actual round robin tournament play to prevent any one Civ from getting an advantage from going first
+* GUI Framework to display results in a window instead of just console
+* Updated several calcuation of Soldiers after battle
+* Will now add a NPC Civilization called Nomads which will only produce in the case that their are an odd number of Civilizations
