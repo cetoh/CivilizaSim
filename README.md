@@ -65,6 +65,25 @@ myCivilization.setStrategy(new Strategy() {
         });
 ```
 
+### Training
+When attempting to train the Civilization must have a Civilian who is not already Soldier available. The Train Action will only ever produce one soldier. Training will only be successful if the Civilization has available 25 Iron, 20 Wood, 20 Wheat, and 5 Gold.
+
+### Producing
+Producing will give the Civilization 100 of each basic resource (Iron, Wood, Wheat, & Clay) and 10 of each luxury resource (GOLD). The Civilization will also give birth to a random number between 1-10 Civilians.
+
+### Trading
+TODO
+
+### Attacking
+When Attacking, if the other Civilization also Attacked then both Civilizations will put their Soldiers head-to-head. The Civilization's will kill each other sodliers on a 1 to 1 basis and any Civilization that has Soldiers remaing is declared the "winner", although you don't really win much except losing all your people.
+
+When Attacking, if the other Civilization chose to Produce, Train, or Defend, then the Attacking Civilization will steal 75% of each resource from the other Civilization. The Attacking Civilization also Exile 30% of the other Civilization's population, assimilating them into their own Civilization.
+
+When Attacking, if the other Civilization chose, to Defend see Defending below.
+
+### Defending
+When Defending, nothing happens unless the Civilization successfully Defends against another Attack. The Attacking Civilization will lose 75% of their Soldiers while the Defending Civilization will lose 50% of their Soldiers.
+
 ## Future Plans
 I intend to eventually implement more complicated game mechanics such as scoring based off population, possibly buildings and resources as well. For example during produce you could potentially see a Civ also growing in population but during an a successful attack some Civilians are carried off into exile into the new Civilization that wins.
 
@@ -81,3 +100,5 @@ I intend to eventually implement more complicated game mechanics such as scoring
 ## [v1.0.2](https://github.com/cetoh/CivilizaSim/tree/v1.0.1) (Bleeding Edge - Experimental)
 * Working on getting resources involved
 * Working on updated scoring
+* Working on implementing an actual round robin tournament play
+* Working on a GUI
