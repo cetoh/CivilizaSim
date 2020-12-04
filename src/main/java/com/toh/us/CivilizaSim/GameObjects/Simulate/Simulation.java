@@ -7,10 +7,8 @@ import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Strategy;
 import com.toh.us.CivilizaSim.GameObjects.People.Person;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
-import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import javafx.scene.control.TextArea;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +16,7 @@ import java.util.List;
 
 public class Simulation extends Service<Void> {
 
-    HashMap<Civilization, Integer> score = new HashMap<Civilization, Integer>();
+    HashMap<Civilization, Integer> score = new HashMap<>();
 
     //Default 10 rounds
     private int numRounds = 10;

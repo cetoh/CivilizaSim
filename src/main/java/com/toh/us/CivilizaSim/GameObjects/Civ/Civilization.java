@@ -5,7 +5,6 @@ import com.toh.us.CivilizaSim.GameObjects.People.Civilian;
 import com.toh.us.CivilizaSim.GameObjects.People.Person;
 import com.toh.us.CivilizaSim.GameObjects.People.Soldier;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
-import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.List;

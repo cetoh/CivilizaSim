@@ -11,7 +11,7 @@ import java.util.List;
 
 public class GenerateCivilizations {
 
-    private List<Civilization> civilizations = new ArrayList<Civilization>();
+    private List<Civilization> civilizations = new ArrayList<>();
 
     public GenerateCivilizations(PrimaryController controller) {
 
