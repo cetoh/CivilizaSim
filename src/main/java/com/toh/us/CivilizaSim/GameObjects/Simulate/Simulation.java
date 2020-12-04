@@ -1,24 +1,34 @@
 package com.toh.us.CivilizaSim.GameObjects.Simulate;
 
+import com.toh.us.CivilizaSim.Display.PrimaryController;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivActions;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivPayouts;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
+import com.toh.us.CivilizaSim.GameObjects.Civ.Strategy;
 import com.toh.us.CivilizaSim.GameObjects.People.Person;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
+import javafx.application.Platform;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
+import javafx.scene.control.TextArea;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Simulation {
+public class Simulation extends Service<Void> {
 
     HashMap<Civilization, Integer> score = new HashMap<Civilization, Integer>();
 
     //Default 10 rounds
     private int numRounds = 10;
 
-    public Simulation() {
+    private List<Civilization> civilizationList;
+    private PrimaryController controller;
 
+    public Simulation(PrimaryController controller, List<Civilization> civilizationList) {
+        this.controller = controller;
+        this.civilizationList = civilizationList;
     }
 
     public Simulation(int numRounds) {
@@ -28,11 +38,11 @@ public class Simulation {
     public void printScore() {
         for (Civilization civ : score.keySet()) {
             calculateAdditionalPoints(civ);
-            System.out.println(civ.getName() + ": " + score.get(civ));
-            System.out.println("\tCitizens:");
+            controller.addLogMessage(civ.getName() + ": " + score.get(civ));
+            controller.addLogMessage("\tCitizens:");
             List<Person> people = civ.getPeople();
             for (Person person : people) {
-                System.out.println("\t\t" + person.getName().toString() + " - " + person.getOriginalCivilization());
+                controller.addLogMessage("\t\t" + person.getName().toString() + " - " + person.getOriginalCivilization());
             }
         }
     }
@@ -70,16 +80,91 @@ public class Simulation {
         return points;
     }
 
-    public void runSim (List<Civilization> civilizationList) {
+    public void runSim () {
+        runRoundRobin();
+        /*
         List<Civilization> opponents = new ArrayList<>(civilizationList);
         for (Civilization civ1 : civilizationList) {
             opponents.remove(civ1);
             for (Civilization civ2 : opponents) {
-                System.out.println(civ1.getName() + " vs. " + civ2.getName());
+                controller.addLogMessage(civ1.getName() + " vs. " + civ2.getName() + "\n");
                 headToHead(civ1, civ2);
             }
 
         }
+        */
+    }
+
+    private void runRoundRobin()
+    {
+        if (civilizationList.size() % 2 != 0)
+        {
+            //If odd number create Dummy civ that only produces
+            Civilization dummy = new Civilization("Nomads", controller);
+            dummy.setStrategy(new Strategy() {
+                @Override
+                public CivActions executeStrategy(CivPayouts lastPayout) {
+                    return CivActions.PRODUCE;
+                }
+            });
+            dummy.getPeople().clear();
+            civilizationList.add(dummy); // If odd number of teams add a dummy
+        }
+
+        int numRounds = (civilizationList.size() - 1); // Rounds needed to complete tournament
+        int halfSize = civilizationList.size() / 2;
+
+        List<Civilization> teams = new ArrayList<>(civilizationList); // Add teams to List and remove the first team
+        teams.remove(0);
+
+        int teamsSize = teams.size();
+
+        for (int i = 0; i < numRounds; i++)
+        {
+            controller.addLogMessage("\n== Round " + (i + 1) + " ==\n");
+
+            int teamIdx = i % teamsSize;
+
+            if (teams.get(teamIdx).getName().equals("Nomads")){
+                controller.addLogMessage("\nSome Nomads vs. " + civilizationList.get(0).getName() + "\n");
+                teams.get(teamIdx).getPeople().clear();
+            } else if (civilizationList.get(0).getName().equals("Nomads")) {
+                controller.addLogMessage("\n" + teams.get(teamIdx).getName() + " vs. Some Nomads\n");
+                civilizationList.get(0).getPeople().clear();
+            } else {
+                controller.addLogMessage("\n" + teams.get(teamIdx).getName() + " vs. " + civilizationList.get(0).getName() + "\n");
+            }
+
+            headToHead(teams.get(teamIdx), civilizationList.get(0));
+
+            for (int idx = 1; idx < halfSize; idx++)
+            {
+                int firstTeam = (i + idx) % teamsSize;
+                int secondTeam = (i  + teamsSize - idx) % teamsSize;
+
+                if (teams.get(firstTeam).getName().equals("Nomads")){
+                    controller.addLogMessage("\nSome Nomads vs. " + teams.get(secondTeam).getName() + "\n");
+                    teams.get(firstTeam).getPeople().clear();
+                } else if (teams.get(secondTeam).getName().equals("Nomads")) {
+                    controller.addLogMessage("\n" + teams.get(firstTeam).getName() + " vs. Some Nomads\n");
+                    teams.get(secondTeam).getPeople().clear();
+                } else {
+                    controller.addLogMessage("\n" + teams.get(firstTeam).getName() + " vs. " + teams.get(secondTeam).getName() + "\n");
+                }
+
+                headToHead(teams.get(firstTeam), teams.get(secondTeam));
+            }
+        }
+
+        //Remove dummy civilization
+        civilizationList.removeIf(civ -> civ.getName().equals("Nomads"));
+        HashMap<Civilization, Integer> updatedScores = new HashMap<>();
+        for (Civilization civ : score.keySet()) {
+            if (!civ.getName().equals("Nomads")) {
+                updatedScores.put(civ, score.get(civ));
+            }
+        }
+        score = updatedScores;
     }
 
     public void headToHead(Civilization civ1, Civilization civ2) {
@@ -272,5 +357,18 @@ public class Simulation {
                 score.put(civ, score.getOrDefault(civ, 0));
                 break;
         }
+    }
+
+    @Override
+    protected Task<Void> createTask() {
+
+        return new Task<>() {
+            @Override
+            protected Void call() {
+                runSim();
+                printScore();
+                return null;
+            }
+        };
     }
 }

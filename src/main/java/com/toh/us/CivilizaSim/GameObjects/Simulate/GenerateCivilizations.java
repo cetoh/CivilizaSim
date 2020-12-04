@@ -1,5 +1,6 @@
 package com.toh.us.CivilizaSim.GameObjects.Simulate;
 
+import com.toh.us.CivilizaSim.Display.PrimaryController;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivActions;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivPayouts;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
@@ -12,13 +13,13 @@ public class GenerateCivilizations {
 
     private List<Civilization> civilizations = new ArrayList<Civilization>();
 
-    public GenerateCivilizations() {
+    public GenerateCivilizations(PrimaryController controller) {
 
-        Civilization rome = new Civilization("Rome");
-        Civilization greece = new Civilization("Greece");
-        Civilization huns = new Civilization("Huns");
-        Civilization egypt = new Civilization("Egypt");
-        Civilization gauls = new Civilization("Gauls");
+        Civilization rome = new Civilization("Rome", controller);
+        Civilization greece = new Civilization("Greece", controller);
+        Civilization huns = new Civilization("Huns", controller);
+        Civilization egypt = new Civilization("Egypt", controller);
+        Civilization gauls = new Civilization("Gauls", controller);
 
         civilizations.add(rome);
         civilizations.add(greece);
@@ -79,7 +80,19 @@ public class GenerateCivilizations {
         huns.setStrategy(new Strategy() {
             @Override
             public CivActions executeStrategy(CivPayouts lastPayout) {
-                return CivActions.ATTACK;
+                if (lastPayout.equals(CivPayouts.NONE)) {
+                    return CivActions.PRODUCE;
+                }
+
+                if (huns.getSoldiers().size() < huns.getPeople().size()
+                        && huns.getWarehouse().getIron().getAmount() >= 25
+                        && huns.getWarehouse().getWood().getAmount() >= 20
+                        && huns.getWarehouse().getWheat().getAmount() >= 20
+                        && huns.getWarehouse().getGold().getAmount() >= 5) {
+                    return CivActions.TRAIN;
+                } else {
+                    return CivActions.ATTACK;
+                }
             }
         });
 

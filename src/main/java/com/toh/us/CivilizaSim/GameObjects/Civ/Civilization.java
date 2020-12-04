@@ -1,9 +1,11 @@
 package com.toh.us.CivilizaSim.GameObjects.Civ;
 
+import com.toh.us.CivilizaSim.Display.PrimaryController;
 import com.toh.us.CivilizaSim.GameObjects.People.Civilian;
 import com.toh.us.CivilizaSim.GameObjects.People.Person;
 import com.toh.us.CivilizaSim.GameObjects.People.Soldier;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +22,11 @@ public class Civilization {
 
     private Warehouse warehouse = new Warehouse();
 
-    public Civilization(String name) {
+    private PrimaryController controller;
+
+    public Civilization(String name, PrimaryController controller) {
         this.name   = name;
+        this.controller = controller;
 
         //All civs start with 100 of each resource
         warehouse.getWheat().setAmount(100);
@@ -85,7 +90,7 @@ public class Civilization {
     }
 
     private void growResources() {
-        System.out.println(this.name + " produced some resources...");
+        controller.addLogMessage(this.name + " produced some resources...");
         warehouse.getClay().setAmount(warehouse.getClay().getAmount() + 100);
         warehouse.getWheat().setAmount(warehouse.getWheat().getAmount() + 100);
         warehouse.getIron().setAmount(warehouse.getIron().getAmount() + 100);
@@ -105,7 +110,8 @@ public class Civilization {
                 actualGrown++;
             }
                     }
-        System.out.println(this.name + "'s population grew by " + actualGrown + "!");
+        int finalActualGrown = actualGrown;
+        controller.addLogMessage(this.name + "'s population grew by " + finalActualGrown + "!");
     }
 
     public void train() {
@@ -124,10 +130,10 @@ public class Civilization {
                     warehouse.getWood().removeAmount(20);
                     warehouse.getGold().removeAmount(5);
 
-                    System.out.println(this.name + " trained " + soldier.getName() + " into a soldier.");
+                    controller.addLogMessage(this.name + " trained " + soldier.getName() + " into a soldier.");
                 }
                 else {
-                    System.out.println(this.name + " tried to train a soldier but had insufficient resources.");
+                    controller.addLogMessage(this.name + " tried to train a soldier but had insufficient resources.");
                 }
                 break;
             }
@@ -139,12 +145,13 @@ public class Civilization {
         List<Soldier> ourSoldiers = getSoldiers();
         if (ourSoldiers.size() > 0) {
             if (defended) {
-                theirSoldiers = theirSoldiers.subList(0, (int) (theirSoldiers.size() * 0.25));
+                theirSoldiers = theirSoldiers.subList(0, (int) (theirSoldiers.size() * 0.75));
                 ourSoldiers = ourSoldiers.subList(0, (ourSoldiers.size() / 2));
 
                 civilization.getPeople().removeAll(theirSoldiers);
                 people.removeAll(ourSoldiers);
-                System.out.println(this.name + " attacked " + civilization.getName() + " but " + civilization.getName() + " defended successfully!");
+                controller.addLogMessage(this.name + " attacked " + civilization.getName()
+                        + " but " + civilization.getName() + " defended successfully!");
             } else {
                 theirSoldiers = theirSoldiers.subList(0, (int) (theirSoldiers.size() * 0.75));
 
@@ -176,7 +183,7 @@ public class Civilization {
                 this.warehouse.getIron().addAmount(iron);
                 this.warehouse.getClay().addAmount(clay);
 
-                System.out.println(this.name + " attacked and raided " + civilization.getName() + " exiling a portion of their people!");
+                controller.addLogMessage(this.name + " attacked and raided " + civilization.getName() + " exiling a portion of their people!");
             }
         }
     }
@@ -187,7 +194,7 @@ public class Civilization {
         int numOurSoldiers = ourSoldiers.size();
         int numTheirSoldiers = theirSoldiers.size();
 
-        System.out.println("A battle occurred!");
+        controller.addLogMessage("A battle occurred!");
         // They win the battle
         if (numOurSoldiers < numTheirSoldiers) {
             people.removeAll(ourSoldiers);
@@ -196,7 +203,7 @@ public class Civilization {
             }
             civilization.getPeople().removeAll(theirSoldiers);
 
-            System.out.println(civilization.getName() + " won but at a great cost!");
+            controller.addLogMessage(civilization.getName() + " won but at a great cost!");
         } else if (numTheirSoldiers < numOurSoldiers) {
             //We win the battle
             civilization.getPeople().removeAll(theirSoldiers);
@@ -205,13 +212,13 @@ public class Civilization {
             }
             people.removeAll(ourSoldiers);
 
-            System.out.println(this.name + " won but at a great cost!");
+            controller.addLogMessage(this.name + " won but at a great cost!");
         } else {
             //We are equally matched
             people.removeAll(ourSoldiers);
             civilization.getPeople().removeAll(theirSoldiers);
 
-            System.out.println(this.getName() + " & " + civilization.getName() + " were equally matched, suffering many casualties!");
+            controller.addLogMessage(this.getName() + " & " + civilization.getName() + " were equally matched, suffering many casualties!");
         }
     }
 }
