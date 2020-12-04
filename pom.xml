@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.toh.us</groupId>
     <artifactId>CivilizaSim</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.2</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>14.0.2</maven.compiler.source>
+        <maven.compiler.target>14.0.2</maven.compiler.target>
     </properties>
 
 
@@ -68,8 +68,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <release>14.0.2</release>
                 </configuration>
             </plugin>
             <plugin>
@@ -91,7 +90,11 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.toh.us.CivilizaSim.CivilizaSim</mainClass>
+                                </transformer>
+                            </transformers>
                         </configuration>
                     </execution>
                 </executions>
