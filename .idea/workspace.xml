@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac40cd67-f354-4368-828c-a96dc897dd06" name="Default Changelist" comment="" />
+    <list default="true" id="ac40cd67-f354-4368-828c-a96dc897dd06" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/Display/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/Display/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/Display/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/Display/PrimaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/CivActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/CivActions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Civilization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Civilization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,36 +24,48 @@
       <list>
         <option value="Interface" />
         <option value="Enum" />
+        <option value="FxmlFile" />
+        <option value="HTML File" />
         <option value="Class" />
+        <option value="JavaFXApplication" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.1\plugins\maven\lib\maven3" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectId" id="1kf5P3R6VaeVBhPodXZTokyIpWb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/People/NameGen" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Program Files/SceneBuilder/SceneBuilder.exe" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\GBC-Mandarin\Documents\GitHub\CivilizaSim\src\main\java\com\toh\us\CivilizaSim\GameObjects\People\NameGen" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\GBC-Mandarin\Documents\GitHub\CivilizaSim\src\main\resources\com\toh\us\app" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn package" />
+      <command value="mvn -X" />
+      <command value="mvn -X package" />
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="CivilizaSim" type="Application" factoryName="Application" nameIsGenerated="true">
@@ -68,62 +89,15 @@
     </task>
     <servers />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="2170" y="13" key="#Project_Structure" timestamp="1606078795194">
-      <screen x="1920" y="5" width="1536" height="864" />
-    </state>
-    <state x="2170" y="13" key="#Project_Structure/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606078795194" />
-    <state x="2145" y="93" width="1086" height="736" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606525646422">
-      <screen x="1920" y="5" width="1536" height="864" />
-    </state>
-    <state x="2145" y="93" width="1086" height="736" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606525646422" />
-    <state x="2495" y="154" key="#com.intellij.ide.util.MemberChooser" timestamp="1606779758026">
-      <screen x="1920" y="5" width="1536" height="864" />
-    </state>
-    <state x="2495" y="154" key="#com.intellij.ide.util.MemberChooser/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606779758026" />
-    <state x="2419" y="240" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1606525598794">
-      <screen x="1920" y="5" width="1536" height="864" />
-    </state>
-    <state x="2419" y="240" key="#com.intellij.ide.util.TreeClassChooserDialog/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606525598794" />
-    <state x="2412" y="127" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1606078846142">
-      <screen x="1920" y="5" width="1536" height="864" />
-    </state>
-    <state x="2412" y="127" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606078846142" />
-    <state width="1493" height="224" key="GridCell.Tab.0.bottom" timestamp="1606859449670">
-      <screen x="1920" y="5" width="1536" height="864" />
-    </state>
-    <state width="1493" height="224" key="GridCell.Tab.0.bottom/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606859449670" />
-    <state width="1493" height="224" key="GridCell.Tab.0.center" timestamp="1606859449670">
-      <screen x="1920" y="5" width="1536" height="864" />
-    </state>
-    <state width="1493" height="224" key="GridCell.Tab.0.center/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606859449670" />
-    <state width="1493" height="224" key="GridCell.Tab.0.left" timestamp="1606859449670">
-      <screen x="1920" y="5" width="1536" height="864" />
-    </state>
-    <state width="1493" height="224" key="GridCell.Tab.0.left/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606859449670" />
-    <state width="1493" height="224" key="GridCell.Tab.0.right" timestamp="1606859449670">
-      <screen x="1920" y="5" width="1536" height="864" />
-    </state>
-    <state width="1493" height="224" key="GridCell.Tab.0.right/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606859449670" />
-    <state width="1493" height="277" key="GridCell.Tab.1.bottom" timestamp="1606525818151">
-      <screen x="1920" y="5" width="1536" height="864" />
-    </state>
-    <state width="1493" height="277" key="GridCell.Tab.1.bottom/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606525818151" />
-    <state width="1493" height="277" key="GridCell.Tab.1.center" timestamp="1606525818150">
-      <screen x="1920" y="5" width="1536" height="864" />
-    </state>
-    <state width="1493" height="277" key="GridCell.Tab.1.center/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606525818150" />
-    <state width="1493" height="277" key="GridCell.Tab.1.left" timestamp="1606525818150">
-      <screen x="1920" y="5" width="1536" height="864" />
-    </state>
-    <state width="1493" height="277" key="GridCell.Tab.1.left/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606525818150" />
-    <state width="1493" height="277" key="GridCell.Tab.1.right" timestamp="1606525818151">
-      <screen x="1920" y="5" width="1536" height="864" />
-    </state>
-    <state width="1493" height="277" key="GridCell.Tab.1.right/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606525818151" />
-    <state x="2484" y="186" key="refactoring.ChangeSignatureDialog" timestamp="1606779844614">
-      <screen x="1920" y="5" width="1536" height="864" />
-    </state>
-    <state x="2484" y="186" key="refactoring.ChangeSignatureDialog/1920.5.1536.864/0.0.1920.1080@1920.5.1536.864" timestamp="1606779844614" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

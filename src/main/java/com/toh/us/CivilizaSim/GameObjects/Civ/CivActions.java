@@ -9,7 +9,7 @@ public enum CivActions {
 
     public final String action;
 
-    private CivActions(String action) {
+    CivActions(String action) {
         this.action = action;
     }
 

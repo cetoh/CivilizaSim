@@ -18,4 +18,8 @@ public abstract class Resource {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    public void addAmount(int amount) { this.amount += amount; }
+
+    public void removeAmount(int amount) { this.amount -= amount; }
 }
