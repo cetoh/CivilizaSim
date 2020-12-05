@@ -4,10 +4,12 @@ import com.toh.us.CivilizaSim.Display.PrimaryController;
 import com.toh.us.CivilizaSim.GameObjects.People.Civilian;
 import com.toh.us.CivilizaSim.GameObjects.People.Person;
 import com.toh.us.CivilizaSim.GameObjects.People.Soldier;
+import com.toh.us.CivilizaSim.GameObjects.Resources.Resource;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Civilization {
 
@@ -73,6 +75,27 @@ public class Civilization {
 
     public Warehouse getWarehouse() { return warehouse; }
 
+    public Resource getRandomResource() {
+        double check = Math.random();
+        Resource toReturn;
+        if (check <= 0.2) {
+            toReturn =  warehouse.getWheat();
+        }
+        else if (check > 0.2 && check <= 0.4) {
+            toReturn = warehouse.getIron();
+        }
+        else if (check > 0.4 && check <= 0.6) {
+            toReturn = warehouse.getWood();
+        }
+        else if (check > 0.6 && check <= 0.7) {
+            toReturn = warehouse.getClay();
+        }
+        else {
+            toReturn = warehouse.getGold();
+        }
+        return toReturn;
+    }
+
     public List<Soldier> getSoldiers() {
         List<Soldier> soldiers = new ArrayList<>();
         for (Person person : people) {
@@ -82,6 +105,22 @@ public class Civilization {
         }
         return soldiers;
     }
+
+    private void swapPeople(Civilization otherCiv) {
+        //Get random person from each
+        Random rand = new Random();
+        int ind = rand.ints(0, people.size() - 1).findFirst().getAsInt();
+        Person person1 = people.remove(ind);
+
+        int ind2 = rand.ints(0, otherCiv.getPeople().size() - 1).findFirst().getAsInt();
+        Person person2 = otherCiv.getPeople().remove(ind2);
+
+        people.add(person2);
+        otherCiv.getPeople().add(person1);
+        controller.addLogMessage(person1.getName() + " decided to stay with " + otherCiv.getName());
+        controller.addLogMessage(person2.getName() + " decided to stay with " + this.name);
+    }
+
 
     public void produce() {
         growResources();
@@ -143,19 +182,64 @@ public class Civilization {
         // Get other warehouse
         Warehouse otherCivWarehouse = otherCiv.getWarehouse();
 
+        //Both Civs will get a random amount of resources for each resource type
+        //If the other Civ did not trade then both Civs will do a random amount exchange of a random set of resources
+        //No resources are exchanged if the other civilization defended
+        //but the trading civ gets some gold for their troubles
         switch (otherCivAction) {
-            case TRADE:
-                //Both Civs will get a random amount of resources for each resource type
-                otherCivWarehouse.getWheat()
-                break;
-            case PRODUCE:
+            case TRADE -> {
+                otherCivWarehouse.getWheat().addAmount((int) (Math.random() * 100));
+                otherCivWarehouse.getIron().addAmount((int) (Math.random() * 100));
+                otherCivWarehouse.getWood().addAmount((int) (Math.random() * 100));
+                otherCivWarehouse.getClay().addAmount((int) (Math.random() * 100));
+                warehouse.getWheat().addAmount((int) (Math.random() * 100));
+                warehouse.getIron().addAmount((int) (Math.random() * 100));
+                warehouse.getWood().addAmount((int) (Math.random() * 100));
+                warehouse.getClay().addAmount((int) (Math.random() * 100));
+                otherCivWarehouse.getGold().addAmount((int) (Math.random() * 50));
+                warehouse.getGold().addAmount((int) (Math.random() * 50));
+                controller.addLogMessage("Both Civilizations traded peacefully, prospering from the encounter!");
 
-                break;
-            case TRAIN:
-                break;
-            case DEFEND:
-                break;
+                //Check if Civilians will swap
+                if (Math.random() > 0.4) {
+                    //Do this for a random number between 0 - 5
+                    for (int i = - 1; i < Math.random() * 5; i++) {
+                        swapPeople(otherCiv);
+                    }
+                }
+            }
+            case PRODUCE, TRAIN -> {
+                for (int i = 0; i < 5; i++) {
+                    if (Math.random() >= 0.5) {
+                        int amtToSwap = (int) (Math.random() * 100);
+                        Resource resourceToGive = getRandomResource();
+                        Resource theirResourceToGive = otherCiv.getRandomResource();
 
+                        resourceToGive.removeAmount(amtToSwap);
+                        theirResourceToGive.removeAmount(amtToSwap);
+
+                        Resource resourceToGet = getRandomResource();
+                        Resource theirResourceToGet = otherCiv.getRandomResource();
+
+                        resourceToGet.addAmount(amtToSwap);
+                        theirResourceToGet.addAmount(amtToSwap);
+                    }
+                }
+                controller.addLogMessage(this.name + " traded peacefully, exchanging wares with " + otherCiv.getName() + ".");
+
+                //Check if Civilians will swap
+                if (Math.random() > 0.7) {
+                    //Do this for a random number between 0 - 5
+                    for (int i = - 1; i < Math.random() * 5; i++) {
+                        swapPeople(otherCiv);
+                    }
+                }
+            }
+            case DEFEND -> {
+                warehouse.getGold().addAmount(10);
+                controller.addLogMessage(otherCiv.getName() + " isolated themselves and chose not to trade, wary of possible attack. "
+                        + this.getName() + " got 10 gold for their troubles.");
+            }
         }
     }
 
