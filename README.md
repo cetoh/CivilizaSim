@@ -72,7 +72,14 @@ When attempting to train the Civilization must have a Civilian who is not alread
 Producing will give the Civilization 100 of each basic resource (Iron, Wood, Wheat, & Clay) and 10 of each luxury resource (GOLD). The Civilization will also give birth to a random number between 1-10 Civilians.
 
 ### Trading
-TODO
+(Protype available in v1.0.3)
+If both Civilizations trade both civilizations will gain a random number of resources between 1-100 for each basic resource and a random number between 1-50 for each luxury resource.
+
+If one Civ trades and the other only produces or trains, for a random set of resources each Civ will randomly lose between 1-100 of that resource and randomly gain between 1-100 of another resource.
+
+If one Civ trades and the other Defends nothing happens but the Civ that traded gets an extra 10 gold for their time.
+
+In the case of attack see Attacking.
 
 ### Attacking
 When Attacking, if the other Civilization also Attacked then both Civilizations will put their Soldiers head-to-head. The Civilization's will kill each other sodliers on a 1 to 1 basis and any Civilization that has Soldiers remaing is declared the "winner", although you don't really win much except losing all your people.
@@ -104,3 +111,6 @@ I intend to eventually implement more complicated game mechanics such as scoring
 * GUI Framework to display results in a window instead of just console
 * Updated several calcuation of Soldiers after battle
 * Will now add a NPC Civilization called Nomads which will only produce in the case that their are an odd number of Civilizations
+
+## [v1.0.3](https://github.com/cetoh/CivilizaSim/tree/v1.0.3) (Bleeding Edge - Experimental Release)
+* Prototype for Trading Mechanism
