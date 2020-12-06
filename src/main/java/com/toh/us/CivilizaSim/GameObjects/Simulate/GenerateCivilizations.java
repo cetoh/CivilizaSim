@@ -34,7 +34,16 @@ public class GenerateCivilizations {
                 switch (lastPayout) {
                     case LOW:
                     case VERY_LOW:
-                        ourAction = CivActions.TRAIN;
+                        if (huns.getSoldiers().size() < huns.getPeople().size()
+                                && huns.getWarehouse().getIron().getAmount() >= 25
+                                && huns.getWarehouse().getWood().getAmount() >= 20
+                                && huns.getWarehouse().getWheat().getAmount() >= 20
+                                && huns.getWarehouse().getGold().getAmount() >= 5) {
+                            ourAction = CivActions.TRAIN;
+                        }
+                        else {
+                            ourAction = CivActions.PRODUCE;
+                        }
                         break;
                     case MODERATE:
                         ourAction = CivActions.DEFEND;
@@ -65,7 +74,16 @@ public class GenerateCivilizations {
                         ourAction = CivActions.ATTACK;
                         break;
                     case HIGH:
-                        ourAction = CivActions.TRAIN;
+                        if (huns.getSoldiers().size() < huns.getPeople().size()
+                                && huns.getWarehouse().getIron().getAmount() >= 25
+                                && huns.getWarehouse().getWood().getAmount() >= 20
+                                && huns.getWarehouse().getWheat().getAmount() >= 20
+                                && huns.getWarehouse().getGold().getAmount() >= 5) {
+                            ourAction = CivActions.TRAIN;
+                        }
+                        else {
+                            ourAction = CivActions.PRODUCE;
+                        }
                         break;
                     case VERY_HIGH:
                         ourAction = CivActions.TRADE;

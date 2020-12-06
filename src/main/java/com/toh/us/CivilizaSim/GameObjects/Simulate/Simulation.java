@@ -42,6 +42,14 @@ public class Simulation extends Service<Void> {
             for (Person person : people) {
                 controller.addLogMessage("\t\t" + person.getName().toString() + " - " + person.getOriginalCivilization());
             }
+
+            controller.addLogMessage("\tResources:");
+            Warehouse warehouse = civ.getWarehouse();
+            controller.addLogMessage("Wheat: " + warehouse.getWheat().getAmount());
+            controller.addLogMessage("Iron: " + warehouse.getIron().getAmount());
+            controller.addLogMessage("Wood: " + warehouse.getWood().getAmount());
+            controller.addLogMessage("Clay: " + warehouse.getClay().getAmount());
+            controller.addLogMessage("Gold: " + warehouse.getIron().getAmount());
         }
     }
 
@@ -194,12 +202,15 @@ public class Simulation extends Service<Void> {
             else if (civActions1.equals(CivActions.TRADE) && civActions2.equals(CivActions.TRADE)) {
                 lastPayout1 = CivPayouts.VERY_HIGH;
                 lastPayout2 = CivPayouts.VERY_HIGH;
+
+                civ1.trade(civ2, civActions2);
             }
             else if (civActions1.equals(CivActions.TRADE) && civActions2.equals(CivActions.PRODUCE)) {
                 lastPayout1 = CivPayouts.MODERATE;
                 lastPayout2 = CivPayouts.MODERATE;
 
                 civ2.produce();
+                civ1.trade(civ2, civActions2);
             }
             else if (civActions1.equals(CivActions.TRADE) && civActions2.equals(CivActions.ATTACK)) {
                 lastPayout1 = CivPayouts.VERY_LOW;
@@ -210,12 +221,15 @@ public class Simulation extends Service<Void> {
             else if (civActions1.equals(CivActions.TRADE) && civActions2.equals(CivActions.DEFEND)) {
                 lastPayout1 = CivPayouts.LOW;
                 lastPayout2 = CivPayouts.VERY_LOW;
+
+                civ1.trade(civ2, civActions2);
             }
             else if (civActions1.equals(CivActions.TRADE) && civActions2.equals(CivActions.TRAIN)) {
                 lastPayout1 = CivPayouts.LOW;
                 lastPayout2 = CivPayouts.MODERATE;
 
                 civ2.train();
+                civ1.trade(civ2, civActions2);
             }
             else if (civActions1.equals(CivActions.PRODUCE) && civActions2.equals(CivActions.PRODUCE)) {
                 lastPayout1 = CivPayouts.HIGH;
@@ -234,6 +248,8 @@ public class Simulation extends Service<Void> {
             else if (civActions1.equals(CivActions.PRODUCE) && civActions2.equals(CivActions.TRADE)) {
                 lastPayout1 = CivPayouts.MODERATE;
                 lastPayout2 = CivPayouts.MODERATE;
+
+                civ2.trade(civ1, civActions1);
             }
             else if (civActions1.equals(CivActions.PRODUCE) && civActions2.equals(CivActions.TRAIN)) {
                 lastPayout1 = CivPayouts.HIGH;
@@ -261,6 +277,7 @@ public class Simulation extends Service<Void> {
                 lastPayout2 = CivPayouts.LOW;
 
                 civ1.train();
+                civ2.trade(civ1, civActions1);
             }
             else if (civActions1.equals(CivActions.TRAIN) && civActions2.equals(CivActions.PRODUCE)) {
                 lastPayout1 = CivPayouts.LOW;
@@ -300,6 +317,7 @@ public class Simulation extends Service<Void> {
             else if (civActions1.equals(CivActions.DEFEND) && civActions2.equals(CivActions.TRADE)) {
                 lastPayout1 = CivPayouts.VERY_LOW;
                 lastPayout2 = CivPayouts.LOW;
+                civ2.trade(civ1, civActions1);
             }
             else if (civActions1.equals(CivActions.DEFEND) && civActions2.equals(CivActions.TRAIN)) {
                 lastPayout1 = CivPayouts.LOW;

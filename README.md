@@ -72,12 +72,12 @@ When attempting to train the Civilization must have a Civilian who is not alread
 Producing will give the Civilization 100 of each basic resource (Iron, Wood, Wheat, & Clay) and 10 of each luxury resource (GOLD). The Civilization will also give birth to a random number between 1-10 Civilians.
 
 ### Trading
-(Protype available in v1.0.3)
+(Protoype available in v1.0.3)
 If both Civilizations trade both civilizations will gain a random number of resources between 1-100 for each basic resource and a random number between 1-50 for each luxury resource.
 
-If one Civ trades and the other only produces or trains, for a random set of resources each Civ will randomly lose between 1-100 of that resource and randomly gain between 1-100 of another resource.
+If one Civ chooses to trade and the other only produces or trains, for a random set of resources each Civ will randomly lose between 1-100 of that resource and randomly gain between 1-100 of another resource.
 
-If one Civ trades and the other Defends nothing happens but the Civ that traded gets an extra 10 gold for their time.
+If one Civ chooses to trade and the other Defends nothing happens, but the Civ that traded gets an extra 10 gold for their time.
 
 In the case of attack see Attacking.
 
