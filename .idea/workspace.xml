@@ -5,28 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3216952-906e-4b88-9f99-89ec83046581" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Barracks.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Building.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/BuildingType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Cost.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Marketplace.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Walls.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CivilizaSim.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CivilizaSim.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/CivilizaSim-1.0.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Civ/Civilization.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Civ/Civilization.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/original-CivilizaSim-1.0.2.jar" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,11 +23,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Enum" />
         <option value="FxmlFile" />
         <option value="HTML File" />
-        <option value="Class" />
         <option value="JavaFXApplication" />
+        <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>

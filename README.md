@@ -114,3 +114,4 @@ I intend to eventually implement more complicated game mechanics such as scoring
 
 ## [v1.0.3](https://github.com/cetoh/CivilizaSim/tree/v1.0.3) (Bleeding Edge - Experimental Release)
 * Prototype for Trading Mechanism
+* Begin work on Buildings (Focusing on Military and Commerce). This will most likely include adding a new CivActions.BUILD.
