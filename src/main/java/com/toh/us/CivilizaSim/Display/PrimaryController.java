@@ -41,6 +41,7 @@ public class PrimaryController {
     }
 
     public void addLogMessage(String message) {
+        System.out.println(message);
         Platform.runLater(() -> textAreaLeft.appendText(message + "\n"));
     }
 

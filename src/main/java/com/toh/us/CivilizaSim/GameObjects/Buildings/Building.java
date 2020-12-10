@@ -4,6 +4,8 @@ public abstract class Building {
 
     private int level = 0;
 
+    private BuildingName buildingName;
+
     private String description = "";
 
     private Cost cost = new Cost();
@@ -12,6 +14,12 @@ public abstract class Building {
 
     public Building() {
 
+    }
+
+    public Building(BuildingName buildingName, BuildingType buildingType, String description) {
+        this.buildingName   = buildingName;
+        this.buildingType   = buildingType;
+        this.description    = description;
     }
 
     public int getLevel() {
@@ -54,5 +62,13 @@ public abstract class Building {
 
     public void setBuildingType(BuildingType buildingType) {
         this.buildingType = buildingType;
+    }
+
+    public BuildingName getBuildingName() {
+        return buildingName;
+    }
+
+    public void setBuildingName(BuildingName buildingName) {
+        this.buildingName = buildingName;
     }
 }

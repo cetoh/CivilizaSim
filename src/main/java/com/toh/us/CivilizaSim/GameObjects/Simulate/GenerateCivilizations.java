@@ -1,10 +1,9 @@
 package com.toh.us.CivilizaSim.GameObjects.Simulate;
 
 import com.toh.us.CivilizaSim.Display.PrimaryController;
-import com.toh.us.CivilizaSim.GameObjects.Civ.CivActions;
-import com.toh.us.CivilizaSim.GameObjects.Civ.CivPayouts;
-import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
-import com.toh.us.CivilizaSim.GameObjects.Civ.Strategy;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
+import com.toh.us.CivilizaSim.GameObjects.Civ.*;
+import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,33 +28,47 @@ public class GenerateCivilizations {
 
         rome.setStrategy(new Strategy() {
             @Override
-            public CivActions executeStrategy(CivPayouts lastPayout) {
-                CivActions ourAction;
+            public CivAction executeStrategy(CivPayouts lastPayout) {
+                CivAction ourAction = new CivAction();
                 switch (lastPayout) {
                     case LOW:
+                    case MODERATE:
+                        if (huns.getWarehouse().getIron().getAmount() >= 250
+                                && huns.getWarehouse().getWood().getAmount() >= 250
+                                && huns.getWarehouse().getWheat().getAmount() >= 250
+                                && huns.getWarehouse().getGold().getAmount() >= 50) {
+                            ourAction.setAction(CivActions.BUILD);
+
+                            switch (MathUtils.getRandomNumber(0, 3)) {
+                                case 0 -> ourAction.setBuildingName(BuildingName.AQUEDUCT);
+                                case 1 -> ourAction.setBuildingName(BuildingName.WALLS);
+                                case 2 -> ourAction.setBuildingName(BuildingName.BARRACKS);
+                                case 3 -> ourAction.setBuildingName(BuildingName.MARKETPLACE);
+                            }
+                        } else {
+                            ourAction.setAction(CivActions.PRODUCE);
+                        }
+                        break;
                     case VERY_LOW:
                         if (huns.getSoldiers().size() < huns.getPeople().size()
                                 && huns.getWarehouse().getIron().getAmount() >= 25
                                 && huns.getWarehouse().getWood().getAmount() >= 20
                                 && huns.getWarehouse().getWheat().getAmount() >= 20
                                 && huns.getWarehouse().getGold().getAmount() >= 5) {
-                            ourAction = CivActions.TRAIN;
+                            ourAction.setAction(CivActions.TRAIN);
                         }
                         else {
-                            ourAction = CivActions.PRODUCE;
+                            ourAction.setAction(CivActions.PRODUCE);
                         }
                         break;
-                    case MODERATE:
-                        ourAction = CivActions.DEFEND;
-                        break;
                     case HIGH:
-                        ourAction = CivActions.TRADE;
+                        ourAction.setAction(CivActions.TRADE);
                         break;
                     case VERY_HIGH:
-                        ourAction = CivActions.ATTACK;
+                        ourAction.setAction(CivActions.ATTACK);
                         break;
                     default:
-                        ourAction = CivActions.PRODUCE;
+                        ourAction.setAction(CivActions.PRODUCE);
                 }
                 return ourAction;
             }
@@ -63,15 +76,15 @@ public class GenerateCivilizations {
 
         greece.setStrategy(new Strategy() {
             @Override
-            public CivActions executeStrategy(CivPayouts lastPayout) {
-                CivActions ourAction;
+            public CivAction executeStrategy(CivPayouts lastPayout) {
+                CivAction ourAction = new CivAction();
                 switch (lastPayout) {
                     case LOW:
                     case MODERATE:
-                        ourAction = CivActions.DEFEND;
+                        ourAction.setAction(CivActions.DEFEND);
                         break;
                     case VERY_LOW:
-                        ourAction = CivActions.ATTACK;
+                        ourAction.setAction(CivActions.ATTACK);
                         break;
                     case HIGH:
                         if (huns.getSoldiers().size() < huns.getPeople().size()
@@ -79,17 +92,17 @@ public class GenerateCivilizations {
                                 && huns.getWarehouse().getWood().getAmount() >= 20
                                 && huns.getWarehouse().getWheat().getAmount() >= 20
                                 && huns.getWarehouse().getGold().getAmount() >= 5) {
-                            ourAction = CivActions.TRAIN;
+                            ourAction.setAction(CivActions.TRAIN);
                         }
                         else {
-                            ourAction = CivActions.PRODUCE;
+                            ourAction.setAction(CivActions.PRODUCE);
                         }
                         break;
                     case VERY_HIGH:
-                        ourAction = CivActions.TRADE;
+                        ourAction.setAction(CivActions.TRADE);
                         break;
                     default:
-                        ourAction = CivActions.PRODUCE;
+                        ourAction.setAction(CivActions.PRODUCE);
                 }
                 return ourAction;
             }
@@ -97,53 +110,97 @@ public class GenerateCivilizations {
 
         huns.setStrategy(new Strategy() {
             @Override
-            public CivActions executeStrategy(CivPayouts lastPayout) {
+            public CivAction executeStrategy(CivPayouts lastPayout) {
+                CivAction ourAction = new CivAction();
                 if (lastPayout.equals(CivPayouts.NONE)) {
-                    return CivActions.PRODUCE;
+                    ourAction.setAction(CivActions.PRODUCE);
                 }
 
-                if (huns.getSoldiers().size() < huns.getPeople().size()
+                if (huns.getWarehouse().getIron().getAmount() >= 250
+                        && huns.getWarehouse().getWood().getAmount() >= 250
+                        && huns.getWarehouse().getWheat().getAmount() >= 250
+                        && huns.getWarehouse().getGold().getAmount() >= 50){
+                    ourAction.setAction(CivActions.BUILD);
+                    ourAction.setBuildingName(BuildingName.BARRACKS);
+                }
+                else if (huns.getSoldiers().size() < huns.getPeople().size()
                         && huns.getWarehouse().getIron().getAmount() >= 25
                         && huns.getWarehouse().getWood().getAmount() >= 20
                         && huns.getWarehouse().getWheat().getAmount() >= 20
                         && huns.getWarehouse().getGold().getAmount() >= 5) {
-                    return CivActions.TRAIN;
+                    ourAction.setAction(CivActions.TRAIN);
                 } else {
-                    return CivActions.ATTACK;
+                    ourAction.setAction(CivActions.ATTACK);
                 }
+
+                return ourAction;
             }
         });
 
         egypt.setStrategy(new Strategy() {
             @Override
-            public CivActions executeStrategy(CivPayouts lastPayout) {
-                if (lastPayout == CivPayouts.VERY_LOW) {
-                    return CivActions.DEFEND;
+            public CivAction executeStrategy(CivPayouts lastPayout) {
+                CivAction ourAction = new CivAction();
+                Warehouse warehouse = egypt.getWarehouse();
+                if (lastPayout.equals(CivPayouts.VERY_LOW)) {
+                    ourAction.setAction(CivActions.DEFEND);
                 }
-                return CivActions.PRODUCE;
+                else if (lastPayout.equals(CivPayouts.NONE)) {
+                    ourAction.setAction(CivActions.PRODUCE);
+                }
+                else if (lastPayout.equals(CivPayouts.HIGH)){
+                    ourAction.setAction(CivActions.TRADE);
+                }
+                else if (lastPayout.equals(CivPayouts.MODERATE) && warehouse.getGold().getAmount() > 20
+                        && warehouse.getClay().getAmount() > 200
+                        && warehouse.getWood().getAmount() > 200
+                        && warehouse.getIron().getAmount() > 200
+                        && warehouse.getWheat().getAmount() > 200) {
+                    switch (MathUtils.getRandomNumber(0, 3)) {
+                        case 0 -> ourAction.setBuildingName(BuildingName.AQUEDUCT);
+                        case 1 -> ourAction.setBuildingName(BuildingName.WALLS);
+                        case 2 -> ourAction.setBuildingName(BuildingName.BARRACKS);
+                        case 3 -> ourAction.setBuildingName(BuildingName.MARKETPLACE);
+                    }
+                } else {
+                    ourAction.setAction(CivActions.PRODUCE);
+                }
+
+                return ourAction;
             }
         });
 
         gauls.setStrategy(new Strategy() {
             @Override
-            public CivActions executeStrategy(CivPayouts lastPayout) {
+            public CivAction executeStrategy(CivPayouts lastPayout) {
                 double rand = Math.random();
-
-                if (rand < 0.2) {
-                    return CivActions.ATTACK;
+                CivAction ourAction = new CivAction();
+                if (rand < 0.166) {
+                    ourAction.setAction(CivActions.ATTACK);
                 }
-                else if (rand >= 0.2  && rand < 0.4) {
-                    return CivActions.PRODUCE;
+                else if (rand >= 0.166  && rand < 0.333) {
+                    ourAction.setAction(CivActions.PRODUCE);
                 }
-                else if (rand >= 0.4 && rand < 0.6) {
-                    return CivActions.TRADE;
+                else if (rand >= 0.333 && rand < 0.499) {
+                    ourAction.setAction(CivActions.TRADE);
                 }
-                else if (rand >= 0.6 && rand < 0.8)  {
-                    return CivActions.DEFEND;
+                else if (rand >= 0.499 && rand < 0.666)  {
+                    ourAction.setAction(CivActions.DEFEND);
+                }
+                else if (rand >= 0.666 && rand < 0.833){
+                    ourAction.setAction(CivActions.TRAIN);
                 }
                 else {
-                    return CivActions.TRAIN;
+                    ourAction.setAction(CivActions.BUILD);
+                    switch (MathUtils.getRandomNumber(0, 3)) {
+                        case 0 -> ourAction.setBuildingName(BuildingName.AQUEDUCT);
+                        case 1 -> ourAction.setBuildingName(BuildingName.WALLS);
+                        case 2 -> ourAction.setBuildingName(BuildingName.BARRACKS);
+                        case 3 -> ourAction.setBuildingName(BuildingName.MARKETPLACE);
+                    }
                 }
+
+                return ourAction;
             }
         });
     }

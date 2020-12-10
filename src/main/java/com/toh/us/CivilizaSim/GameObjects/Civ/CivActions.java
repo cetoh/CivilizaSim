@@ -5,7 +5,8 @@ public enum CivActions {
     TRAIN("TRAIN"),
     PRODUCE("PRODUCE"),
     ATTACK("ATTACK"),
-    DEFEND("DEFEND");
+    DEFEND("DEFEND"),
+    BUILD("BUILD");
 
     public final String action;
 

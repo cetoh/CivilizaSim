@@ -27,6 +27,11 @@ public abstract class Person {
 
     }
 
+    protected Person(String originalCivilization, Name name) {
+        this.originalCivilization = originalCivilization;
+        this.name                 = name;
+    }
+
     public int getHealth() {
         return health;
     }

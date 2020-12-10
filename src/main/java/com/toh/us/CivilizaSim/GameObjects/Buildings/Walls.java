@@ -2,13 +2,14 @@ package com.toh.us.CivilizaSim.GameObjects.Buildings;
 
 public class Walls extends Building {
     public Walls() {
-        this.getCost().getWheat().setAmount(200);
-        this.getCost().getWood().setAmount(350);
-        this.getCost().getIron().setAmount(350);
-        this.getCost().getClay().setAmount(400);
-        this.getCost().getGold().setAmount(30);
+        super(BuildingName.WALLS,
+                BuildingType.MILITARY,
+                "Each level in this building increases your defensive capabilities by 1%.");
 
-        this.setBuildingType(BuildingType.MILITARY);
-        this.setDescription("Each level in this building increases your defensive capabilities by 1%.");
+        this.getCost().getWheat().setAmount(100);
+        this.getCost().getWood().setAmount(175);
+        this.getCost().getIron().setAmount(175);
+        this.getCost().getClay().setAmount(200);
+        this.getCost().getGold().setAmount(10);
     }
 }

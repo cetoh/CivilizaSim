@@ -5,14 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3216952-906e-4b88-9f99-89ec83046581" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Barracks.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Building.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/BuildingType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Cost.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Marketplace.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Walls.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Aqueduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/BuildingName.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/CivAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/MathUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/Display/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/Display/PrimaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Barracks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Barracks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Building.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Marketplace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Marketplace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Walls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Walls.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/CivActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/CivActions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Civilization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Civilization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Strategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Strategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/People/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/People/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/People/Soldier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/People/Soldier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Civ/CivActions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Civ/CivActions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Civ/Civilization$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Civ/Civilization$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Civ/Civilization.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Civ/Civilization.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Civ/Strategy.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Civ/Strategy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +107,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ac40cd67-f354-4368-828c-a96dc897dd06" name="Default Changelist" comment="" />
+      <changelist id="c3216952-906e-4b88-9f99-89ec83046581" name="Default Changelist" comment="" />
       <created>1606078780581</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -100,5 +126,15 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="java-exception" />
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CivilizaSim$CivilizaSim.ic" NAME="CivilizaSim Coverage Results" MODIFIED="1607564849820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
