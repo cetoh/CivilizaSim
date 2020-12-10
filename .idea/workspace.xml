@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac40cd67-f354-4368-828c-a96dc897dd06" name="Default Changelist" comment="">
+    <list default="true" id="c3216952-906e-4b88-9f99-89ec83046581" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/Display/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/Display/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/Display/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/Display/PrimaryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/CivActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/CivActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Civilization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Civilization.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CivilizaSim.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CivilizaSim.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,11 +18,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Enum" />
         <option value="FxmlFile" />
         <option value="HTML File" />
-        <option value="Class" />
         <option value="JavaFXApplication" />
+        <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -50,7 +45,7 @@
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -81,7 +76,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ac40cd67-f354-4368-828c-a96dc897dd06" name="Default Changelist" comment="" />
+      <changelist id="c3216952-906e-4b88-9f99-89ec83046581" name="Default Changelist" comment="" />
       <created>1606078780581</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -99,5 +94,9 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CivilizaSim$CivilizaSim.ic" NAME="CivilizaSim Coverage Results" MODIFIED="1607564849820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

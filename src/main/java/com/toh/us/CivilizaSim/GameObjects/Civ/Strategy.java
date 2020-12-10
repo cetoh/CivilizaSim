@@ -7,5 +7,5 @@ public abstract class Strategy {
     }
 
 
-    public abstract CivActions executeStrategy(CivPayouts lastPayout);
+    public abstract CivAction executeStrategy(CivPayouts lastPayout);
 }
