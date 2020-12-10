@@ -68,19 +68,24 @@ public class Simulation extends Service<Void> {
 
     public void calculateAdditionalPoints(Civilization civ) {
         int additionalPoints = 0;
+
         //Award points for population (2 per person)
         additionalPoints += calculatePopulationPoints(civ);
-        score.put(civ, score.get(civ) + calculatePopulationPoints(civ));
 
         //Award points for resources
         additionalPoints += calculateResourcePoints(civ);
+
+        //Award points for buildings
+        additionalPoints += calculateBuildingPoints(civ);
 
         //Add to score
         score.put(civ, score.get(civ) + additionalPoints);
     }
 
     private int calculatePopulationPoints(Civilization civ) {
-        return 2 * civ.getPeople().size();
+        int points = 2 * civ.getPeople().size();
+        controller.addLogMessage(points + " points awarded to " + civ.getName() + " for population.");
+        return points;
     }
 
     private int calculateResourcePoints(Civilization civ) {
@@ -96,6 +101,21 @@ public class Simulation extends Service<Void> {
         // Luxury Resources
         points += warehouse.getGold().getAmount() / 10;
 
+        controller.addLogMessage(points + " points awarded to " + civ.getName() + " for resources.");
+        return points;
+    }
+
+    private int calculateBuildingPoints(Civilization civ) {
+        int points = 0;
+        HashMap<BuildingName, Building> buildings = civ.getBuildings();
+
+        for (BuildingName buildingName : buildings.keySet()) {
+            Building building = buildings.get(buildingName);
+
+            points += building.getLevel() * 5;
+        }
+
+        controller.addLogMessage(points + " points awarded to " + civ.getName() + " for buildings.");
         return points;
     }
 
