@@ -48,19 +48,20 @@ civilization.add(myCivilization);
 //Set up a strategy for your civ
 myCivilization.setStrategy(new Strategy() {
             @Override
-            public CivActions executeStrategy(CivPayouts lastPayout) {
-                CivActions ourAction;
+            public CivAction executeStrategy(CivPayouts lastPayout) {
+                CivAction ourAction = new CivAction();
                 // You are given your last reward payout for your last action and you must return a valid CivAction for your next action. 
                 // How you decide to do this is up to you! You can create aditional methods if you wish!
+                // The default CivAction on construction is CivActions.PRODUCE
                 ourAction = otherMethodToHelpDecideStrategy();
                 
                 return ourAction;
             }
             
-            private CivActions otherMethodToHelpDecideStrategy() {
+            private CivAction otherMethodToHelpDecideStrategy() {
                 // You can declare other methods to make your strategy more robust or complicated!
                 // Up to you!
-                return CivActions.NONE;
+                return new CivAction(CivActions.NONE);
             }
         });
 ```
@@ -72,7 +73,6 @@ When attempting to train the Civilization must have a Civilian who is not alread
 Producing will give the Civilization 100 of each basic resource (Iron, Wood, Wheat, & Clay) and 10 of each luxury resource (GOLD). The Civilization will also give birth to a random number between 1-10 Civilians.
 
 ### Trading
-(Protoype available in v1.0.3)
 If both Civilizations trade both civilizations will gain a random number of resources between 1-100 for each basic resource and a random number between 1-50 for each luxury resource.
 
 If one Civ chooses to trade and the other only produces or trains, for a random set of resources each Civ will randomly lose between 1-100 of that resource and randomly gain between 1-100 of another resource.
@@ -90,6 +90,15 @@ When Attacking, if the other Civilization chose, to Defend see Defending below.
 
 ### Defending
 When Defending, nothing happens unless the Civilization successfully Defends against another Attack. The Attacking Civilization will lose 75% of their Soldiers while the Defending Civilization will lose 50% of their Soldiers.
+
+### Building
+Whe Building, you must also specify a Building Name in your ```CivAction()``` for example ```civAction.setBuildingName(BuildingName.BARRACKS)``` when returning it from your strategy. If the civilization has enough resources the building will be upgraded. Each subsequent level of the building will cost 20 more of each resource.
+
+#### Buildings Available Currently
+* _**AQUEDUCT**_ - Each level in this building increases your production gain by 1.5%.
+* _**BARRACKS**_ - Each level in this building will increase the number of soldiers you can train for each Train Action by 1.
+* _**MARKETPLACE**_ - Each level in this building increases your trade yield with other civilizations by 1%.
+* _**WALLS**_ - Each level in this building increases your defensive capabilities by 1%.
 
 ## Future Plans
 I intend to eventually implement more complicated game mechanics such as scoring based off population, possibly buildings and resources as well. For example during produce you could potentially see a Civ also growing in population but during an a successful attack some Civilians are carried off into exile into the new Civilization that wins.
@@ -113,5 +122,5 @@ I intend to eventually implement more complicated game mechanics such as scoring
 * Will now add a NPC Civilization called Nomads which will only produce in the case that their are an odd number of Civilizations
 
 ## [v1.0.3](https://github.com/cetoh/CivilizaSim/tree/v1.0.3) (Bleeding Edge - Experimental Release)
-* Prototype for Trading Mechanism
-* Begin work on Buildings (Focusing on Military and Commerce). This will most likely include adding a new CivActions.BUILD.
+* Implemented Trading Mechanism
+* Buildings Implemented (Focusing on Military and Commerce). This includes adding a new CivActions.BUILD.
