@@ -42,11 +42,16 @@ public class GenerateCivilizations {
                                 && huns.getWarehouse().getGold().getAmount() >= 50) {
                             ourAction.setAction(CivActions.BUILD);
 
-                            switch (MathUtils.getRandomNumber(0, 3)) {
+                            switch (MathUtils.getRandomNumber(0, 8)) {
                                 case 0 -> ourAction.setBuildingName(BuildingName.AQUEDUCT);
                                 case 1 -> ourAction.setBuildingName(BuildingName.WALLS);
                                 case 2 -> ourAction.setBuildingName(BuildingName.BARRACKS);
                                 case 3 -> ourAction.setBuildingName(BuildingName.MARKETPLACE);
+                                case 4 -> ourAction.setBuildingName(BuildingName.FLOUR_MILL);
+                                case 5 -> ourAction.setBuildingName(BuildingName.LUMBER_MILL);
+                                case 6 -> ourAction.setBuildingName(BuildingName.MINE);
+                                case 7 -> ourAction.setBuildingName(BuildingName.KILN);
+                                case 8 -> ourAction.setBuildingName(BuildingName.BANK);
                             }
                         } else {
                             ourAction.setAction(CivActions.PRODUCE);
@@ -87,11 +92,16 @@ public class GenerateCivilizations {
                         break;
                     case MODERATE:
                         ourAction.setAction(CivActions.BUILD);
-                        switch (MathUtils.getRandomNumber(0, 3)) {
+                        switch (MathUtils.getRandomNumber(0, 8)) {
                             case 0 -> ourAction.setBuildingName(BuildingName.AQUEDUCT);
                             case 1 -> ourAction.setBuildingName(BuildingName.WALLS);
                             case 2 -> ourAction.setBuildingName(BuildingName.BARRACKS);
                             case 3 -> ourAction.setBuildingName(BuildingName.MARKETPLACE);
+                            case 4 -> ourAction.setBuildingName(BuildingName.FLOUR_MILL);
+                            case 5 -> ourAction.setBuildingName(BuildingName.LUMBER_MILL);
+                            case 6 -> ourAction.setBuildingName(BuildingName.MINE);
+                            case 7 -> ourAction.setBuildingName(BuildingName.KILN);
+                            case 8 -> ourAction.setBuildingName(BuildingName.BANK);
                         }
                         break;
                     case VERY_LOW:
@@ -167,11 +177,16 @@ public class GenerateCivilizations {
                         && warehouse.getWood().getAmount() > 100
                         && warehouse.getIron().getAmount() > 100
                         && warehouse.getWheat().getAmount() > 100) {
-                    switch (MathUtils.getRandomNumber(0, 3)) {
+                    switch (MathUtils.getRandomNumber(0, 8)) {
                         case 0 -> ourAction.setBuildingName(BuildingName.AQUEDUCT);
                         case 1 -> ourAction.setBuildingName(BuildingName.WALLS);
                         case 2 -> ourAction.setBuildingName(BuildingName.BARRACKS);
                         case 3 -> ourAction.setBuildingName(BuildingName.MARKETPLACE);
+                        case 4 -> ourAction.setBuildingName(BuildingName.FLOUR_MILL);
+                        case 5 -> ourAction.setBuildingName(BuildingName.LUMBER_MILL);
+                        case 6 -> ourAction.setBuildingName(BuildingName.MINE);
+                        case 7 -> ourAction.setBuildingName(BuildingName.KILN);
+                        case 8 -> ourAction.setBuildingName(BuildingName.BANK);
                     }
                 } else {
                     ourAction.setAction(CivActions.PRODUCE);
@@ -203,11 +218,16 @@ public class GenerateCivilizations {
                 }
                 else {
                     ourAction.setAction(CivActions.BUILD);
-                    switch (MathUtils.getRandomNumber(0, 3)) {
+                    switch (MathUtils.getRandomNumber(0, 8)) {
                         case 0 -> ourAction.setBuildingName(BuildingName.AQUEDUCT);
                         case 1 -> ourAction.setBuildingName(BuildingName.WALLS);
                         case 2 -> ourAction.setBuildingName(BuildingName.BARRACKS);
                         case 3 -> ourAction.setBuildingName(BuildingName.MARKETPLACE);
+                        case 4 -> ourAction.setBuildingName(BuildingName.FLOUR_MILL);
+                        case 5 -> ourAction.setBuildingName(BuildingName.LUMBER_MILL);
+                        case 6 -> ourAction.setBuildingName(BuildingName.MINE);
+                        case 7 -> ourAction.setBuildingName(BuildingName.KILN);
+                        case 8 -> ourAction.setBuildingName(BuildingName.BANK);
                     }
                 }
 
@@ -275,7 +295,7 @@ public class GenerateCivilizations {
                 if (lastPayout.equals(CivPayouts.NONE)) {
                     return ourAction;
                 }
-                Warehouse warehouse = babylon.getWarehouse();
+                Warehouse warehouse = china.getWarehouse();
                 if (warehouse.getWheat().getAmount() >= 75
                         && warehouse.getIron().getAmount() >= 125
                         && warehouse.getWood().getAmount() >= 135
@@ -311,7 +331,7 @@ public class GenerateCivilizations {
                     ourAction.setAction(CivActions.DEFEND);
                 } else if (lastPayout.equals(CivPayouts.LOW) || lastPayout.equals(CivPayouts.HIGH)) {
                     ourAction.setAction(CivActions.TRAIN);
-                } else if (babylon.getSoldiers().size() > 2) {
+                } else if (china.getSoldiers().size() > 2) {
                     ourAction.setAction(CivActions.ATTACK);
                 } else if (lastPayout.equals(CivPayouts.MODERATE)) {
                     ourAction.setAction(CivActions.TRADE);
