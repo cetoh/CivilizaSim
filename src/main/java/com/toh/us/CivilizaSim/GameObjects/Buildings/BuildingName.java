@@ -1,10 +1,15 @@
 package com.toh.us.CivilizaSim.GameObjects.Buildings;
 
 public enum BuildingName {
-    AQUEDUCT("AQUEDUCT"),
-    BARRACKS("BARRACKS"),
-    MARKETPLACE("MARKETPLACE"),
-    WALLS("WALLS");
+    AQUEDUCT("Aqueduct"),
+    BANK("Bank"),
+    BARRACKS("Barracks"),
+    FLOUR_MILL("Flour Mill"),
+    KILN("Kiln"),
+    LUMBER_MILL("Lumber Mill"),
+    MARKETPLACE("Marketplace"),
+    MINE("Mine"),
+    WALLS("Walls");
 
     public final String name;
 
