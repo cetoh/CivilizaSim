@@ -36,10 +36,10 @@ public class GenerateCivilizations {
                 switch (lastPayout) {
                     case LOW:
                     case MODERATE:
-                        if (huns.getWarehouse().getIron().getAmount() >= 250
-                                && huns.getWarehouse().getWood().getAmount() >= 250
-                                && huns.getWarehouse().getWheat().getAmount() >= 250
-                                && huns.getWarehouse().getGold().getAmount() >= 50) {
+                        if (rome.getWarehouse().getIron().getAmount() >= 250
+                                && rome.getWarehouse().getWood().getAmount() >= 250
+                                && rome.getWarehouse().getWheat().getAmount() >= 250
+                                && rome.getWarehouse().getGold().getAmount() >= 50) {
                             ourAction.setAction(CivActions.BUILD);
 
                             switch (MathUtils.getRandomNumber(0, 8)) {
@@ -58,11 +58,11 @@ public class GenerateCivilizations {
                         }
                         break;
                     case VERY_LOW:
-                        if (huns.getSoldiers().size() < huns.getPeople().size()
-                                && huns.getWarehouse().getIron().getAmount() >= 25
-                                && huns.getWarehouse().getWood().getAmount() >= 20
-                                && huns.getWarehouse().getWheat().getAmount() >= 20
-                                && huns.getWarehouse().getGold().getAmount() >= 5) {
+                        if (rome.getSoldiers().size() < rome.getPeople().size()
+                                && rome.getWarehouse().getIron().getAmount() >= 25
+                                && rome.getWarehouse().getWood().getAmount() >= 20
+                                && rome.getWarehouse().getWheat().getAmount() >= 20
+                                && rome.getWarehouse().getGold().getAmount() >= 5) {
                             ourAction.setAction(CivActions.TRAIN);
                         }
                         else {
@@ -80,6 +80,8 @@ public class GenerateCivilizations {
                 }
                 return ourAction;
             }
+
+
         });
 
         greece.setStrategy(new Strategy() {
@@ -108,11 +110,11 @@ public class GenerateCivilizations {
                         ourAction.setAction(CivActions.ATTACK);
                         break;
                     case HIGH:
-                        if (huns.getSoldiers().size() < huns.getPeople().size()
-                                && huns.getWarehouse().getIron().getAmount() >= 25
-                                && huns.getWarehouse().getWood().getAmount() >= 20
-                                && huns.getWarehouse().getWheat().getAmount() >= 20
-                                && huns.getWarehouse().getGold().getAmount() >= 5) {
+                        if (greece.getSoldiers().size() < greece.getPeople().size()
+                                && greece.getWarehouse().getIron().getAmount() >= 25
+                                && greece.getWarehouse().getWood().getAmount() >= 20
+                                && greece.getWarehouse().getWheat().getAmount() >= 20
+                                && greece.getWarehouse().getGold().getAmount() >= 5) {
                             ourAction.setAction(CivActions.TRAIN);
                         }
                         else {

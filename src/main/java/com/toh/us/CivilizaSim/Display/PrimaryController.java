@@ -34,9 +34,9 @@ public class PrimaryController {
     private void runSim() {
         GenerateCivilizations generateCivilizations = new GenerateCivilizations(this);
 
-        List<Civilization> score = generateCivilizations.getCivilizations();
+        List<Civilization> civilizations = generateCivilizations.getCivilizations();
 
-        Simulation simulation = new Simulation(this, score);
+        Simulation simulation = new Simulation(this, civilizations);
         simulation.start();
     }
 
