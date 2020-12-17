@@ -2,6 +2,9 @@ package com.toh.us.CivilizaSim.GameObjects.Civ;
 
 import com.toh.us.CivilizaSim.Display.PrimaryController;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.*;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Economic.*;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Military.Barracks;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Military.Walls;
 import com.toh.us.CivilizaSim.GameObjects.People.Civilian;
 import com.toh.us.CivilizaSim.GameObjects.People.Person;
 import com.toh.us.CivilizaSim.GameObjects.People.Soldier;

@@ -1,4 +1,8 @@
-package com.toh.us.CivilizaSim.GameObjects.Buildings;
+package com.toh.us.CivilizaSim.GameObjects.Buildings.Military;
+
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Building;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingType;
 
 public class Walls extends Building {
     public Walls() {

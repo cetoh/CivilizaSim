@@ -5,7 +5,7 @@ public enum BuildingType {
     MILITARY("MILITARY"),
     POLITICAL("POLITICAL"),
     CULTURAL("CULTURAL"),
-    ACADEMIC("ACADEMIC"),
+    SCIENTIFIC("SCIENTIFIC"),
     SPECIAL("SPECIAL");
 
     public final String type;
