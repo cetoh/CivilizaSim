@@ -8,6 +8,8 @@ import com.toh.us.CivilizaSim.GameObjects.People.Person;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,10 +28,18 @@ public class Simulation extends Service<Void> {
     public Simulation(PrimaryController controller, List<Civilization> civilizationList) {
         this.controller = controller;
         this.civilizationList = civilizationList;
+
+        this.setOnSucceeded(workerStateEvent -> {
+            this.reset();
+        });
     }
 
     public Simulation(int numRounds) {
         this.numRounds  = numRounds;
+    }
+
+    public void setNumRounds(int numRounds){
+        this.numRounds = numRounds;
     }
 
     public void printScore() {

@@ -11,7 +11,10 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toh.us.CivilizaSim.Display.PrimaryController">
@@ -22,37 +25,130 @@
       <TextArea fx:id="textAreaLeft" BorderPane.alignment="CENTER" />
    </center>
    <right>
-      <VBox spacing="5.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox spacing="5.0">
+      <ScrollPane BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+         <content>
+            <VBox spacing="5.0">
                <children>
-                  <Label text="Number of Moves" />
-                  <TextField fx:id="textFieldNumberOfMoves" />
-               </children>
-            </HBox>
-            <RadioButton fx:id="rbAttack" mnemonicParsing="false" text="Attack" />
-            <RadioButton fx:id="rbDefend" mnemonicParsing="false" text="Defend" />
-            <RadioButton fx:id="rbTrain" mnemonicParsing="false" text="Train" />
-            <RadioButton fx:id="rbTrade" mnemonicParsing="false" text="Trade" />
-            <RadioButton fx:id="rbProduce" mnemonicParsing="false" text="Produce" />
-            <RadioButton fx:id="rbBuild" mnemonicParsing="false" text="Build" />
-            <ScrollPane>
-              <content>
-                  <TitledPane animated="false" text="Buildings">
+                  <HBox spacing="5.0">
+                     <children>
+                        <Label text="Number of Moves" />
+                        <TextField fx:id="textFieldNumberOfMoves" promptText="Must be greater than 0" />
+                     </children>
+                  </HBox>
+                  <RadioButton fx:id="rbAttack" mnemonicParsing="false" text="Attack" />
+                  <RadioButton fx:id="rbDefend" mnemonicParsing="false" text="Defend" />
+                  <RadioButton fx:id="rbTrain" mnemonicParsing="false" text="Train" />
+                  <RadioButton fx:id="rbTrade" mnemonicParsing="false" text="Trade" />
+                  <RadioButton fx:id="rbProduce" mnemonicParsing="false" text="Produce" />
+                  <RadioButton fx:id="rbBuild" mnemonicParsing="false" text="Build" />
+                  <TitledPane fx:id="titledPaneBuildings" animated="false" expanded="false" text="Buildings">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <AnchorPane>
                            <children>
                               <VBox>
                                  <children>
-                                    <TitledPane animated="false" text="Economic">
+                                    <TitledPane animated="false" expanded="false" text="Economic">
                                       <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                        <AnchorPane>
+                                             <children>
+                                                <GridPane fx:id="gridPaneEconomicBuildings" alignment="CENTER">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                </GridPane>
+                                             </children>
+                                          </AnchorPane>
                                       </content>
                                     </TitledPane>
-                                    <TitledPane animated="false" text="Military">
+                                    <TitledPane animated="false" expanded="false" text="Military">
                                       <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                        <AnchorPane>
+                                             <children>
+                                                <GridPane fx:id="gridPaneMilitaryBuildings" alignment="CENTER">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                </GridPane>
+                                             </children>
+                                          </AnchorPane>
                                       </content>
+                                    </TitledPane>
+                                    <TitledPane animated="false" expanded="false" text="Political">
+                                       <content>
+                                          <AnchorPane>
+                                             <children>
+                                                <GridPane fx:id="gridPanePoliticalBuildings" alignment="CENTER">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                </GridPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane animated="false" expanded="false" text="Scientific">
+                                       <content>
+                                          <AnchorPane>
+                                             <children>
+                                                <GridPane fx:id="gridPaneScientificBuildings" alignment="CENTER">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                </GridPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane animated="false" expanded="false" text="Special">
+                                       <content>
+                                          <AnchorPane>
+                                             <children>
+                                                <GridPane fx:id="gridPaneSpecialBuildings" alignment="CENTER">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                </GridPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
                                     </TitledPane>
                                  </children>
                               </VBox>
@@ -60,13 +156,10 @@
                         </AnchorPane>
                     </content>
                   </TitledPane>
-              </content>
-            </ScrollPane>
-            <Button fx:id="buttonRunSim" mnemonicParsing="false" onAction="#runSim" text="Run Simulation" />
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </BorderPane.margin>
-      </VBox>
+                  <Button fx:id="buttonRunSim" mnemonicParsing="false" onAction="#runSim" text="Run Simulation" />
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
    </right>
 </BorderPane>
