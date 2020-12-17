@@ -2,9 +2,15 @@ package com.toh.us.CivilizaSim.GameObjects.Civ;
 
 import com.toh.us.CivilizaSim.Display.PrimaryController;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.*;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Cultural.Amphitheater;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Economic.*;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Military.Barracks;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Military.Walls;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Political.Embassy;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Political.MinistryOfCommerce;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Political.MinistryOfForeignAffairs;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Political.MinistryOfIntelligence;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Scientific.Academy;
 import com.toh.us.CivilizaSim.GameObjects.People.Civilian;
 import com.toh.us.CivilizaSim.GameObjects.People.Person;
 import com.toh.us.CivilizaSim.GameObjects.People.Soldier;
@@ -445,13 +451,19 @@ public class Civilization {
             }
         } else {
             Building building = switch (buildingName) {
+                case ACADEMY -> new Academy();
+                case AMPHITHEATER -> new Amphitheater();
                 case AQUEDUCT -> new Aqueduct();
                 case BANK -> new Bank();
                 case BARRACKS -> new Barracks();
+                case EMBASSY -> new Embassy();
                 case FLOUR_MILL -> new FlourMill();
                 case KILN -> new Kiln();
                 case LUMBER_MILL -> new LumberMill();
                 case MARKETPLACE -> new Marketplace();
+                case MINISTRY_OF_COMMERCE -> new MinistryOfCommerce();
+                case MINISTRY_OF_FOREIGN_AFFAIRS -> new MinistryOfForeignAffairs();
+                case MINISTRY_OF_INTELLIGENCE -> new MinistryOfIntelligence();
                 case MINE -> new Mine();
                 case WALLS -> new Walls();
             };

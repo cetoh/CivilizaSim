@@ -1,19 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toh.us.CivilizaSim.Display.PrimaryController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toh.us.CivilizaSim.Display.PrimaryController">
    <top>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <buttons>
-            <Button fx:id="buttonRunSim" mnemonicParsing="false" onAction="#runSim" text="Run Simulation" />
-        </buttons>
-      </ButtonBar>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </top>
    <center>
       <TextArea fx:id="textAreaLeft" BorderPane.alignment="CENTER" />
    </center>
+   <right>
+      <VBox spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox spacing="5.0">
+               <children>
+                  <Label text="Number of Moves" />
+                  <TextField fx:id="textFieldNumberOfMoves" />
+               </children>
+            </HBox>
+            <RadioButton fx:id="rbAttack" mnemonicParsing="false" text="Attack" />
+            <RadioButton fx:id="rbDefend" mnemonicParsing="false" text="Defend" />
+            <RadioButton fx:id="rbTrain" mnemonicParsing="false" text="Train" />
+            <RadioButton fx:id="rbTrade" mnemonicParsing="false" text="Trade" />
+            <RadioButton fx:id="rbProduce" mnemonicParsing="false" text="Produce" />
+            <RadioButton fx:id="rbBuild" mnemonicParsing="false" text="Build" />
+            <ScrollPane>
+              <content>
+                  <TitledPane animated="false" text="Buildings">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox>
+                                 <children>
+                                    <TitledPane animated="false" text="Economic">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
+                                    </TitledPane>
+                                    <TitledPane animated="false" text="Military">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
+                                    </TitledPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </TitledPane>
+              </content>
+            </ScrollPane>
+            <Button fx:id="buttonRunSim" mnemonicParsing="false" onAction="#runSim" text="Run Simulation" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </VBox>
+   </right>
 </BorderPane>
