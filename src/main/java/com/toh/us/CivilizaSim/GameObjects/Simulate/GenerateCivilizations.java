@@ -28,6 +28,7 @@ public class GenerateCivilizations {
         civilizations.add(egypt);
         civilizations.add(gauls);
         civilizations.add(babylon);
+        civilizations.add(china);
 
         rome.setStrategy(new Strategy() {
             @Override

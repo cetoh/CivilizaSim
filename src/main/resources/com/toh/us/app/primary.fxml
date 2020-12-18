@@ -16,7 +16,11 @@
 
 <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toh.us.CivilizaSim.Display.PrimaryController">
    <top>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <buttons>
+            <Label text="Civilization Name:" />
+            <TextField fx:id="textFieldPlayerCivName" />
+         </buttons></ButtonBar>
    </top>
    <center>
       <TextArea fx:id="textAreaLeft" BorderPane.alignment="CENTER" />
@@ -47,6 +51,15 @@
                            <children>
                               <VBox>
                                  <children>
+                                    <TitledPane animated="false" expanded="false" text="Cultural">
+                                       <content>
+                                          <AnchorPane>
+                                             <children>
+                                                <VBox fx:id="vboxCultural" />
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
                                     <TitledPane animated="false" expanded="false" text="Economic">
                                       <content>
                                         <AnchorPane>

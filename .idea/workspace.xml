@@ -8,7 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/Display/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/Display/PrimaryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/BuildingName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/BuildingName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/GenerateCivilizations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/toh/us/app/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/toh/us/app/primary.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

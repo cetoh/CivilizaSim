@@ -75,4 +75,10 @@ public enum BuildingName {
 
         return  buildingNames;
     }
+
+    public static List<BuildingName> getSpecialBuildings() {
+        List<BuildingName> buildingNames = new ArrayList<>();
+
+        return  buildingNames;
+    }
 }
