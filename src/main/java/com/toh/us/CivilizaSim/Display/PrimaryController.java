@@ -1,5 +1,8 @@
 package com.toh.us.CivilizaSim.Display;
 
+import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
+import com.toh.us.CivilizaSim.GameObjects.Civ.CivAction;
+import com.toh.us.CivilizaSim.GameObjects.Civ.CivActions;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
 import com.toh.us.CivilizaSim.GameObjects.Simulate.GenerateCivilizations;
 import com.toh.us.CivilizaSim.GameObjects.Simulate.Simulation;
@@ -10,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 
@@ -45,6 +49,21 @@ public class PrimaryController {
     private TitledPane titledPaneBuildings;
 
     @FXML
+    private VBox vboxEconomic;
+
+    @FXML
+    private VBox vboxMilitary;
+
+    @FXML
+    private VBox vboxPolitical;
+
+    @FXML
+    private VBox vboxScientific;
+
+    @FXML
+    private VBox vboxSpecial;
+
+    @FXML
     private Button buttonRunSim;
 
     private Stage mainStage;
@@ -56,6 +75,8 @@ public class PrimaryController {
     @FXML
     private void initialize() {
         addListeners();
+
+        initializeBuildingGUI();
 
         GenerateCivilizations generateCivilizations = new GenerateCivilizations(this);
 
@@ -141,6 +162,15 @@ public class PrimaryController {
         });
     }
 
+    private void initializeBuildingGUI() {
+        //TODO need to add buttons or radio buttons to the VBoxes
+        List<BuildingName> culturalBuildings = BuildingName.getCulturalBuildings();
+        List<BuildingName> economicBuildings = BuildingName.getEconomicBuildings();
+        List<BuildingName> militaryBuildings = BuildingName.getMilitaryBuildings();
+        List<BuildingName> politicalBuildings = BuildingName.getPoliticalBuildings();
+        List<BuildingName> scientificBuildings = BuildingName.getScientificBuildings();
+    }
+
     public void setStage(Stage stage) {
         this.mainStage = stage;
     }
@@ -148,7 +178,32 @@ public class PrimaryController {
     @FXML
     private void runSim() {
         simulation.setNumRounds(Integer.parseInt(textFieldNumberOfMoves.getText()));
+        simulation.setPlayerAction(getAction());
         simulation.start();
+    }
+
+    private CivAction getAction() {
+        CivAction action = new CivAction();
+        if (rbAttack.isSelected()) {
+            action.setAction(CivActions.ATTACK);
+        }
+        else if (rbDefend.isSelected()) {
+            action.setAction(CivActions.DEFEND);
+        }
+        else if (rbTrain.isSelected()) {
+            action.setAction(CivActions.TRAIN);
+        }
+        else if (rbTrade.isSelected()) {
+            action.setAction(CivActions.TRADE);
+        }
+        else if (rbProduce.isSelected()) {
+            action.setAction(CivActions.PRODUCE);
+        }
+        else {
+            action.setAction(CivActions.BUILD);
+        }
+
+        return action;
     }
 
     public void addLogMessage(String message) {

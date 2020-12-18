@@ -25,6 +25,8 @@ public class Simulation extends Service<Void> {
     private List<Civilization> civilizationList;
     private PrimaryController controller;
 
+    private CivAction playerAction;
+
     public Simulation(PrimaryController controller, List<Civilization> civilizationList) {
         this.controller = controller;
         this.civilizationList = civilizationList;
@@ -40,6 +42,10 @@ public class Simulation extends Service<Void> {
 
     public void setNumRounds(int numRounds){
         this.numRounds = numRounds;
+    }
+
+    public void setPlayerAction(CivAction civAction) {
+        this.playerAction = playerAction;
     }
 
     public void printScore() {
