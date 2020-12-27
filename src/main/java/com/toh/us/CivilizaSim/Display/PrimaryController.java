@@ -96,7 +96,7 @@ public class PrimaryController {
         }
         civilizations.add(playerCivilization);
 
-        simulation = new Simulation(this, civilizations);
+        simulation = new Simulation(this, civilizations, playerCivilization);
     }
 
     private void addListeners() {
@@ -261,6 +261,12 @@ public class PrimaryController {
     private void runSim() {
         simulation.setNumRounds(Integer.parseInt(textFieldNumberOfMoves.getText()));
         simulation.setPlayerAction(getAction());
+
+        if (!textFieldPlayerCivName.getText().equals("")) {
+            playerCivilization.setName(textFieldPlayerCivName.getText());
+        } else {
+            playerCivilization.setName("Player");
+        }
         simulation.start();
     }
 

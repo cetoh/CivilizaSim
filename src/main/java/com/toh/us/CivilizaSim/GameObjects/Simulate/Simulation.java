@@ -27,11 +27,18 @@ public class Simulation extends Service<Void> {
 
     private CivAction playerAction;
 
-    public Simulation(PrimaryController controller, List<Civilization> civilizationList) {
+    private Civilization player;
+
+    public Simulation(PrimaryController controller, List<Civilization> civilizationList, Civilization player) {
         this.controller = controller;
         this.civilizationList = civilizationList;
+        this.player = player;
 
         this.setOnSucceeded(workerStateEvent -> {
+            this.reset();
+        });
+
+        this.setOnFailed(workerStateEvent -> {
             this.reset();
         });
     }
@@ -45,7 +52,13 @@ public class Simulation extends Service<Void> {
     }
 
     public void setPlayerAction(CivAction civAction) {
-        this.playerAction = playerAction;
+        this.playerAction = civAction;
+        this.player.setStrategy(new Strategy() {
+            @Override
+            public CivAction executeStrategy(CivPayouts lastPayout) {
+                return playerAction;
+            }
+        });
     }
 
     public void printScore() {
