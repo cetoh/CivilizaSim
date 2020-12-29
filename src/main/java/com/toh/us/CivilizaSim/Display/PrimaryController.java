@@ -67,7 +67,7 @@ public class PrimaryController {
     private VBox vboxSpecial;
 
     @FXML
-    private Button buttonRunSim;
+    private Button buttonMakeMove;
 
     private Stage mainStage;
 
@@ -259,7 +259,11 @@ public class PrimaryController {
 
     @FXML
     private void runSim() {
-        simulation.setNumRounds(Integer.parseInt(textFieldNumberOfMoves.getText()));
+        int numMoves = 3;
+        if (!textFieldNumberOfMoves.getText().equals("")) {
+            numMoves = Integer.parseInt(textFieldNumberOfMoves.getText());
+        }
+        simulation.setNumRounds(numMoves);
         simulation.setPlayerAction(getAction());
 
         if (!textFieldPlayerCivName.getText().equals("")) {
@@ -268,6 +272,11 @@ public class PrimaryController {
             playerCivilization.setName("Player");
         }
         simulation.start();
+    }
+
+    @FXML
+    private void checkScore() {
+        simulation.printScore();
     }
 
     private CivAction getAction() {

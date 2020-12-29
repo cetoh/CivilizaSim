@@ -111,7 +111,18 @@
                         </AnchorPane>
                     </content>
                   </TitledPane>
-                  <Button fx:id="buttonRunSim" mnemonicParsing="false" onAction="#runSim" text="Run Simulation" />
+                  <HBox spacing="5.0">
+                     <children>
+                        <Button fx:id="buttonMakeMove" mnemonicParsing="false" onAction="#runSim" text="Make Move" />
+                        <Button mnemonicParsing="false" onAction="#checkScore" text="Check Score" />
+                     </children>
+                     <padding>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </VBox.margin>
+                  </HBox>
                </children>
             </VBox>
          </content>

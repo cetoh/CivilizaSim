@@ -19,8 +19,8 @@ public class Simulation extends Service<Void> {
 
     HashMap<Civilization, Integer> score = new HashMap<>();
 
-    //Default 10 rounds
-    private int numRounds = 10;
+    //Default 3 rounds
+    private int numRounds = 3;
 
     private List<Civilization> civilizationList;
     private PrimaryController controller;
@@ -28,6 +28,8 @@ public class Simulation extends Service<Void> {
     private CivAction playerAction;
 
     private Civilization player;
+
+    private Civilization nextOpposingCiv;
 
     public Simulation(PrimaryController controller, List<Civilization> civilizationList, Civilization player) {
         this.controller = controller;
@@ -41,6 +43,20 @@ public class Simulation extends Service<Void> {
         this.setOnFailed(workerStateEvent -> {
             this.reset();
         });
+
+        if (this.civilizationList.size() % 2 != 0)
+        {
+            //If odd number create Dummy civ that only produces
+            Civilization dummy = new Civilization("Nomads", controller);
+            dummy.setStrategy(new Strategy() {
+                @Override
+                public CivAction executeStrategy(CivPayouts lastPayout) {
+                    return new CivAction(CivActions.PRODUCE);
+                }
+            });
+            dummy.getPeople().clear();
+            this.civilizationList.add(dummy); // If odd number of teams add a dummy
+        }
     }
 
     public Simulation(int numRounds) {
@@ -167,53 +183,50 @@ public class Simulation extends Service<Void> {
             civilizationList.add(dummy); // If odd number of teams add a dummy
         }
 
-        int numRounds = (civilizationList.size() - 1); // Rounds needed to complete tournament
+        //Temporarily remove player from list
+        civilizationList.removeIf(civ -> civ.getName().equals(player.getName()));
+
         int halfSize = civilizationList.size() / 2;
 
-        List<Civilization> teams = new ArrayList<>(civilizationList); // Add teams to List and remove the first team
-        teams.remove(0);
+        List<Civilization> teams = new ArrayList<>(civilizationList); // Add teams to List
 
         int teamsSize = teams.size();
+
+        if (nextOpposingCiv == null) {
+            int ind = MathUtils.getRandomNumber(0, teamsSize - 1);
+            nextOpposingCiv = teams.get(ind);
+            teams.remove(ind);
+        }
+        else {
+            teams.remove(this.nextOpposingCiv);
+        }
 
         for (int i = 0; i < numRounds; i++)
         {
             controller.addLogMessage("\n== Round " + (i + 1) + " ==\n");
+            headToHead(player, nextOpposingCiv);
+        }
 
-            int teamIdx = i % teamsSize;
-
-            if (teams.get(teamIdx).getName().equals("Nomads")){
-                controller.addLogMessage("\nSome Nomads vs. " + civilizationList.get(0).getName() + "\n");
-                teams.get(teamIdx).getPeople().clear();
-            } else if (civilizationList.get(0).getName().equals("Nomads")) {
-                controller.addLogMessage("\n" + teams.get(teamIdx).getName() + " vs. Some Nomads\n");
-                civilizationList.get(0).getPeople().clear();
-            } else {
-                controller.addLogMessage("\n" + teams.get(teamIdx).getName() + " vs. " + civilizationList.get(0).getName() + "\n");
-            }
-
-            headToHead(teams.get(teamIdx), civilizationList.get(0));
-
-            for (int idx = 1; idx < halfSize; idx++)
-            {
-                int firstTeam = (i + idx) % teamsSize;
-                int secondTeam = (i  + teamsSize - idx) % teamsSize;
-
-                if (teams.get(firstTeam).getName().equals("Nomads")){
-                    controller.addLogMessage("\nSome Nomads vs. " + teams.get(secondTeam).getName() + "\n");
-                    teams.get(firstTeam).getPeople().clear();
-                } else if (teams.get(secondTeam).getName().equals("Nomads")) {
-                    controller.addLogMessage("\n" + teams.get(firstTeam).getName() + " vs. Some Nomads\n");
-                    teams.get(secondTeam).getPeople().clear();
-                } else {
-                    controller.addLogMessage("\n" + teams.get(firstTeam).getName() + " vs. " + teams.get(secondTeam).getName() + "\n");
-                }
-
-                headToHead(teams.get(firstTeam), teams.get(secondTeam));
+        // Have other civs randomly play each other in the background
+        for (int i = 0; i < halfSize; i++) {
+            Civilization civ1 = teams.get(i);
+            Civilization civ2 = teams.get(i + halfSize);
+            for (int j = 0; j < numRounds; j++) {
+                headToHead(civ1, civ2);
             }
         }
 
         //Remove dummy civilization
         civilizationList.removeIf(civ -> civ.getName().equals("Nomads"));
+
+        //Add player back
+        civilizationList.add(player);
+
+        //Get next opponent
+        nextOpposingCiv = teams.get(MathUtils.getRandomNumber(0, teams.size() - 1));
+        controller.addLogMessage("\n" + player.getName() + " encountered " + nextOpposingCiv.getName() + "!");
+
+        //Update scores
         HashMap<Civilization, Integer> updatedScores = new HashMap<>();
         for (Civilization civ : score.keySet()) {
             if (!civ.getName().equals("Nomads")) {
@@ -520,7 +533,6 @@ public class Simulation extends Service<Void> {
             @Override
             protected Void call() {
                 runSim();
-                printScore();
                 return null;
             }
         };
