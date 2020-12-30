@@ -35,6 +35,18 @@
                <children>
                   <HBox spacing="5.0">
                      <children>
+                        <Button fx:id="buttonMakeMove" mnemonicParsing="false" onAction="#runSim" text="Make Move" />
+                        <Button mnemonicParsing="false" onAction="#checkScore" text="Check Score" />
+                     </children>
+                     <padding>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox spacing="5.0">
+                     <children>
                         <Label text="Number of Moves" />
                         <TextField fx:id="textFieldNumberOfMoves" promptText="Must be greater than 0" />
                      </children>
@@ -111,21 +123,21 @@
                         </AnchorPane>
                     </content>
                   </TitledPane>
-                  <HBox spacing="5.0">
-                     <children>
-                        <Button fx:id="buttonMakeMove" mnemonicParsing="false" onAction="#runSim" text="Make Move" />
-                        <Button mnemonicParsing="false" onAction="#checkScore" text="Check Score" />
-                     </children>
-                     <padding>
-                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                     </VBox.margin>
-                  </HBox>
                </children>
             </VBox>
          </content>
       </ScrollPane>
    </right>
+   <left>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="buttonWheat" mnemonicParsing="false" text="Wheat: 0" textFill="GOLDENROD" />
+            <Button fx:id="buttonClay" minWidth="63.0" mnemonicParsing="false" text="Clay: 0" textFill="FIREBRICK" />
+            <Button fx:id="buttonWood" minWidth="63.0" mnemonicParsing="false" text="Wood: 0" textFill="BROWN" />
+            <Button fx:id="buttonIron" minWidth="63.0" mnemonicParsing="false" text="Iron: 0" textFill="GREY" />
+            <VBox prefHeight="20.0" />
+            <Button fx:id="buttonGold" minWidth="63.0" mnemonicParsing="false" text="Gold: 0" textFill="#d4af37" />
+         </children>
+      </VBox>
+   </left>
 </BorderPane>

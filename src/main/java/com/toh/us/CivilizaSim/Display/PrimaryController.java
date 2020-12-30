@@ -4,6 +4,7 @@ import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivAction;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivActions;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
+import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
 import com.toh.us.CivilizaSim.GameObjects.Simulate.GenerateCivilizations;
 import com.toh.us.CivilizaSim.GameObjects.Simulate.Simulation;
 import javafx.application.Platform;
@@ -69,6 +70,21 @@ public class PrimaryController {
     @FXML
     private Button buttonMakeMove;
 
+    @FXML
+    private Button buttonWheat;
+
+    @FXML
+    private Button buttonClay;
+
+    @FXML
+    private Button buttonWood;
+
+    @FXML
+    private Button buttonIron;
+
+    @FXML
+    private Button buttonGold;
+
     private Stage mainStage;
 
     private Simulation simulation;
@@ -97,6 +113,7 @@ public class PrimaryController {
         civilizations.add(playerCivilization);
 
         simulation = new Simulation(this, civilizations, playerCivilization);
+        simulation.updateResourceGUI();
     }
 
     private void addListeners() {
@@ -309,9 +326,30 @@ public class PrimaryController {
         return action;
     }
 
+
+
     public void addLogMessage(String message) {
         System.out.println(message);
         Platform.runLater(() -> textAreaLeft.appendText(message + "\n"));
     }
 
+    public Button getButtonWheat() {
+        return buttonWheat;
+    }
+
+    public Button getButtonClay() {
+        return buttonClay;
+    }
+
+    public Button getButtonWood() {
+        return buttonWood;
+    }
+
+    public Button getButtonIron() {
+        return buttonIron;
+    }
+
+    public Button getButtonGold() {
+        return buttonGold;
+    }
 }

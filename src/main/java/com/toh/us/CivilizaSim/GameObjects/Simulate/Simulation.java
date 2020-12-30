@@ -6,6 +6,7 @@ import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
 import com.toh.us.CivilizaSim.GameObjects.Civ.*;
 import com.toh.us.CivilizaSim.GameObjects.People.Person;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
+import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -526,6 +527,17 @@ public class Simulation extends Service<Void> {
         }
     }
 
+    public void updateResourceGUI() {
+        Warehouse warehouse = player.getWarehouse();
+
+        Platform.runLater(() -> controller.getButtonWheat().setText("Wheat: " + warehouse.getWheat().getAmount()));
+        Platform.runLater(() -> controller.getButtonClay().setText("Clay: " + warehouse.getClay().getAmount()));
+        Platform.runLater(() -> controller.getButtonWood().setText("Wood: " + warehouse.getWood().getAmount()));
+        Platform.runLater(() -> controller.getButtonIron().setText("Iron: " + warehouse.getIron().getAmount()));
+
+        Platform.runLater(() -> controller.getButtonGold().setText("Gold: " + warehouse.getGold().getAmount()));
+    }
+
     @Override
     protected Task<Void> createTask() {
 
@@ -533,6 +545,7 @@ public class Simulation extends Service<Void> {
             @Override
             protected Void call() {
                 runSim();
+                updateResourceGUI();
                 return null;
             }
         };
