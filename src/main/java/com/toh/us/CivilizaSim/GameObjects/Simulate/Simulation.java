@@ -4,7 +4,9 @@ import com.toh.us.CivilizaSim.Display.PrimaryController;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Building;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
 import com.toh.us.CivilizaSim.GameObjects.Civ.*;
+import com.toh.us.CivilizaSim.GameObjects.People.Civilian;
 import com.toh.us.CivilizaSim.GameObjects.People.Person;
+import com.toh.us.CivilizaSim.GameObjects.People.Soldier;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
@@ -85,7 +87,14 @@ public class Simulation extends Service<Void> {
             controller.addLogMessage("\tCitizens:");
             List<Person> people = civ.getPeople();
             for (Person person : people) {
-                controller.addLogMessage("\t\t" + person.getName().toString() + " - " + person.getOriginalCivilization());
+                String type = "";
+                if (person instanceof Civilian) {
+                    type = "Civilian";
+                }
+                else if (person instanceof Soldier) {
+                    type = "Soldier";
+                }
+                controller.addLogMessage("\t\t" + person.getName().toString() + "\t(" + type + ")\t" + "-" + person.getOriginalCivilization());
             }
 
             printResources(civ);

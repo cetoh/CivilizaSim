@@ -131,3 +131,6 @@ I intend to eventually implement more complicated game mechanics such as scoring
 
 ## [v1.0.4](https://github.com/cetoh/CivilizaSim/tree/v1.0.4) (Bleeding Edge - Experimental Release)
 * More Buildings Coming!
+* GUI Updated to allow for more player control
+* Changes to the gameplay to allow for turn by turn control
+* Backend framework updates for better support

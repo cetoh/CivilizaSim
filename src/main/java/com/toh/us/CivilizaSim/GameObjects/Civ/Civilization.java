@@ -158,27 +158,27 @@ public class Civilization {
 
         double aqueductBonus = 1;
         if (getBuildings().containsKey(BuildingName.AQUEDUCT)) {
-            aqueductBonus += getBuildings().get(BuildingName.AQUEDUCT).getLevel() * 0.01;
+            aqueductBonus += (getBuildings().get(BuildingName.AQUEDUCT).getLevel() * 0.01);
         }
         double flourMillBonus = 0;
         if (getBuildings().containsKey(BuildingName.FLOUR_MILL)) {
-            flourMillBonus += getBuildings().get(BuildingName.FLOUR_MILL).getLevel() * 0.05;
+            flourMillBonus += (getBuildings().get(BuildingName.FLOUR_MILL).getLevel() * 0.05);
         }
         double lumberMillBonus = 0;
         if (getBuildings().containsKey(BuildingName.LUMBER_MILL)) {
-            lumberMillBonus += getBuildings().get(BuildingName.LUMBER_MILL).getLevel() * 0.05;
+            lumberMillBonus += (getBuildings().get(BuildingName.LUMBER_MILL).getLevel() * 0.05);
         }
         double kilnBonus = 0;
         if (getBuildings().containsKey(BuildingName.KILN)) {
-            kilnBonus += getBuildings().get(BuildingName.KILN).getLevel() * 0.05;
+            kilnBonus += (getBuildings().get(BuildingName.KILN).getLevel() * 0.05);
         }
         double mineBonus = 0;
         if (getBuildings().containsKey(BuildingName.MINE)) {
-            mineBonus += getBuildings().get(BuildingName.MINE).getLevel() * 0.05;
+            mineBonus += (getBuildings().get(BuildingName.MINE).getLevel() * 0.05);
         }
         double bankBonus = 0;
         if (getBuildings().containsKey(BuildingName.BANK)) {
-            bankBonus += getBuildings().get(BuildingName.BANK).getLevel() * 0.05;
+            bankBonus += (getBuildings().get(BuildingName.BANK).getLevel() * 0.05);
         }
         warehouse.getClay().setAmount((int) (warehouse.getClay().getAmount() + (100 * (aqueductBonus + kilnBonus))));
         warehouse.getWheat().setAmount((int) (warehouse.getWheat().getAmount() + (100 * (aqueductBonus + flourMillBonus))));
@@ -188,14 +188,14 @@ public class Civilization {
     }
 
     private void growPopulation() {
-        int growAmt = (int) (Math.ceil(Math.random() * 10));
+        int growAmt = (int) (Math.ceil(Math.random() * 5));
 
         int actualGrown = 0;
         for (int i = 0; i < growAmt; i++) {
-            if (warehouse.getWheat().getAmount() >=10) {
+            if (warehouse.getWheat().getAmount() >= 5) {
                 Civilian civilian = new Civilian(getName());
                 people.add(civilian);
-                warehouse.getWheat().removeAmount(10);
+                warehouse.getWheat().removeAmount(5);
                 actualGrown++;
             }
         }

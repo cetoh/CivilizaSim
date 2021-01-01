@@ -292,52 +292,88 @@ public class GenerateCivilizations {
         });
 
         china.setStrategy(new Strategy() {
+            private int num = 0;
+
             @Override
             public CivAction executeStrategy(CivPayouts lastPayout) {
                 CivAction ourAction = new CivAction(CivActions.PRODUCE);
-                if (lastPayout.equals(CivPayouts.NONE)) {
-                    return ourAction;
-                }
-                Warehouse warehouse = china.getWarehouse();
-                if (warehouse.getWheat().getAmount() >= 75
-                        && warehouse.getIron().getAmount() >= 125
-                        && warehouse.getWood().getAmount() >= 135
-                        && warehouse.getClay().getAmount() >= 160
-                        && warehouse.getGold().getAmount() >= 15) {
-                    ourAction.setAction(CivActions.BUILD);
-                    ourAction.setBuildingName(BuildingName.AQUEDUCT);
-                    return ourAction;
-                } else if (warehouse.getWheat().getAmount() >= 125
-                        && warehouse.getIron().getAmount() >= 75
-                        && warehouse.getWood().getAmount() >= 100
-                        && warehouse.getClay().getAmount() >= 150
-                        && warehouse.getGold().getAmount() >= 25) {
-                    ourAction.setAction(CivActions.BUILD);
-                    ourAction.setBuildingName(BuildingName.MARKETPLACE);
-                    return ourAction;
-                } else if (warehouse.getWheat().getAmount() >= 50
-                        && warehouse.getIron().getAmount() >= 150
-                        && warehouse.getWood().getAmount() >= 100
-                        && warehouse.getClay().getAmount() >= 125) {
-                    ourAction.setAction(CivActions.BUILD);
-                    ourAction.setBuildingName(BuildingName.BARRACKS);
-                    return ourAction;
-                } else if (warehouse.getWheat().getAmount() >= 100
-                        && warehouse.getIron().getAmount() >= 175
-                        && warehouse.getWood().getAmount() >= 175
-                        && warehouse.getClay().getAmount() >= 200
-                        && warehouse.getGold().getAmount() >= 10) {
-                    ourAction.setAction(CivActions.BUILD);
-                    ourAction.setBuildingName(BuildingName.WALLS);
-                    return ourAction;
-                } else if (lastPayout.equals(CivPayouts.VERY_LOW)) {
-                    ourAction.setAction(CivActions.DEFEND);
-                } else if (lastPayout.equals(CivPayouts.LOW) || lastPayout.equals(CivPayouts.HIGH)) {
-                    ourAction.setAction(CivActions.TRAIN);
-                } else if (china.getSoldiers().size() > 2) {
-                    ourAction.setAction(CivActions.ATTACK);
-                } else if (lastPayout.equals(CivPayouts.MODERATE)) {
-                    ourAction.setAction(CivActions.TRADE);
+
+                switch (num) {
+                    case 0, 1, 5, 6, 8, 9, 11 -> num++;
+                    case 2 -> {
+                        ourAction.setAction(CivActions.TRADE);
+                        num++;
+                    }
+                    case 3 -> {
+                        ourAction.setAction(CivActions.BUILD);
+                        ourAction.setBuildingName(BuildingName.AQUEDUCT);
+                        num++;
+                    }
+                    case 4, 12, 13 -> {
+                        ourAction.setAction(CivActions.TRAIN);
+                        num++;
+                    }
+                    case 7 -> {
+                        ourAction.setAction(CivActions.BUILD);
+                        ourAction.setBuildingName(BuildingName.BARRACKS);
+                        num++;
+                    }
+                    case 10 -> {
+                        ourAction.setAction(CivActions.BUILD);
+                        ourAction.setBuildingName(BuildingName.WALLS);
+                        num++;
+                    }
+                    case 14 -> {
+                        ourAction.setAction(CivActions.ATTACK);
+                        num++;
+                    }
+                    case 15 -> {
+                        ourAction.setAction(CivActions.DEFEND);
+                        num++;
+                    }
+                    default -> {
+                        Warehouse warehouse = china.getWarehouse();
+                        if (warehouse.getWheat().getAmount() >= 75
+                                && warehouse.getIron().getAmount() >= 125
+                                && warehouse.getWood().getAmount() >= 135
+                                && warehouse.getClay().getAmount() >= 160
+                                && warehouse.getGold().getAmount() >= 15) {
+                            ourAction.setAction(CivActions.BUILD);
+                            ourAction.setBuildingName(BuildingName.AQUEDUCT);
+                            return ourAction;
+                        } else if (warehouse.getWheat().getAmount() >= 125
+                                && warehouse.getIron().getAmount() >= 75
+                                && warehouse.getWood().getAmount() >= 100
+                                && warehouse.getClay().getAmount() >= 150
+                                && warehouse.getGold().getAmount() >= 25) {
+                            ourAction.setAction(CivActions.BUILD);
+                            ourAction.setBuildingName(BuildingName.MARKETPLACE);
+                            return ourAction;
+                        } else if (warehouse.getWheat().getAmount() >= 50
+                                && warehouse.getIron().getAmount() >= 150
+                                && warehouse.getWood().getAmount() >= 100
+                                && warehouse.getClay().getAmount() >= 125) {
+                            ourAction.setAction(CivActions.BUILD);
+                            ourAction.setBuildingName(BuildingName.BARRACKS);
+                            return ourAction;
+                        } else if (warehouse.getWheat().getAmount() >= 100
+                                && warehouse.getIron().getAmount() >= 175
+                                && warehouse.getWood().getAmount() >= 175
+                                && warehouse.getClay().getAmount() >= 200
+                                && warehouse.getGold().getAmount() >= 10) {
+                            ourAction.setAction(CivActions.BUILD);
+                            ourAction.setBuildingName(BuildingName.WALLS);
+                            return ourAction;
+                        } else if (lastPayout.equals(CivPayouts.VERY_LOW)) {
+                            ourAction.setAction(CivActions.DEFEND);
+                        } else if (lastPayout.equals(CivPayouts.LOW)) {
+                            ourAction.setAction(CivActions.TRAIN);
+                        } else if (china.getSoldiers().size() > 1) {
+                            ourAction.setAction(CivActions.ATTACK);
+                        } else if (lastPayout.equals(CivPayouts.MODERATE)) {
+                            ourAction.setAction(CivActions.TRADE);
+                        }
+                    }
                 }
 
                 return ourAction;
