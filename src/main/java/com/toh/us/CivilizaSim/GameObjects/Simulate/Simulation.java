@@ -4,10 +4,16 @@ import com.toh.us.CivilizaSim.Display.PrimaryController;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Building;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
 import com.toh.us.CivilizaSim.GameObjects.Civ.*;
+import com.toh.us.CivilizaSim.GameObjects.Civ.Interact.CivInteraction;
+import com.toh.us.CivilizaSim.GameObjects.People.Civilian;
 import com.toh.us.CivilizaSim.GameObjects.People.Person;
+import com.toh.us.CivilizaSim.GameObjects.People.Soldier;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
+import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,19 +23,62 @@ public class Simulation extends Service<Void> {
 
     HashMap<Civilization, Integer> score = new HashMap<>();
 
-    //Default 10 rounds
-    private int numRounds = 10;
+    //Default 3 rounds
+    private int numRounds = 3;
 
     private List<Civilization> civilizationList;
     private PrimaryController controller;
 
-    public Simulation(PrimaryController controller, List<Civilization> civilizationList) {
+    private CivAction playerAction;
+
+    private Civilization player;
+
+    private Civilization nextOpposingCiv;
+
+    public Simulation(PrimaryController controller, List<Civilization> civilizationList, Civilization player) {
         this.controller = controller;
         this.civilizationList = civilizationList;
+        this.player = player;
+
+        this.setOnSucceeded(workerStateEvent -> {
+            this.reset();
+        });
+
+        this.setOnFailed(workerStateEvent -> {
+            this.reset();
+        });
+
+        if (this.civilizationList.size() % 2 != 0)
+        {
+            //If odd number create Dummy civ that only produces
+            Civilization dummy = new Civilization("Nomads");
+            dummy.setStrategy(new Strategy() {
+                @Override
+                public CivAction executeStrategy(CivPayouts lastPayout) {
+                    return new CivAction(CivActions.PRODUCE);
+                }
+            });
+            dummy.getPeople().clear();
+            this.civilizationList.add(dummy); // If odd number of teams add a dummy
+        }
     }
 
     public Simulation(int numRounds) {
         this.numRounds  = numRounds;
+    }
+
+    public void setNumRounds(int numRounds){
+        this.numRounds = numRounds;
+    }
+
+    public void setPlayerAction(CivAction civAction) {
+        this.playerAction = civAction;
+        this.player.setStrategy(new Strategy() {
+            @Override
+            public CivAction executeStrategy(CivPayouts lastPayout) {
+                return playerAction;
+            }
+        });
     }
 
     public void printScore() {
@@ -39,7 +88,14 @@ public class Simulation extends Service<Void> {
             controller.addLogMessage("\tCitizens:");
             List<Person> people = civ.getPeople();
             for (Person person : people) {
-                controller.addLogMessage("\t\t" + person.getName().toString() + " - " + person.getOriginalCivilization());
+                String type = "";
+                if (person instanceof Civilian) {
+                    type = "Civilian";
+                }
+                else if (person instanceof Soldier) {
+                    type = "Soldier";
+                }
+                controller.addLogMessage("\t\t" + person.getName().toString() + "\t(" + type + ")\t" + "-" + person.getOriginalCivilization());
             }
 
             printResources(civ);
@@ -127,7 +183,7 @@ public class Simulation extends Service<Void> {
         if (civilizationList.size() % 2 != 0)
         {
             //If odd number create Dummy civ that only produces
-            Civilization dummy = new Civilization("Nomads", controller);
+            Civilization dummy = new Civilization("Nomads");
             dummy.setStrategy(new Strategy() {
                 @Override
                 public CivAction executeStrategy(CivPayouts lastPayout) {
@@ -138,53 +194,50 @@ public class Simulation extends Service<Void> {
             civilizationList.add(dummy); // If odd number of teams add a dummy
         }
 
-        int numRounds = (civilizationList.size() - 1); // Rounds needed to complete tournament
+        //Temporarily remove player from list
+        civilizationList.removeIf(civ -> civ.getName().equals(player.getName()));
+
         int halfSize = civilizationList.size() / 2;
 
-        List<Civilization> teams = new ArrayList<>(civilizationList); // Add teams to List and remove the first team
-        teams.remove(0);
+        List<Civilization> teams = new ArrayList<>(civilizationList); // Add teams to List
 
         int teamsSize = teams.size();
+
+        if (nextOpposingCiv == null) {
+            int ind = MathUtils.getRandomNumber(0, teamsSize - 1);
+            nextOpposingCiv = teams.get(ind);
+            teams.remove(ind);
+        }
+        else {
+            teams.remove(this.nextOpposingCiv);
+        }
 
         for (int i = 0; i < numRounds; i++)
         {
             controller.addLogMessage("\n== Round " + (i + 1) + " ==\n");
+            headToHead(player, nextOpposingCiv, true);
+        }
 
-            int teamIdx = i % teamsSize;
-
-            if (teams.get(teamIdx).getName().equals("Nomads")){
-                controller.addLogMessage("\nSome Nomads vs. " + civilizationList.get(0).getName() + "\n");
-                teams.get(teamIdx).getPeople().clear();
-            } else if (civilizationList.get(0).getName().equals("Nomads")) {
-                controller.addLogMessage("\n" + teams.get(teamIdx).getName() + " vs. Some Nomads\n");
-                civilizationList.get(0).getPeople().clear();
-            } else {
-                controller.addLogMessage("\n" + teams.get(teamIdx).getName() + " vs. " + civilizationList.get(0).getName() + "\n");
-            }
-
-            headToHead(teams.get(teamIdx), civilizationList.get(0));
-
-            for (int idx = 1; idx < halfSize; idx++)
-            {
-                int firstTeam = (i + idx) % teamsSize;
-                int secondTeam = (i  + teamsSize - idx) % teamsSize;
-
-                if (teams.get(firstTeam).getName().equals("Nomads")){
-                    controller.addLogMessage("\nSome Nomads vs. " + teams.get(secondTeam).getName() + "\n");
-                    teams.get(firstTeam).getPeople().clear();
-                } else if (teams.get(secondTeam).getName().equals("Nomads")) {
-                    controller.addLogMessage("\n" + teams.get(firstTeam).getName() + " vs. Some Nomads\n");
-                    teams.get(secondTeam).getPeople().clear();
-                } else {
-                    controller.addLogMessage("\n" + teams.get(firstTeam).getName() + " vs. " + teams.get(secondTeam).getName() + "\n");
-                }
-
-                headToHead(teams.get(firstTeam), teams.get(secondTeam));
+        // Have other civs randomly play each other in the background
+        for (int i = 0; i < halfSize; i++) {
+            Civilization civ1 = teams.get(i);
+            Civilization civ2 = teams.get(i + halfSize);
+            for (int j = 0; j < numRounds; j++) {
+                headToHead(civ1, civ2, false);
             }
         }
 
         //Remove dummy civilization
         civilizationList.removeIf(civ -> civ.getName().equals("Nomads"));
+
+        //Add player back
+        civilizationList.add(player);
+
+        //Get next opponent
+        nextOpposingCiv = teams.get(MathUtils.getRandomNumber(0, teams.size() - 1));
+        controller.addLogMessage("\n" + player.getName() + " encountered " + nextOpposingCiv.getName() + "!");
+
+        //Update scores
         HashMap<Civilization, Integer> updatedScores = new HashMap<>();
         for (Civilization civ : score.keySet()) {
             if (!civ.getName().equals("Nomads")) {
@@ -194,12 +247,18 @@ public class Simulation extends Service<Void> {
         score = updatedScores;
     }
 
-    public void headToHead(Civilization civ1, Civilization civ2) {
+    public void headToHead(Civilization civ1, Civilization civ2, boolean showLog) {
         CivPayouts lastPayout1 = CivPayouts.NONE;
         CivPayouts lastPayout2 = CivPayouts.NONE;
+
+        //Instantiate Interaction Helper
+        CivInteraction civInteraction = new CivInteraction(this.controller, showLog);
+
         for (int i = 0; i < numRounds; i++) {
             CivAction civActions1 = civ1.getStrategy().executeStrategy(lastPayout1);
+            civ1.setAction(civActions1);
             CivAction civActions2 = civ2.getStrategy().executeStrategy(lastPayout2);
+            civ2.setAction(civActions2);
 
             //Civ 1 Attacks
             switch (civActions1.getAction()) {
@@ -209,18 +268,17 @@ public class Simulation extends Service<Void> {
                         case ATTACK -> {
                             lastPayout1 = CivPayouts.VERY_LOW;
                             lastPayout2 = CivPayouts.VERY_LOW;
-                            civ1.battle(civ2);
+                            civInteraction.battle().battle(civ1, civ2);
                         }
                         case DEFEND -> {
                             lastPayout1 = CivPayouts.LOW;
                             lastPayout2 = CivPayouts.MODERATE;
-                            civ1.attack(civ2, true);
+                            civInteraction.attack().attack(civ1, civ2, true);
                         }
                         case PRODUCE, TRADE, TRAIN, BUILD -> {
                             lastPayout1 = CivPayouts.VERY_HIGH;
                             lastPayout2 = CivPayouts.VERY_LOW;
-
-                            civ1.attack(civ2, false);
+                            civInteraction.attack().attack(civ1, civ2, false);
                         }
                     }
                 }
@@ -230,33 +288,31 @@ public class Simulation extends Service<Void> {
                         case TRADE -> {
                             lastPayout1 = CivPayouts.VERY_HIGH;
                             lastPayout2 = CivPayouts.VERY_HIGH;
-
-                            civ1.trade(civ2, civActions2);
+                            civInteraction.trade().trade(civ1, civ2);
                         }
                         case ATTACK -> {
                             lastPayout1 = CivPayouts.VERY_LOW;
                             lastPayout2 = CivPayouts.VERY_HIGH;
-
-                            civ2.attack(civ1, false);
+                            civInteraction.attack().attack(civ2, civ1, false);
                         }
                         case DEFEND -> {
                             lastPayout1 = CivPayouts.LOW;
                             lastPayout2 = CivPayouts.VERY_LOW;
 
-                            civ1.trade(civ2, civActions2);
+                            civInteraction.trade().trade(civ1, civ2);
                         }
                         case TRAIN -> {
                             lastPayout1 = CivPayouts.LOW;
                             lastPayout2 = CivPayouts.MODERATE;
 
-                            civ2.train();
-                            civ1.trade(civ2, civActions2);
+                            civInteraction.trade().trade(civ1, civ2);
+                            civInteraction.train().train(civ2);
                         }
                         case BUILD -> {
                             lastPayout1 = CivPayouts.MODERATE;
                             lastPayout2 = CivPayouts.MODERATE;
 
-                            civ2.build(civActions2.getBuildingName());
+                            civInteraction.build().build(civ2);
                         }
                     }
                 }
@@ -268,40 +324,40 @@ public class Simulation extends Service<Void> {
                             lastPayout2 = CivPayouts.HIGH;
 
                             //Both civs produced
-                            civ1.produce();
-                            civ2.produce();
+                            civInteraction.produce().produce(civ1);
+                            civInteraction.produce().produce(civ2);
                         }
                         case ATTACK -> {
                             lastPayout1 = CivPayouts.VERY_LOW;
                             lastPayout2 = CivPayouts.VERY_HIGH;
 
-                            civ2.attack(civ1, false);
+                            civInteraction.attack().attack(civ2, civ1, false);
                         }
                         case TRADE -> {
                             lastPayout1 = CivPayouts.MODERATE;
                             lastPayout2 = CivPayouts.MODERATE;
 
-                            civ2.trade(civ1, civActions1);
+                            civInteraction.trade().trade(civ2, civ1);
                         }
                         case TRAIN -> {
                             lastPayout1 = CivPayouts.HIGH;
                             lastPayout2 = CivPayouts.LOW;
 
-                            civ1.produce();
-                            civ2.train();
+                            civInteraction.produce().produce(civ1);
+                            civInteraction.train().train(civ2);
                         }
                         case DEFEND -> {
                             lastPayout1 = CivPayouts.HIGH;
                             lastPayout2 = CivPayouts.VERY_LOW;
 
-                            civ1.produce();
+                            civInteraction.produce().produce(civ1);
                         }
                         case BUILD -> {
                             lastPayout1 = CivPayouts.MODERATE;
                             lastPayout2 = CivPayouts.MODERATE;
 
-                            civ1.produce();
-                            civ2.build(civActions2.getBuildingName());
+                            civInteraction.produce().produce(civ1);
+                            civInteraction.build().build(civ2);
                         }
                     }
                 }
@@ -313,41 +369,41 @@ public class Simulation extends Service<Void> {
                             lastPayout2 = CivPayouts.LOW;
 
                             //Both trained soldiers
-                            civ1.train();
-                            civ2.train();
+                            civInteraction.train().train(civ1);
+                            civInteraction.train().train(civ2);
                         }
                         case TRADE -> {
                             lastPayout1 = CivPayouts.MODERATE;
                             lastPayout2 = CivPayouts.LOW;
 
-                            civ1.train();
-                            civ2.trade(civ1, civActions1);
+                            civInteraction.train().train(civ1);
+                            civInteraction.trade().trade(civ2, civ1);
                         }
                         case PRODUCE -> {
                             lastPayout1 = CivPayouts.LOW;
                             lastPayout2 = CivPayouts.HIGH;
 
-                            civ1.train();
-                            civ2.produce();
+                            civInteraction.train().train(civ1);
+                            civInteraction.produce().produce(civ2);
                         }
                         case ATTACK -> {
                             lastPayout1 = CivPayouts.VERY_LOW;
                             lastPayout2 = CivPayouts.HIGH;
 
-                            civ2.attack(civ1, false);
+                            civInteraction.attack().attack(civ2, civ1, false);
                         }
                         case DEFEND -> {
                             lastPayout1 = CivPayouts.MODERATE;
                             lastPayout2 = CivPayouts.LOW;
 
-                            civ1.train();
+                            civInteraction.train().train(civ1);
                         }
                         case BUILD -> {
                             lastPayout1 = CivPayouts.MODERATE;
                             lastPayout2 = CivPayouts.MODERATE;
 
-                            civ1.train();
-                            civ2.build(civActions2.getBuildingName());
+                            civInteraction.train().train(civ1);
+                            civInteraction.build().build(civ2);
                         }
                     }
                 }
@@ -358,7 +414,7 @@ public class Simulation extends Service<Void> {
                             lastPayout1 = CivPayouts.MODERATE;
                             lastPayout2 = CivPayouts.LOW;
 
-                            civ2.attack(civ1, true);
+                            civInteraction.attack().attack(civ2, civ1, true);
                         }
                         case DEFEND -> {
                             lastPayout1 = CivPayouts.LOW;
@@ -368,24 +424,25 @@ public class Simulation extends Service<Void> {
                             lastPayout1 = CivPayouts.VERY_LOW;
                             lastPayout2 = CivPayouts.HIGH;
 
-                            civ2.produce();
+                            civInteraction.produce().produce(civ2);
                         }
                         case TRADE -> {
                             lastPayout1 = CivPayouts.VERY_LOW;
                             lastPayout2 = CivPayouts.LOW;
-                            civ2.trade(civ1, civActions1);
+
+                            civInteraction.trade().trade(civ2, civ1);
                         }
                         case TRAIN -> {
                             lastPayout1 = CivPayouts.LOW;
                             lastPayout2 = CivPayouts.MODERATE;
 
-                            civ2.train();
+                            civInteraction.train().train(civ2);
                         }
                         case BUILD -> {
                             lastPayout1 = CivPayouts.LOW;
                             lastPayout2 = CivPayouts.HIGH;
 
-                            civ2.build(civActions2.getBuildingName());
+                            civInteraction.build().build(civ2);
                         }
                     }
                 }
@@ -396,41 +453,41 @@ public class Simulation extends Service<Void> {
                         case BUILD -> {
                             lastPayout1 = CivPayouts.MODERATE;
                             lastPayout2 = CivPayouts.MODERATE;
-                            civ1.build(civActions1.getBuildingName());
-                            civ2.build(civActions2.getBuildingName());
+                            civInteraction.build().build(civ1);
+                            civInteraction.build().build(civ2);
                         }
                         case ATTACK -> {
                             lastPayout1 = CivPayouts.VERY_LOW;
                             lastPayout2 = CivPayouts.VERY_HIGH;
 
-                            civ2.attack(civ1, false);
+                            civInteraction.attack().attack(civ2, civ1, false);
                         }
                         case DEFEND -> {
                             lastPayout1 = CivPayouts.HIGH;
                             lastPayout2 = CivPayouts.LOW;
 
-                            civ1.build(civActions1.getBuildingName());
+                            civInteraction.build().build(civ1);
                         }
                         case TRAIN -> {
                             lastPayout1 = CivPayouts.MODERATE;
                             lastPayout2 = CivPayouts.MODERATE;
 
-                            civ1.build(civActions1.getBuildingName());
-                            civ2.train();
+                            civInteraction.build().build(civ1);
+                            civInteraction.train().train(civ2);
                         }
                         case TRADE -> {
                             lastPayout1 = CivPayouts.MODERATE;
                             lastPayout2 = CivPayouts.MODERATE;
 
-                            civ1.build(civActions1.getBuildingName());
-                            civ2.trade(civ1, civActions1);
+                            civInteraction.build().build(civ1);
+                            civInteraction.trade().trade(civ1, civ2);
                         }
                         case PRODUCE -> {
                             lastPayout1 = CivPayouts.MODERATE;
                             lastPayout2 = CivPayouts.MODERATE;
 
-                            civ1.build(civActions1.getBuildingName());
-                            civ2.produce();
+                            civInteraction.build().build(civ1);
+                            civInteraction.produce().produce(civ2);
                         }
                     }
                 }
@@ -484,6 +541,17 @@ public class Simulation extends Service<Void> {
         }
     }
 
+    public void updateResourceGUI() {
+        Warehouse warehouse = player.getWarehouse();
+
+        Platform.runLater(() -> controller.getButtonWheat().setText("Wheat: " + warehouse.getWheat().getAmount()));
+        Platform.runLater(() -> controller.getButtonClay().setText("Clay: " + warehouse.getClay().getAmount()));
+        Platform.runLater(() -> controller.getButtonWood().setText("Wood: " + warehouse.getWood().getAmount()));
+        Platform.runLater(() -> controller.getButtonIron().setText("Iron: " + warehouse.getIron().getAmount()));
+
+        Platform.runLater(() -> controller.getButtonGold().setText("Gold: " + warehouse.getGold().getAmount()));
+    }
+
     @Override
     protected Task<Void> createTask() {
 
@@ -491,7 +559,7 @@ public class Simulation extends Service<Void> {
             @Override
             protected Void call() {
                 runSim();
-                printScore();
+                updateResourceGUI();
                 return null;
             }
         };
