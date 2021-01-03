@@ -1,6 +1,5 @@
 package com.toh.us.CivilizaSim.GameObjects.Simulate;
 
-import com.toh.us.CivilizaSim.Display.PrimaryController;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
 import com.toh.us.CivilizaSim.GameObjects.Civ.*;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
@@ -12,15 +11,15 @@ public class GenerateCivilizations {
 
     private List<Civilization> civilizations = new ArrayList<>();
 
-    public GenerateCivilizations(PrimaryController controller) {
+    public GenerateCivilizations() {
 
-        Civilization rome = new Civilization("Rome", controller);
-        Civilization greece = new Civilization("Greece", controller);
-        Civilization huns = new Civilization("Huns", controller);
-        Civilization egypt = new Civilization("Egypt", controller);
-        Civilization gauls = new Civilization("Gauls", controller);
-        Civilization babylon = new Civilization("Babylon", controller);
-        Civilization china = new Civilization("China", controller);
+        Civilization rome = new Civilization("Rome");
+        Civilization greece = new Civilization("Greece");
+        Civilization huns = new Civilization("Huns");
+        Civilization egypt = new Civilization("Egypt");
+        Civilization gauls = new Civilization("Gauls");
+        Civilization babylon = new Civilization("Babylon");
+        Civilization china = new Civilization("China");
 
         civilizations.add(rome);
         civilizations.add(greece);

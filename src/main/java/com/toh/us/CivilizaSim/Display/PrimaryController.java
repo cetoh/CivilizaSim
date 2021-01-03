@@ -4,7 +4,6 @@ import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivAction;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivActions;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
-import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
 import com.toh.us.CivilizaSim.GameObjects.Simulate.GenerateCivilizations;
 import com.toh.us.CivilizaSim.GameObjects.Simulate.Simulation;
 import javafx.application.Platform;
@@ -85,6 +84,12 @@ public class PrimaryController {
     @FXML
     private Button buttonGold;
 
+    @FXML
+    private VBox vboxPlayerBuildings;
+
+    @FXML
+    private Label labelYear;
+
     private Stage mainStage;
 
     private Simulation simulation;
@@ -97,13 +102,13 @@ public class PrimaryController {
 
     @FXML
     private void initialize() {
-        playerCivilization = new Civilization("Player", this);
+        playerCivilization = new Civilization("Player");
 
         addListeners();
 
         initializeBuildingGUI();
 
-        GenerateCivilizations generateCivilizations = new GenerateCivilizations(this);
+        GenerateCivilizations generateCivilizations = new GenerateCivilizations();
 
         civilizations = generateCivilizations.getCivilizations();
         addLogMessage("Generated Opposing Civilizations: ");
@@ -195,6 +200,17 @@ public class PrimaryController {
                 rbTrade.setSelected(false);
                 rbTrain.setSelected(false);
                 titledPaneBuildings.setExpanded(true);
+            }
+        });
+
+        titledPaneBuildings.setOnMouseClicked(actionEvent -> {
+            if (titledPaneBuildings.isExpanded()) {
+                rbDefend.setSelected(false);
+                rbAttack.setSelected(false);
+                rbProduce.setSelected(false);
+                rbTrade.setSelected(false);
+                rbTrain.setSelected(false);
+                rbBuild.setSelected(true);
             }
         });
     }
@@ -289,6 +305,12 @@ public class PrimaryController {
             playerCivilization.setName("Player");
         }
         simulation.start();
+
+        //Increment Year
+        String[] year = labelYear.getText().split(": ");
+        int yearInt = Integer.parseInt(year[1]);
+        yearInt++;
+        labelYear.setText("Year: " + yearInt);
     }
 
     @FXML
@@ -326,7 +348,9 @@ public class PrimaryController {
         return action;
     }
 
-
+    public String getPlayerCivilizationName() {
+        return playerCivilization.getName();
+    }
 
     public void addLogMessage(String message) {
         System.out.println(message);
@@ -351,5 +375,9 @@ public class PrimaryController {
 
     public Button getButtonGold() {
         return buttonGold;
+    }
+
+    public VBox getVboxPlayerBuildings() {
+        return vboxPlayerBuildings;
     }
 }

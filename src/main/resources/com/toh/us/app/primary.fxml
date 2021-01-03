@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toh.us.CivilizaSim.Display.PrimaryController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toh.us.CivilizaSim.Display.PrimaryController">
    <top>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <buttons>
@@ -129,15 +130,34 @@
       </ScrollPane>
    </right>
    <left>
-      <VBox BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="buttonWheat" mnemonicParsing="false" text="Wheat: 0" textFill="GOLDENROD" />
-            <Button fx:id="buttonClay" minWidth="63.0" mnemonicParsing="false" text="Clay: 0" textFill="FIREBRICK" />
-            <Button fx:id="buttonWood" minWidth="63.0" mnemonicParsing="false" text="Wood: 0" textFill="BROWN" />
-            <Button fx:id="buttonIron" minWidth="63.0" mnemonicParsing="false" text="Iron: 0" textFill="GREY" />
-            <VBox prefHeight="20.0" />
-            <Button fx:id="buttonGold" minWidth="63.0" mnemonicParsing="false" text="Gold: 0" textFill="#d4af37" />
-         </children>
-      </VBox>
+      <SplitPane dividerPositions="0.31467181467181465" orientation="VERTICAL" BorderPane.alignment="CENTER">
+         <items>
+            <VBox>
+               <children>
+                  <Button fx:id="buttonWheat" mnemonicParsing="false" text="Wheat: 0" textFill="GOLDENROD" />
+                  <Button fx:id="buttonClay" minWidth="63.0" mnemonicParsing="false" text="Clay: 0" textFill="FIREBRICK" />
+                  <Button fx:id="buttonWood" minWidth="63.0" mnemonicParsing="false" text="Wood: 0" textFill="BROWN" />
+                  <Button fx:id="buttonIron" minWidth="63.0" mnemonicParsing="false" text="Iron: 0" textFill="GREY" />
+                  <VBox prefHeight="20.0" />
+                  <Button fx:id="buttonGold" minWidth="63.0" mnemonicParsing="false" text="Gold: 0" textFill="#d4af37" />
+               </children>
+            </VBox>
+            <VBox fx:id="vboxPlayerBuildings" spacing="5.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+         </items>
+      </SplitPane>
    </left>
+   <bottom>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+            <Label fx:id="labelYear" text="Year: 1" />
+        </buttons>
+      </ButtonBar>
+   </bottom>
 </BorderPane>
