@@ -31,11 +31,15 @@ The table of what happens between the Civ Actions when matched up and what each 
 | Trade        |      ***     |Civ 1: Very Low, Civ 2: Very High|Civ 1: Low, Civ 2: Very Low|Civ 1: Moderate, Civ 2: Moderate|Civ 1: Very High, Civ 2: Very High|Civ 1: Low, Civ 2: Moderate|Both Civs Moderate|
 | Train        |      ***     |Civ 1: Very Low, Civ 2: Very High|Civ 1: Moderate, Civ 2: Low|Civ 1: Low, Civ 2: High|Civ 1: Moderate, Civ 2: Low|Both Civs: Low|Both Civs Moderate|
 | Build        |      ***     |Civ 1: Very Low, Civ 2: Very High|Civ 1: High, Civ 2: Low | Both Civs High|Both Civs Moderate|Both Civs Moderate|Both Civs Moderate|
+
 At the end of running the simulation, the Civilizations will be listed with their final scores.
 
 I have no idea what the best strategy is and as more civilizations are added you could potentially see other some strategies gaining precedence while others falter.
 
 # How To Play The Game
+
+*As of v1.0.4 this is now unnecessary and a GUI has been created to give the player an easier method without coding to play*
+
 You can instantiate your own civilization in the `GenerateCivilizations.java` class.
 
 Within this class you can create a `new Civilization()` as follows:
@@ -105,7 +109,11 @@ Whe Building, you must also specify a Building Name in your ```CivAction()``` fo
 * _**WALLS**_ - Each level in this building increases your defensive capabilities by 1%.
 
 ## Future Plans
-I intend to eventually implement more complicated game mechanics such as scoring based off population, possibly buildings and resources as well. For example during produce you could potentially see a Civ also growing in population but during an a successful attack some Civilians are carried off into exile into the new Civilization that wins.
+(DONE)I intend to eventually implement more complicated game mechanics such as scoring based off population, possibly buildings and resources as well. For example during produce you could potentially see a Civ also growing in population but during an a successful attack some Civilians are carried off into exile into the new Civilization that wins.
+
+* Plan to add more buildings in all categories
+* Plan to improve AI's
+* Plan to add graphics (pending Andrew Toh's availability)
 
 ## [v1.0.0](https://github.com/cetoh/CivilizaSim/tree/v1.0.0)
 * This version has a basic game with only the 5 actions in the table and the basic scoring mentioned.
