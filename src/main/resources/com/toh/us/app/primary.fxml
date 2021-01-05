@@ -156,6 +156,8 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
+            <Label fx:id="labelCivilianCount" text="Civilians: 2" />
+            <Label fx:id="labelSoldierCount" text="Soldiers: 0" />
             <Label fx:id="labelYear" text="Year: 1" />
         </buttons>
       </ButtonBar>

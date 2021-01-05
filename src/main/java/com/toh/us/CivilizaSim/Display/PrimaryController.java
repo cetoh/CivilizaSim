@@ -9,6 +9,8 @@ import com.toh.us.CivilizaSim.GameObjects.Simulate.Simulation;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;;
@@ -88,6 +90,12 @@ public class PrimaryController {
     private VBox vboxPlayerBuildings;
 
     @FXML
+    private Label labelCivilianCount;
+
+    @FXML
+    private Label labelSoldierCount;
+
+    @FXML
     private Label labelYear;
 
     private Stage mainStage;
@@ -106,6 +114,8 @@ public class PrimaryController {
 
         addListeners();
 
+        initializeActionGraphics();
+
         initializeBuildingGUI();
 
         GenerateCivilizations generateCivilizations = new GenerateCivilizations();
@@ -119,6 +129,15 @@ public class PrimaryController {
 
         simulation = new Simulation(this, civilizations, playerCivilization);
         simulation.updateResourceGUI();
+    }
+
+    private void initializeActionGraphics() {
+        rbAttack.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/com/toh/us/img/attack.png"), 32, 32, false, false)));
+        rbDefend.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/com/toh/us/img/defend.png"), 32, 32, false, false)));
+        rbProduce.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/com/toh/us/img/produce.png"), 32, 32, false, false)));
+        rbTrade.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/com/toh/us/img/trade.png"), 32, 32, false, false)));
+        rbTrain.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/com/toh/us/img/train.png"), 32, 32, false, false)));
+        rbBuild.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/com/toh/us/img/build.png"), 32, 32, false, false)));
     }
 
     private void addListeners() {
@@ -146,6 +165,9 @@ public class PrimaryController {
                 rbTrain.setSelected(false);
                 titledPaneBuildings.setExpanded(false);
             }
+            else {
+                rbAttack.setSelected(true);
+            }
         });
 
         rbDefend.setOnAction(actionEvent -> {
@@ -156,6 +178,9 @@ public class PrimaryController {
                 rbTrade.setSelected(false);
                 rbTrain.setSelected(false);
                 titledPaneBuildings.setExpanded(false);
+            }
+            else {
+                rbAttack.setSelected(true);
             }
         });
 
@@ -168,6 +193,9 @@ public class PrimaryController {
                 rbTrain.setSelected(false);
                 titledPaneBuildings.setExpanded(false);
             }
+            else {
+                rbAttack.setSelected(true);
+            }
         });
 
         rbTrade.setOnAction(actionEvent -> {
@@ -178,6 +206,9 @@ public class PrimaryController {
                 rbAttack.setSelected(false);
                 rbTrain.setSelected(false);
                 titledPaneBuildings.setExpanded(false);
+            }
+            else {
+                rbAttack.setSelected(true);
             }
         });
 
@@ -190,6 +221,9 @@ public class PrimaryController {
                 rbAttack.setSelected(false);
                 titledPaneBuildings.setExpanded(false);
             }
+            else {
+                rbAttack.setSelected(true);
+            }
         });
 
         rbBuild.setOnAction(actionEvent -> {
@@ -200,6 +234,9 @@ public class PrimaryController {
                 rbTrade.setSelected(false);
                 rbTrain.setSelected(false);
                 titledPaneBuildings.setExpanded(true);
+            }
+            else {
+                rbAttack.setSelected(true);
             }
         });
 
@@ -379,5 +416,13 @@ public class PrimaryController {
 
     public VBox getVboxPlayerBuildings() {
         return vboxPlayerBuildings;
+    }
+
+    public Label getLabelCivilianCount() {
+        return labelCivilianCount;
+    }
+
+    public Label getLabelSoldierCount() {
+        return labelSoldierCount;
     }
 }

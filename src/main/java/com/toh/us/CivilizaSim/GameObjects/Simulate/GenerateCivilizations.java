@@ -139,10 +139,10 @@ public class GenerateCivilizations {
                     ourAction.setAction(CivActions.PRODUCE);
                 }
 
-                if (huns.getWarehouse().getIron().getAmount() >= 250
-                        && huns.getWarehouse().getWood().getAmount() >= 250
-                        && huns.getWarehouse().getWheat().getAmount() >= 250
-                        && huns.getWarehouse().getGold().getAmount() >= 50){
+                if (huns.getWarehouse().getIron().getAmount() >= 450
+                        && huns.getWarehouse().getWood().getAmount() >= 450
+                        && huns.getWarehouse().getWheat().getAmount() >= 450
+                        && huns.getWarehouse().getGold().getAmount() >= 150){
                     ourAction.setAction(CivActions.BUILD);
                     ourAction.setBuildingName(BuildingName.BARRACKS);
                 }
@@ -174,11 +174,11 @@ public class GenerateCivilizations {
                 else if (lastPayout.equals(CivPayouts.HIGH)){
                     ourAction.setAction(CivActions.TRADE);
                 }
-                else if (lastPayout.equals(CivPayouts.MODERATE) && warehouse.getGold().getAmount() > 20
-                        && warehouse.getClay().getAmount() > 100
-                        && warehouse.getWood().getAmount() > 100
-                        && warehouse.getIron().getAmount() > 100
-                        && warehouse.getWheat().getAmount() > 100) {
+                else if (lastPayout.equals(CivPayouts.MODERATE) && warehouse.getGold().getAmount() > 60
+                        && warehouse.getClay().getAmount() > 300
+                        && warehouse.getWood().getAmount() > 300
+                        && warehouse.getIron().getAmount() > 300
+                        && warehouse.getWheat().getAmount() > 300) {
                     switch (MathUtils.getRandomNumber(0, 8)) {
                         case 0 -> ourAction.setBuildingName(BuildingName.AQUEDUCT);
                         case 1 -> ourAction.setBuildingName(BuildingName.WALLS);
@@ -245,34 +245,34 @@ public class GenerateCivilizations {
                     return ourAction;
                 }
                 Warehouse warehouse = babylon.getWarehouse();
-                if (warehouse.getWheat().getAmount() >= 75
-                        && warehouse.getIron().getAmount() >= 125
-                        && warehouse.getWood().getAmount() >= 135
-                        && warehouse.getClay().getAmount() >= 160
-                        && warehouse.getGold().getAmount() >= 15) {
+                if (warehouse.getWheat().getAmount() >= 175
+                        && warehouse.getIron().getAmount() >= 225
+                        && warehouse.getWood().getAmount() >= 235
+                        && warehouse.getClay().getAmount() >= 260
+                        && warehouse.getGold().getAmount() >= 55) {
                     ourAction.setAction(CivActions.BUILD);
                     ourAction.setBuildingName(BuildingName.AQUEDUCT);
                     return ourAction;
-                } else if (warehouse.getWheat().getAmount() >= 125
-                        && warehouse.getIron().getAmount() >= 75
-                        && warehouse.getWood().getAmount() >= 100
-                        && warehouse.getClay().getAmount() >= 150
-                        && warehouse.getGold().getAmount() >= 25) {
+                } else if (warehouse.getWheat().getAmount() >= 225
+                        && warehouse.getIron().getAmount() >= 175
+                        && warehouse.getWood().getAmount() >= 200
+                        && warehouse.getClay().getAmount() >= 250
+                        && warehouse.getGold().getAmount() >= 75) {
                     ourAction.setAction(CivActions.BUILD);
                     ourAction.setBuildingName(BuildingName.MARKETPLACE);
                     return ourAction;
-                } else if (warehouse.getWheat().getAmount() >= 50
-                        && warehouse.getIron().getAmount() >= 150
-                        && warehouse.getWood().getAmount() >= 100
-                        && warehouse.getClay().getAmount() >= 125) {
+                } else if (warehouse.getWheat().getAmount() >= 150
+                        && warehouse.getIron().getAmount() >= 250
+                        && warehouse.getWood().getAmount() >= 200
+                        && warehouse.getClay().getAmount() >= 225) {
                     ourAction.setAction(CivActions.BUILD);
                     ourAction.setBuildingName(BuildingName.BARRACKS);
                     return ourAction;
-                } else if (warehouse.getWheat().getAmount() >= 100
-                        && warehouse.getIron().getAmount() >= 175
-                        && warehouse.getWood().getAmount() >= 175
-                        && warehouse.getClay().getAmount() >= 200
-                        && warehouse.getGold().getAmount() >= 10) {
+                } else if (warehouse.getWheat().getAmount() >= 200
+                        && warehouse.getIron().getAmount() >= 275
+                        && warehouse.getWood().getAmount() >= 275
+                        && warehouse.getClay().getAmount() >= 300
+                        && warehouse.getGold().getAmount() >= 50) {
                     ourAction.setAction(CivActions.BUILD);
                     ourAction.setBuildingName(BuildingName.WALLS);
                     return ourAction;
@@ -332,34 +332,34 @@ public class GenerateCivilizations {
                     }
                     default -> {
                         Warehouse warehouse = china.getWarehouse();
-                        if (warehouse.getWheat().getAmount() >= 75
-                                && warehouse.getIron().getAmount() >= 125
-                                && warehouse.getWood().getAmount() >= 135
-                                && warehouse.getClay().getAmount() >= 160
-                                && warehouse.getGold().getAmount() >= 15) {
+                        if (warehouse.getWheat().getAmount() >= 175
+                                && warehouse.getIron().getAmount() >= 225
+                                && warehouse.getWood().getAmount() >= 235
+                                && warehouse.getClay().getAmount() >= 260
+                                && warehouse.getGold().getAmount() >= 55) {
                             ourAction.setAction(CivActions.BUILD);
                             ourAction.setBuildingName(BuildingName.AQUEDUCT);
                             return ourAction;
-                        } else if (warehouse.getWheat().getAmount() >= 125
-                                && warehouse.getIron().getAmount() >= 75
-                                && warehouse.getWood().getAmount() >= 100
-                                && warehouse.getClay().getAmount() >= 150
-                                && warehouse.getGold().getAmount() >= 25) {
+                        } else if (warehouse.getWheat().getAmount() >= 225
+                                && warehouse.getIron().getAmount() >= 175
+                                && warehouse.getWood().getAmount() >= 200
+                                && warehouse.getClay().getAmount() >= 250
+                                && warehouse.getGold().getAmount() >= 150) {
                             ourAction.setAction(CivActions.BUILD);
                             ourAction.setBuildingName(BuildingName.MARKETPLACE);
                             return ourAction;
-                        } else if (warehouse.getWheat().getAmount() >= 50
-                                && warehouse.getIron().getAmount() >= 150
-                                && warehouse.getWood().getAmount() >= 100
-                                && warehouse.getClay().getAmount() >= 125) {
+                        } else if (warehouse.getWheat().getAmount() >= 150
+                                && warehouse.getIron().getAmount() >= 250
+                                && warehouse.getWood().getAmount() >= 200
+                                && warehouse.getClay().getAmount() >= 225) {
                             ourAction.setAction(CivActions.BUILD);
                             ourAction.setBuildingName(BuildingName.BARRACKS);
                             return ourAction;
-                        } else if (warehouse.getWheat().getAmount() >= 100
-                                && warehouse.getIron().getAmount() >= 175
-                                && warehouse.getWood().getAmount() >= 175
-                                && warehouse.getClay().getAmount() >= 200
-                                && warehouse.getGold().getAmount() >= 10) {
+                        } else if (warehouse.getWheat().getAmount() >= 200
+                                && warehouse.getIron().getAmount() >= 275
+                                && warehouse.getWood().getAmount() >= 275
+                                && warehouse.getClay().getAmount() >= 300
+                                && warehouse.getGold().getAmount() >= 90) {
                             ourAction.setAction(CivActions.BUILD);
                             ourAction.setBuildingName(BuildingName.WALLS);
                             return ourAction;

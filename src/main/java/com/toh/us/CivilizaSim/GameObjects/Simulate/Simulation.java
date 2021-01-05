@@ -218,6 +218,7 @@ public class Simulation extends Service<Void> {
             headToHead(player, nextOpposingCiv, true);
         }
 
+        controller.addLogMessage("Processing other Civilizations' moves...");
         // Have other civs randomly play each other in the background
         for (int i = 0; i < halfSize; i++) {
             Civilization civ1 = teams.get(i);
@@ -552,6 +553,14 @@ public class Simulation extends Service<Void> {
         Platform.runLater(() -> controller.getButtonGold().setText("Gold: " + warehouse.getGold().getAmount()));
     }
 
+    public void updatePeopleGUI() {
+        List<Person> people  = player.getPeople();
+        List<Soldier> soldiers = player.getSoldiers();
+
+        Platform.runLater(() -> controller.getLabelCivilianCount().setText("Civilians: " + (people.size() - soldiers.size())));
+        Platform.runLater(() -> controller.getLabelSoldierCount().setText("Soldiers: " + soldiers.size()));
+    }
+
     @Override
     protected Task<Void> createTask() {
 
@@ -560,6 +569,7 @@ public class Simulation extends Service<Void> {
             protected Void call() {
                 runSim();
                 updateResourceGUI();
+                updatePeopleGUI();
                 return null;
             }
         };
