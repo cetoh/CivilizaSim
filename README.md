@@ -133,12 +133,16 @@ Whe Building, you must also specify a Building Name in your ```CivAction()``` fo
 * Updated several calculations of Soldiers after battle
 * Will now add a NPC Civilization called Nomads which will only produce in the case that their are an odd number of Civilizations
 
-## [v1.0.3](https://github.com/cetoh/CivilizaSim/tree/v1.0.3) (Latest Release)
+## [v1.0.3](https://github.com/cetoh/CivilizaSim/tree/v1.0.3) 
 * Implemented Trading Mechanism
 * Buildings Implemented (Focusing on Military and Commerce). This includes adding a new CivActions.BUILD.
 
-## [v1.0.4](https://github.com/cetoh/CivilizaSim/tree/v1.0.4) (Bleeding Edge - Experimental Release)
+## [v1.0.4](https://github.com/cetoh/CivilizaSim/tree/v1.0.4) (Latest Release)
 * More Buildings Coming!
 * GUI Updated to allow for more player control
 * Changes to the gameplay to allow for turn by turn control
 * Backend framework updates for better support
+
+## [v1.0.5](https://github.com/cetoh/CivilizaSim/tree/v1.0.5) (Bleeding Edge - Experimental Release)
+* Working on GUI Graphics
+* Even More Buildings!
