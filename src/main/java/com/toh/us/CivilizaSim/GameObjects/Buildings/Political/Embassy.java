@@ -8,7 +8,7 @@ public class Embassy extends Building {
     public Embassy(){
         super(BuildingName.EMBASSY,
                 BuildingType.POLITICAL,
-                "Each level in this building increases the chance a civilization decides to be your ally by 1%.");
+                "Each level in this building increases the chance a civilization decides to be your ally by 1%. Trading with allies improves doubles all yields.");
 
         this.getCost().getWheat().setAmount(90);
         this.getCost().getIron().setAmount(100);

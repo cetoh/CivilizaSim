@@ -60,12 +60,17 @@ public class Produce {
         if (buildings.containsKey(BuildingName.BANK)) {
             bankBonus += (buildings.get(BuildingName.BANK).getLevel() * 0.1);
         }
+
+        int commerce = 0;
+        if (buildings.containsKey(BuildingName.MINISTRY_OF_COMMERCE)){
+            commerce = buildings.get(BuildingName.MINISTRY_OF_COMMERCE).getLevel();
+        }
         Warehouse warehouse = civilization.getWarehouse();
-        warehouse.getClay().setAmount((int) (warehouse.getClay().getAmount() + (50 * (aqueductBonus + kilnBonus))));
-        warehouse.getWheat().setAmount((int) (warehouse.getWheat().getAmount() + (50 * (aqueductBonus + flourMillBonus))));
-        warehouse.getIron().setAmount((int) (warehouse.getIron().getAmount() + (50 * (aqueductBonus + mineBonus))));
-        warehouse.getWood().setAmount((int) (warehouse.getWood().getAmount() + (50 * (aqueductBonus + lumberMillBonus))));
-        warehouse.getGold().setAmount((int) (warehouse.getGold().getAmount() + (10 * (aqueductBonus + bankBonus))));
+        warehouse.getClay().setAmount((int) (warehouse.getClay().getAmount() + ((50 + (10 * commerce))* (aqueductBonus + kilnBonus))));
+        warehouse.getWheat().setAmount((int) (warehouse.getWheat().getAmount() + ((50 + (10 * commerce)) * (aqueductBonus + flourMillBonus))));
+        warehouse.getIron().setAmount((int) (warehouse.getIron().getAmount() + ((50 + (10 * commerce)) * (aqueductBonus + mineBonus))));
+        warehouse.getWood().setAmount((int) (warehouse.getWood().getAmount() + ((50 + (10 * commerce)) * (aqueductBonus + lumberMillBonus))));
+        warehouse.getGold().setAmount((int) (warehouse.getGold().getAmount() + ((10 + (2 * commerce)) * (aqueductBonus + bankBonus))));
     }
 
     private void growPopulation() {

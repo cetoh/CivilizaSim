@@ -10,7 +10,7 @@ The game is as follows. Make civilization. Implement a strategy. Strategies are 
 * TRAIN
 * BUILD
 
-Civilizations are instantiated and must have a strategy to compete. All Civilizations will complete ~~twice~~ once (this was changed in v1.0.1) against the other civilization in a head-to-head. During the head to head, each Civilization can take 10 actions. Based on these actions, and the action of the opposing civilization, a reward or Payout will be given and added to the Civilization's point total. Civilizations will face new civilizations in a round-robin format.
+Civilizations are instantiated and must have a strategy to compete. All Civilizations will complete ~~twice~~ once (this was changed in v1.0.1) against the other civilization in a head-to-head. During the head to head, each Civilization can take a specified number of actions. Based on these actions, and the action of the opposing civilization, a reward or Payout will be given and added to the Civilization's point total. Civilizations will face new civilizations in a round-robin format.
 
 * VERY_HIGH = 5 pts
 * HIGH = 4 pts
@@ -38,7 +38,7 @@ I have no idea what the best strategy is and as more civilizations are added you
 
 # How To Play The Game
 
-*As of v1.0.4 this is now unnecessary and a GUI has been created to give the player an easier method without coding to play*
+*As of v1.0.4, this is now unnecessary and a GUI has been created to give the player an easier method without coding to play*
 
 You can instantiate your own civilization in the `GenerateCivilizations.java` class.
 
@@ -103,10 +103,16 @@ When Defending, nothing happens unless the Civilization successfully Defends aga
 Whe Building, you must also specify a Building Name in your ```CivAction()``` for example ```civAction.setBuildingName(BuildingName.BARRACKS)``` when returning it from your strategy. If the civilization has enough resources the building will be upgraded. Each subsequent level of the building will cost 20 more of each resource.
 
 #### Buildings Available Currently
-* _**AQUEDUCT**_ - Each level in this building increases your production gain by 1.5%.
-* _**BARRACKS**_ - Each level in this building will increase the number of soldiers you can train for each Train Action by 1.
-* _**MARKETPLACE**_ - Each level in this building increases your trade yield with other civilizations by 1%.
-* _**WALLS**_ - Each level in this building increases your defensive capabilities by 1%.
+* _**AMPHITHEATER**_    - Each level in this building increases your increases the chance a person from another civilization joins yours during a trade initiated by you by 1%.
+* _**AQUEDUCT**_        - Each level in this building increases your production gain by 1.5%.
+* _**BANK**_            - Each level in this building increase Gold production by 10%.
+* _**BARRACKS**_        - Each level in this building will increase the number of soldiers you can train for each Train Action by 1.
+* _**FLOUR MILL**_      - Each level in this building increases wheat production by 5%.
+* _**KILN**_           - Each level in this building increases Clay production by 5%.  
+* _**LUMBER MILL**_     - Each level in this building increases Wood production by 5%.
+* _**MARKETPLACE**_     - Each level in this building increases your trade yield with other civilizations by 1%.
+* _**MINE**_            - Each level in this building increases Iron production by 5%.
+* _**WALLS**_           - Each level in this building increases your defensive capabilities by 1%.
 
 ## Future Plans
 (DONE)I intend to eventually implement more complicated game mechanics such as scoring based off population, possibly buildings and resources as well. For example during produce you could potentially see a Civ also growing in population but during an a successful attack some Civilians are carried off into exile into the new Civilization that wins.

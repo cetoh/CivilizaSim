@@ -8,7 +8,7 @@ public class MinistryOfForeignAffairs extends Building {
     public MinistryOfForeignAffairs() {
         super(BuildingName.MINISTRY_OF_FOREIGN_AFFAIRS,
                 BuildingType.POLITICAL,
-                "Each level in this building increases the number of allies you can have by 1.");
+                "At level 5 this building increases the number of allies you can have by 1.");
 
         this.getCost().getWheat().setAmount(300);
         this.getCost().getIron().setAmount(450);
