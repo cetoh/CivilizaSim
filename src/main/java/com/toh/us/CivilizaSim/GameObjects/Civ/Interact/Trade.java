@@ -30,10 +30,10 @@ public class Trade {
         double ourBonus = 1;
         double theirBonus = 1;
         if (civ1.getBuildings().containsKey(BuildingName.MARKETPLACE)) {
-            ourBonus += civ1.getBuildings().get(BuildingName.MARKETPLACE).getLevel() * 0.01;
+            ourBonus += civ1.getBuildings().get(BuildingName.MARKETPLACE).getLevel() * 0.05;
         }
         if (civ2.getBuildings().containsKey(BuildingName.MARKETPLACE)) {
-            theirBonus += civ2.getBuildings().get(BuildingName.MARKETPLACE).getLevel() * 0.01;
+            theirBonus += civ2.getBuildings().get(BuildingName.MARKETPLACE).getLevel() * 0.05;
         }
 
         // Do Amphitheater check

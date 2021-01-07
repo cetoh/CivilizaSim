@@ -18,6 +18,7 @@ public enum BuildingName {
     MINISTRY_OF_FOREIGN_AFFAIRS("Ministry of Foreign Affairs"),
     MINISTRY_OF_INTELLIGENCE("Ministry of Intelligence"),
     MINE("Mine"),
+    UNIVERSITY("University"),
     WALLS("Walls");
 
     public final String name;
@@ -72,6 +73,7 @@ public enum BuildingName {
     public static List<BuildingName> getScientificBuildings() {
         List<BuildingName> buildingNames = new ArrayList<>();
         buildingNames.add(ACADEMY);
+        buildingNames.add(UNIVERSITY);
 
         return  buildingNames;
     }

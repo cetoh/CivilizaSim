@@ -8,7 +8,7 @@ public class Marketplace extends Building {
     public Marketplace() {
         super(BuildingName.MARKETPLACE,
                 BuildingType.ECONOMIC,
-                "Each level in this building increases your trade yield with other civilizations by 1%.");
+                "Each level in this building increases your trade yield with other civilizations by 5%.");
 
         this.getCost().getWheat().setAmount(100);
         this.getCost().getWood().setAmount(100);

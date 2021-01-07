@@ -6,7 +6,9 @@ import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
 import com.toh.us.CivilizaSim.GameObjects.People.Civilian;
 import com.toh.us.CivilizaSim.GameObjects.People.Person;
+import com.toh.us.CivilizaSim.GameObjects.People.Scholar;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
+import com.toh.us.CivilizaSim.GameObjects.Simulate.MathUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +30,7 @@ public class Produce {
         this.civilization = civilization;
         growResources();
         growPopulation();
+        generateKnowledge();
     }
 
     private void growResources() {
@@ -90,6 +93,17 @@ public class Produce {
         int finalActualGrown = actualGrown;
         if (showLog) {
             controller.addLogMessage(civilization.getName() + "'s population grew by " + finalActualGrown + "!");
+        }
+    }
+
+    private void generateKnowledge() {
+        if (civilization.getBuildings().containsKey(BuildingName.UNIVERSITY)) {
+            int chance = 5 * civilization.getBuildings().get(BuildingName.UNIVERSITY).getLevel();
+
+            if (MathUtils.getRandomNumber(0, 100) <= chance) {
+                List<Scholar> scholars = civilization.getScholars();
+                civilization.getKnowledge().addAmount(scholars.size());
+            }
         }
     }
 }

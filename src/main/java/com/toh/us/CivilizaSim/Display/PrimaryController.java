@@ -90,10 +90,16 @@ public class PrimaryController {
     private VBox vboxPlayerBuildings;
 
     @FXML
+    private Label labelKnowledgeAmount;
+
+    @FXML
     private Label labelCivilianCount;
 
     @FXML
     private Label labelSoldierCount;
+
+    @FXML
+    private Label labelScholarCount;
 
     @FXML
     private Label labelYear;
@@ -424,5 +430,13 @@ public class PrimaryController {
 
     public Label getLabelSoldierCount() {
         return labelSoldierCount;
+    }
+
+    public Label getLabelScholarCount() {
+        return labelScholarCount;
+    }
+
+    public Label getLabelKnowledgeAmount() {
+        return labelKnowledgeAmount;
     }
 }

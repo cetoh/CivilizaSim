@@ -3,7 +3,9 @@ package com.toh.us.CivilizaSim.GameObjects.Civ;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.*;
 import com.toh.us.CivilizaSim.GameObjects.People.Civilian;
 import com.toh.us.CivilizaSim.GameObjects.People.Person;
+import com.toh.us.CivilizaSim.GameObjects.People.Scholar;
 import com.toh.us.CivilizaSim.GameObjects.People.Soldier;
+import com.toh.us.CivilizaSim.GameObjects.Resources.Knowledge;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Resource;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
 
@@ -24,6 +26,8 @@ public class Civilization {
     private CivAction action;
 
     private Warehouse warehouse = new Warehouse();
+
+    private Knowledge knowledge = new Knowledge();
 
     public Civilization(String name) {
         this.name   = name;
@@ -111,5 +115,19 @@ public class Civilization {
             }
         }
         return soldiers;
+    }
+
+    public List<Scholar> getScholars() {
+        List<Scholar> scholars = new ArrayList<>();
+        for (Person person : people) {
+            if (person instanceof Scholar) {
+                scholars.add((Scholar) person);
+            }
+        }
+        return scholars;
+    }
+
+    public Knowledge getKnowledge() {
+        return knowledge;
     }
 }

@@ -103,6 +103,7 @@ When Defending, nothing happens unless the Civilization successfully Defends aga
 Whe Building, you must also specify a Building Name in your ```CivAction()``` for example ```civAction.setBuildingName(BuildingName.BARRACKS)``` when returning it from your strategy. If the civilization has enough resources the building will be upgraded. Each subsequent level of the building will cost 20 more of each resource.
 
 #### Buildings Available Currently
+* _**ACADEMY**_                     - Each level in this building increases the chance a Civilian becomes a Scholar by 5%.
 * _**AMPHITHEATER**_                - Each level in this building increases your increases the chance a person from another civilization joins yours during a trade initiated by you by 1%.
 * _**AQUEDUCT**_                    - Each level in this building increases your production gain by 1.5%.
 * _**BANK**_                        - Each level in this building increase Gold production by 10%.
@@ -110,10 +111,11 @@ Whe Building, you must also specify a Building Name in your ```CivAction()``` fo
 * _**FLOUR MILL**_                  - Each level in this building increases wheat production by 5%.
 * _**KILN**_                        - Each level in this building increases Clay production by 5%.  
 * _**LUMBER MILL**_                 - Each level in this building increases Wood production by 5%.
-* _**MARKETPLACE**_                 - Each level in this building increases your trade yield with other civilizations by 1%.
+* _**MARKETPLACE**_                 - Each level in this building increases your trade yield with other civilizations by 5%.
 * _**MINE**_                        - Each level in this building increases Iron production by 5%.
 * _**MINISTRY OF COMMERCE**_        - Each level in this building increases the amount of resources you get from a trade by 10 for each normal resource and 2 for each luxury resource BEFORE other bonuses are applied.
 * _**MINISTRY OF INTELLIGENCE**_    - Each level in this building increases the chance you spot an attack coming and successfully defend by 3%.  
+* _**UNIVERSITY**_                  - Each level in this building increases the chance knowledge is generated during production by 5%.
 * _**WALLS**_                       - Each level in this building increases your defensive capabilities by 1%.
 
 ## Future Plans
@@ -139,7 +141,7 @@ Whe Building, you must also specify a Building Name in your ```CivAction()``` fo
 * Implemented an actual round-robin tournament play to prevent any one Civ from getting an advantage from going first
 * GUI Framework to display results in a window instead of just console
 * Updated several calculations of Soldiers after battle
-* Will now add a NPC Civilization called Nomads which will only produce in the case that their are an odd number of Civilizations
+* Will now add a NPC Civilization called Nomads which will only produce in the case that there are an odd number of Civilizations
 
 ## [v1.0.3](https://github.com/cetoh/CivilizaSim/tree/v1.0.3) 
 * Implemented Trading Mechanism
@@ -153,4 +155,7 @@ Whe Building, you must also specify a Building Name in your ```CivAction()``` fo
 
 ## [v1.0.5](https://github.com/cetoh/CivilizaSim/tree/v1.0.5) (Bleeding Edge - Experimental Release)
 * Working on GUI Graphics
-* Even More Buildings!
+* Added Academy
+* Added University
+* Added Scholars who generate a new resource called Knowledge during Produce. Knowledge currently has no uses yet.
+* Changed Marketplace to give a 5% bonus instead of 1%

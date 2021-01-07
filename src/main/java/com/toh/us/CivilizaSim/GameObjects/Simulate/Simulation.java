@@ -7,6 +7,7 @@ import com.toh.us.CivilizaSim.GameObjects.Civ.*;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Interact.CivInteraction;
 import com.toh.us.CivilizaSim.GameObjects.People.Civilian;
 import com.toh.us.CivilizaSim.GameObjects.People.Person;
+import com.toh.us.CivilizaSim.GameObjects.People.Scholar;
 import com.toh.us.CivilizaSim.GameObjects.People.Soldier;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
 import javafx.application.Platform;
@@ -546,6 +547,8 @@ public class Simulation extends Service<Void> {
     public void updateResourceGUI() {
         Warehouse warehouse = player.getWarehouse();
 
+        Platform.runLater(() -> controller.getLabelKnowledgeAmount().setText("Knowledge: " + player.getKnowledge().getAmount()));
+
         Platform.runLater(() -> controller.getButtonWheat().setText("Wheat: " + warehouse.getWheat().getAmount()));
         Platform.runLater(() -> controller.getButtonClay().setText("Clay: " + warehouse.getClay().getAmount()));
         Platform.runLater(() -> controller.getButtonWood().setText("Wood: " + warehouse.getWood().getAmount()));
@@ -557,9 +560,11 @@ public class Simulation extends Service<Void> {
     public void updatePeopleGUI() {
         List<Person> people  = player.getPeople();
         List<Soldier> soldiers = player.getSoldiers();
+        List<Scholar> scholars = player.getScholars();
 
-        Platform.runLater(() -> controller.getLabelCivilianCount().setText("Civilians: " + (people.size() - soldiers.size())));
+        Platform.runLater(() -> controller.getLabelCivilianCount().setText("Civilians: " + (people.size() - soldiers.size() - scholars.size())));
         Platform.runLater(() -> controller.getLabelSoldierCount().setText("Soldiers: " + soldiers.size()));
+        Platform.runLater(() -> controller.getLabelScholarCount().setText("Scholars: " + scholars.size()));
     }
 
     @Override
