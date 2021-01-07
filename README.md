@@ -103,16 +103,18 @@ When Defending, nothing happens unless the Civilization successfully Defends aga
 Whe Building, you must also specify a Building Name in your ```CivAction()``` for example ```civAction.setBuildingName(BuildingName.BARRACKS)``` when returning it from your strategy. If the civilization has enough resources the building will be upgraded. Each subsequent level of the building will cost 20 more of each resource.
 
 #### Buildings Available Currently
-* _**AMPHITHEATER**_    - Each level in this building increases your increases the chance a person from another civilization joins yours during a trade initiated by you by 1%.
-* _**AQUEDUCT**_        - Each level in this building increases your production gain by 1.5%.
-* _**BANK**_            - Each level in this building increase Gold production by 10%.
-* _**BARRACKS**_        - Each level in this building will increase the number of soldiers you can train for each Train Action by 1.
-* _**FLOUR MILL**_      - Each level in this building increases wheat production by 5%.
-* _**KILN**_           - Each level in this building increases Clay production by 5%.  
-* _**LUMBER MILL**_     - Each level in this building increases Wood production by 5%.
-* _**MARKETPLACE**_     - Each level in this building increases your trade yield with other civilizations by 1%.
-* _**MINE**_            - Each level in this building increases Iron production by 5%.
-* _**WALLS**_           - Each level in this building increases your defensive capabilities by 1%.
+* _**AMPHITHEATER**_                - Each level in this building increases your increases the chance a person from another civilization joins yours during a trade initiated by you by 1%.
+* _**AQUEDUCT**_                    - Each level in this building increases your production gain by 1.5%.
+* _**BANK**_                        - Each level in this building increase Gold production by 10%.
+* _**BARRACKS**_                    - Each level in this building will increase the number of soldiers you can train for each Train Action by 1.
+* _**FLOUR MILL**_                  - Each level in this building increases wheat production by 5%.
+* _**KILN**_                        - Each level in this building increases Clay production by 5%.  
+* _**LUMBER MILL**_                 - Each level in this building increases Wood production by 5%.
+* _**MARKETPLACE**_                 - Each level in this building increases your trade yield with other civilizations by 1%.
+* _**MINE**_                        - Each level in this building increases Iron production by 5%.
+* _**MINISTRY OF COMMERCE**_        - Each level in this building increases the amount of resources you get from a trade by 10 for each normal resource and 2 for each luxury resource BEFORE other bonuses are applied.
+* _**MINISTRY OF INTELLIGENCE**_    - Each level in this building increases the chance you spot an attack coming and successfully defend by 3%.  
+* _**WALLS**_                       - Each level in this building increases your defensive capabilities by 1%.
 
 ## Future Plans
 (DONE)I intend to eventually implement more complicated game mechanics such as scoring based off population, possibly buildings and resources as well. For example during produce you could potentially see a Civ also growing in population but during an a successful attack some Civilians are carried off into exile into the new Civilization that wins.

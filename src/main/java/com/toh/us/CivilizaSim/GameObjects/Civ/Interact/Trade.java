@@ -36,6 +36,19 @@ public class Trade {
             theirBonus += civ2.getBuildings().get(BuildingName.MARKETPLACE).getLevel() * 0.01;
         }
 
+        // Do Amphitheater check
+        if (civ1.getBuildings().containsKey(BuildingName.AMPHITHEATER)) {
+            int check = civ1.getBuildings().get(BuildingName.AMPHITHEATER).getLevel();
+            if (MathUtils.getRandomNumber(0, 100) <= check) {
+                Person person = civ2.getPeople().remove(MathUtils.getRandomNumber(0, civ2.getPeople().size() - 1));
+                civ1.getPeople().add(person);
+
+                controller.addLogMessage(person.getName() + ", resident of " + civ2.getName()
+                        + ", originally from " + person.getOriginalCivilization()
+                        + ", was so enthralled by the culture of " + civ1.getName() + " and decided to stay there.");
+            }
+        }
+
         //Both Civs will get a random amount of resources for each resource type
         //If the other Civ did not trade then both Civs will do a random amount exchange of a random set of resources
         //No resources are exchanged if the other civilization defended

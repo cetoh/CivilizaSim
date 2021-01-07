@@ -6,6 +6,7 @@ import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
 import com.toh.us.CivilizaSim.GameObjects.People.Person;
 import com.toh.us.CivilizaSim.GameObjects.People.Soldier;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
+import com.toh.us.CivilizaSim.GameObjects.Simulate.MathUtils;
 
 import java.util.List;
 
@@ -23,6 +24,16 @@ public class Attack {
         List<Soldier> defendingSoldiers = defender.getSoldiers();
         List<Soldier> attackingSoldiers = attacker.getSoldiers();
         if (attackingSoldiers.size() > 0) {
+            //Do Ministry of Intelligence Check
+            if (defender.getBuildings().containsKey(BuildingName.MINISTRY_OF_INTELLIGENCE)){
+                int check = 3 * defender.getBuildings().get(BuildingName.MINISTRY_OF_INTELLIGENCE).getLevel();
+
+                if (MathUtils.getRandomNumber(0, 100) <= check) {
+                    defended = true;
+                    controller.addLogMessage(defender.getName() + "'s spies caught wind of an attack from "
+                            + attacker.getName() + ". Thus they were able to set up a successful defense!");
+                }
+            }
             if (defended) {
                 //Wall bonus
                 double bonus = 1;
