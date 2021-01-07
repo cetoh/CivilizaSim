@@ -78,7 +78,7 @@ public class Trade {
                     }
                 }
             }
-            case PRODUCE, TRAIN -> {
+            case PRODUCE, TRAIN, BUILD -> {
                 for (int i = 0; i < 5; i++) {
                     if (Math.random() >= 0.5) {
                         int amtToSwap = (int) (Math.random() * 100);
