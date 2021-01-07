@@ -313,6 +313,7 @@ public class Simulation extends Service<Void> {
                             lastPayout1 = CivPayouts.MODERATE;
                             lastPayout2 = CivPayouts.MODERATE;
 
+                            civInteraction.trade().trade(civ1, civ2);
                             civInteraction.build().build(civ2);
                         }
                     }
@@ -337,7 +338,7 @@ public class Simulation extends Service<Void> {
                         case TRADE -> {
                             lastPayout1 = CivPayouts.MODERATE;
                             lastPayout2 = CivPayouts.MODERATE;
-
+                            civInteraction.produce().produce(civ1);
                             civInteraction.trade().trade(civ2, civ1);
                         }
                         case TRAIN -> {
