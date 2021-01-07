@@ -13,6 +13,7 @@ import com.toh.us.CivilizaSim.GameObjects.Buildings.Political.MinistryOfCommerce
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Political.MinistryOfForeignAffairs;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Political.MinistryOfIntelligence;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Scientific.Academy;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Scientific.University;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
 import javafx.application.Platform;
@@ -86,6 +87,7 @@ public class Build {
                 case MINISTRY_OF_FOREIGN_AFFAIRS -> new MinistryOfForeignAffairs();
                 case MINISTRY_OF_INTELLIGENCE -> new MinistryOfIntelligence();
                 case MINE -> new Mine();
+                case UNIVERSITY -> new University();
                 case WALLS -> new Walls();
             };
 
@@ -108,32 +110,12 @@ public class Build {
 
         //If Player update GUI
         if (civilization.getName().equals(controller.getPlayerCivilizationName())) {
-            updatePlayerGUI(civilization);
+            updatePlayerGUI();
         }
     }
 
-    private void updatePlayerGUI(Civilization player) {
-        HashMap<BuildingName, Building> buildingHashMap = player.getBuildings();
-        VBox vbox = controller.getVboxPlayerBuildings();
-
-        if (!vbox.getChildren().isEmpty()) {
-            Platform.runLater(() -> vbox.getChildren().clear());
-        }
-        for (BuildingName buildingName : buildingHashMap.keySet()) {
-            Building building = buildingHashMap.get(buildingName);
-            Cost cost = building.getCost();
-            Label label = new Label(buildingName.toString() + " - Level " + building.getLevel());
-            Tooltip tooltip = new Tooltip();
-            tooltip.setWrapText(true);
-            tooltip.setText("Cost to Upgrade:\n" +
-                    "Wheat: " + cost.getWheat().getAmount() + "\n" +
-                    "Clay: " + cost.getClay().getAmount() + "\n" +
-                    "Wood: " + cost.getWood().getAmount() + "\n" +
-                    "Iron: " + cost.getIron().getAmount() + "\n" +
-                    "Gold: " + cost.getGold().getAmount());
-            label.setTooltip(tooltip);
-            Platform.runLater(() -> vbox.getChildren().add(label));
-        }
+    private void updatePlayerGUI() {
+       controller.updatePlayerGUI();
     }
 
     private boolean checkIfWarehouseHasSufficientResources(Cost cost) {

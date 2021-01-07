@@ -21,6 +21,7 @@
          <buttons>
             <Label text="Civilization Name:" />
             <TextField fx:id="textFieldPlayerCivName" />
+            <Label fx:id="labelKnowledgeAmount" text="Knowledge: 0" textFill="#0526fc" />
          </buttons></ButtonBar>
    </top>
    <center>
@@ -158,6 +159,7 @@
         <buttons>
             <Label fx:id="labelCivilianCount" text="Civilians: 2" />
             <Label fx:id="labelSoldierCount" text="Soldiers: 0" />
+            <Label fx:id="labelScholarCount" text="Scholars: 0" />
             <Label fx:id="labelYear" text="Year: 1" />
         </buttons>
       </ButtonBar>

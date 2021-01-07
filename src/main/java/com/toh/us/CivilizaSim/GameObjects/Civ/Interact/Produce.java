@@ -99,10 +99,10 @@ public class Produce {
     private void generateKnowledge() {
         if (civilization.getBuildings().containsKey(BuildingName.UNIVERSITY)) {
             int chance = 5 * civilization.getBuildings().get(BuildingName.UNIVERSITY).getLevel();
-
-            if (MathUtils.getRandomNumber(0, 100) <= chance) {
-                List<Scholar> scholars = civilization.getScholars();
+            List<Scholar> scholars = civilization.getScholars();
+            if (MathUtils.getRandomNumber(0, 100) <= chance && scholars.size() > 0) {
                 civilization.getKnowledge().addAmount(scholars.size());
+                controller.addLogMessage("The scholars of " + civilization.getName() + " generated " + scholars.size() + " knowledge!");
             }
         }
     }

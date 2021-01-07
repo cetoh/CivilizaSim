@@ -1,6 +1,10 @@
 package com.toh.us.CivilizaSim.Display;
 
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Building;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Cost;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Scientific.Academy;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Scientific.University;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivAction;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivActions;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
@@ -16,6 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class PrimaryController {
@@ -118,11 +123,15 @@ public class PrimaryController {
     private void initialize() {
         playerCivilization = new Civilization("Player");
 
+        //debug();
+
         addListeners();
 
         initializeActionGraphics();
 
         initializeBuildingGUI();
+
+        updatePlayerGUI();
 
         GenerateCivilizations generateCivilizations = new GenerateCivilizations();
 
@@ -133,8 +142,19 @@ public class PrimaryController {
         }
         civilizations.add(playerCivilization);
 
+        textFieldNumberOfMoves.setText(String.valueOf(1));
+
         simulation = new Simulation(this, civilizations, playerCivilization);
         simulation.updateResourceGUI();
+    }
+
+    private void debug() {
+        Academy academy = new Academy();
+        academy.setLevel(25);
+        University university = new University();
+        university.setLevel(25);
+        playerCivilization.getBuildings().put(BuildingName.ACADEMY, academy);
+        playerCivilization.getBuildings().put(BuildingName.UNIVERSITY, university);
     }
 
     private void initializeActionGraphics() {
@@ -389,6 +409,30 @@ public class PrimaryController {
         }
 
         return action;
+    }
+
+    public void updatePlayerGUI() {
+        HashMap<BuildingName, Building> buildingHashMap = playerCivilization.getBuildings();
+        VBox vbox = this.getVboxPlayerBuildings();
+
+        if (!vbox.getChildren().isEmpty()) {
+            Platform.runLater(() -> vbox.getChildren().clear());
+        }
+        for (BuildingName buildingName : buildingHashMap.keySet()) {
+            Building building = buildingHashMap.get(buildingName);
+            Cost cost = building.getCost();
+            Label label = new Label(buildingName.toString() + " - Level " + building.getLevel());
+            Tooltip tooltip = new Tooltip();
+            tooltip.setWrapText(true);
+            tooltip.setText("Cost to Upgrade:\n" +
+                    "Wheat: " + cost.getWheat().getAmount() + "\n" +
+                    "Clay: " + cost.getClay().getAmount() + "\n" +
+                    "Wood: " + cost.getWood().getAmount() + "\n" +
+                    "Iron: " + cost.getIron().getAmount() + "\n" +
+                    "Gold: " + cost.getGold().getAmount());
+            label.setTooltip(tooltip);
+            Platform.runLater(() -> vbox.getChildren().add(label));
+        }
     }
 
     public String getPlayerCivilizationName() {
