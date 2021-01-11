@@ -96,12 +96,77 @@ public class Simulation extends Service<Void> {
                 else if (person instanceof Soldier) {
                     type = "Soldier";
                 }
+                else if (person instanceof Scholar) {
+                    type = "Scholar";
+                }
                 controller.addLogMessage("\t\t" + person.getName().toString() + "\t(" + type + ")\t" + "-" + person.getOriginalCivilization());
             }
 
             printResources(civ);
             printBuildingLevels(civ);
         }
+    }
+
+    public HashMap<String, HashMap<String, List<String>>> getScore() {
+        HashMap<String, HashMap<String, List<String>>> scoreMap = new HashMap<>();
+
+        for (Civilization civ : score.keySet()) {
+            calculateAdditionalPoints(civ);
+
+            HashMap<String, List<String>> innerMap = new HashMap<>();
+
+            List<String> civilianList = new ArrayList<>();
+            List<String> soldierList = new ArrayList<>();
+            List<String> scholarList = new ArrayList<>();
+
+            List<Person> people = civ.getPeople();
+            for (Person person : people) {
+                String type = "";
+                if (person instanceof Civilian) {
+                    type = "Civilian";
+                    civilianList.add(person.getName().toString() + "\t(" + type + ")\t" + "-" + person.getOriginalCivilization());
+                }
+                else if (person instanceof Soldier) {
+                    type = "Soldier";
+                    soldierList.add( person.getName().toString() + "\t(" + type + ")\t" + "-" + person.getOriginalCivilization());
+                }
+                else if (person instanceof Scholar) {
+                    type = "Scholar";
+                    scholarList.add(person.getName().toString() + "\t(" + type + ")\t" + "-" + person.getOriginalCivilization());
+                }
+            }
+
+            List<String> resourcesList = new ArrayList<>();
+            Warehouse warehouse = civ.getWarehouse();
+            resourcesList.add("Wheat: " + warehouse.getWheat().getAmount());
+            resourcesList.add("Iron: " + warehouse.getIron().getAmount());
+            resourcesList.add("Wood: " + warehouse.getWood().getAmount());
+            resourcesList.add("Clay: " + warehouse.getClay().getAmount());
+            resourcesList.add("Gold: " + warehouse.getIron().getAmount());
+
+            List<String> buildingList = new ArrayList<>();
+            HashMap<BuildingName, Building> buildings = civ.getBuildings();
+            for (BuildingName buildingName : buildings.keySet()) {
+                Building building = buildings.get(buildingName);
+                buildingList.add(buildingName.toString() + " - Level " + building.getLevel());
+            }
+
+            List<String> scoreList = new ArrayList<>();
+            scoreList.add(String.valueOf(score.get(civ)));
+
+            innerMap.put("Civilians", civilianList);
+            innerMap.put("Soldiers", soldierList);
+            innerMap.put("Scholars", scholarList);
+
+            innerMap.put("Resources", resourcesList);
+            innerMap.put("Buildings", buildingList);
+
+            innerMap.put("Score", scoreList);
+
+            scoreMap.put(civ.getName(), innerMap);
+        }
+
+        return scoreMap;
     }
 
     private void printResources(Civilization civ) {

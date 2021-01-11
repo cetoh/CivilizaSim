@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="500" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <ScrollPane fx:id="scrollPaneMain" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fx:id="vboxMain" />
+         </content></ScrollPane>
+   </center>
+</BorderPane>

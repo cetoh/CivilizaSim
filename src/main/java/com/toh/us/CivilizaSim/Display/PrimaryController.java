@@ -1,5 +1,6 @@
 package com.toh.us.CivilizaSim.Display;
 
+import com.toh.us.CivilizaSim.Display.Score.ScoreController;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Building;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Cost;
@@ -12,13 +13,18 @@ import com.toh.us.CivilizaSim.GameObjects.Simulate.GenerateCivilizations;
 import com.toh.us.CivilizaSim.GameObjects.Simulate.Simulation;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -378,7 +384,29 @@ public class PrimaryController {
 
     @FXML
     private void checkScore() {
-        simulation.printScore();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(this.getClass().getResource("/com/toh/us/app/scorePopup.fxml"));
+        // initializing the controller
+        ScoreController popupController = new ScoreController();
+        popupController.setScore(simulation.getScore());
+        loader.setController(popupController);
+        Parent layout;
+        try {
+            layout = loader.load();
+            Scene scene = new Scene(layout);
+            // this is the popup stage
+            Stage popupStage = new Stage();
+            // Giving the popup controller access to the popup stage (to allow the controller to close the stage)
+            popupController.setStage(popupStage);
+
+            popupStage.initOwner(mainStage);
+
+            popupStage.initModality(Modality.WINDOW_MODAL);
+            popupStage.setScene(scene);
+            popupStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private CivAction getAction() {
