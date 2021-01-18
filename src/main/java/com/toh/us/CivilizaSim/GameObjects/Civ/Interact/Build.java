@@ -5,6 +5,8 @@ import com.toh.us.CivilizaSim.GameObjects.Buildings.Building;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Cost;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Cultural.Amphitheater;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Cultural.Church;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Cultural.Seminary;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Economic.*;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Military.Barracks;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Military.Walls;
@@ -78,6 +80,7 @@ public class Build {
                 case AQUEDUCT -> new Aqueduct();
                 case BANK -> new Bank();
                 case BARRACKS -> new Barracks();
+                case CHURCH -> new Church();
                 case EMBASSY -> new Embassy();
                 case FLOUR_MILL -> new FlourMill();
                 case KILN -> new Kiln();
@@ -87,6 +90,7 @@ public class Build {
                 case MINISTRY_OF_FOREIGN_AFFAIRS -> new MinistryOfForeignAffairs();
                 case MINISTRY_OF_INTELLIGENCE -> new MinistryOfIntelligence();
                 case MINE -> new Mine();
+                case SEMINARY -> new Seminary();
                 case UNIVERSITY -> new University();
                 case WALLS -> new Walls();
             };

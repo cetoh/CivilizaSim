@@ -4,6 +4,8 @@ import com.toh.us.CivilizaSim.Display.Score.ScoreController;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Building;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Cost;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Cultural.Church;
+import com.toh.us.CivilizaSim.GameObjects.Buildings.Cultural.Seminary;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Scientific.Academy;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Scientific.University;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivAction;
@@ -24,6 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -104,6 +107,9 @@ public class PrimaryController {
     private Label labelKnowledgeAmount;
 
     @FXML
+    private Label labelFaithAmount;
+
+    @FXML
     private Label labelCivilianCount;
 
     @FXML
@@ -111,6 +117,9 @@ public class PrimaryController {
 
     @FXML
     private Label labelScholarCount;
+
+    @FXML
+    private Label labelPriestCount;
 
     @FXML
     private Label labelYear;
@@ -129,7 +138,7 @@ public class PrimaryController {
     private void initialize() {
         playerCivilization = new Civilization("Player");
 
-        //debug();
+        debug();
 
         addListeners();
 
@@ -159,8 +168,20 @@ public class PrimaryController {
         academy.setLevel(25);
         University university = new University();
         university.setLevel(25);
+        Church church = new Church();
+        church.setLevel(25);
+        Seminary seminary = new Seminary();
+        seminary.setLevel(25);
         playerCivilization.getBuildings().put(BuildingName.ACADEMY, academy);
         playerCivilization.getBuildings().put(BuildingName.UNIVERSITY, university);
+        playerCivilization.getBuildings().put(BuildingName.CHURCH, church);
+        playerCivilization.getBuildings().put(BuildingName.SEMINARY, seminary);
+
+        playerCivilization.getWarehouse().getClay().setAmount(1000);
+        playerCivilization.getWarehouse().getIron().setAmount(1000);
+        playerCivilization.getWarehouse().getWood().setAmount(1000);
+        playerCivilization.getWarehouse().getWheat().setAmount(1000);
+        playerCivilization.getWarehouse().getGold().setAmount(1000);
     }
 
     private void initializeActionGraphics() {
@@ -510,5 +531,13 @@ public class PrimaryController {
 
     public Label getLabelKnowledgeAmount() {
         return labelKnowledgeAmount;
+    }
+
+    public Label getLabelFaithAmount() {
+        return labelFaithAmount;
+    }
+
+    public Label getLabelPriestCount() {
+        return labelPriestCount;
     }
 }

@@ -1,10 +1,9 @@
 package com.toh.us.CivilizaSim.GameObjects.Civ;
 
 import com.toh.us.CivilizaSim.GameObjects.Buildings.*;
-import com.toh.us.CivilizaSim.GameObjects.People.Civilian;
-import com.toh.us.CivilizaSim.GameObjects.People.Person;
-import com.toh.us.CivilizaSim.GameObjects.People.Scholar;
-import com.toh.us.CivilizaSim.GameObjects.People.Soldier;
+import com.toh.us.CivilizaSim.GameObjects.Civ.Technology.Technologies;
+import com.toh.us.CivilizaSim.GameObjects.People.*;
+import com.toh.us.CivilizaSim.GameObjects.Resources.Faith;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Knowledge;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Resource;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
@@ -27,7 +26,11 @@ public class Civilization {
 
     private Warehouse warehouse = new Warehouse();
 
+    private Technologies technologies = new Technologies();
+
     private Knowledge knowledge = new Knowledge();
+
+    private Faith faith = new Faith();
 
     public Civilization(String name) {
         this.name   = name;
@@ -127,7 +130,26 @@ public class Civilization {
         return scholars;
     }
 
+    public List<Priest> getPriests() {
+        List<Priest> priests = new ArrayList<>();
+        for (Person person : people) {
+            if (person instanceof Priest) {
+                priests.add((Priest) person);
+            }
+        }
+        return priests;
+    }
+
     public Knowledge getKnowledge() {
         return knowledge;
     }
+
+    public Technologies getTechnologies() {
+        return technologies;
+    }
+
+    public Faith getFaith() {
+        return faith;
+    }
+
 }

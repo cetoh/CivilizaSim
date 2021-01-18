@@ -9,6 +9,7 @@ public enum BuildingName {
     AQUEDUCT("Aqueduct"),
     BANK("Bank"),
     BARRACKS("Barracks"),
+    CHURCH("Church"),
     EMBASSY("Embassy"),
     FLOUR_MILL("Flour Mill"),
     KILN("Kiln"),
@@ -18,6 +19,7 @@ public enum BuildingName {
     MINISTRY_OF_FOREIGN_AFFAIRS("Ministry of Foreign Affairs"),
     MINISTRY_OF_INTELLIGENCE("Ministry of Intelligence"),
     MINE("Mine"),
+    SEMINARY("Seminary"),
     UNIVERSITY("University"),
     WALLS("Walls");
 
@@ -56,6 +58,8 @@ public enum BuildingName {
     public static List<BuildingName> getCulturalBuildings() {
         List<BuildingName> buildingNames = new ArrayList<>();
         buildingNames.add(AMPHITHEATER);
+        buildingNames.add(CHURCH);
+        buildingNames.add(SEMINARY);
 
         return  buildingNames;
     }

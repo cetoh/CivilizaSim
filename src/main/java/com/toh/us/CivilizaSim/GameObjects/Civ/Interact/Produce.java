@@ -6,6 +6,7 @@ import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
 import com.toh.us.CivilizaSim.GameObjects.People.Civilian;
 import com.toh.us.CivilizaSim.GameObjects.People.Person;
+import com.toh.us.CivilizaSim.GameObjects.People.Priest;
 import com.toh.us.CivilizaSim.GameObjects.People.Scholar;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
 import com.toh.us.CivilizaSim.GameObjects.Simulate.MathUtils;
@@ -31,6 +32,7 @@ public class Produce {
         growResources();
         growPopulation();
         generateKnowledge();
+        generateFaith();
     }
 
     private void growResources() {
@@ -103,6 +105,18 @@ public class Produce {
             if (MathUtils.getRandomNumber(0, 100) <= chance && scholars.size() > 0) {
                 civilization.getKnowledge().addAmount(scholars.size());
                 controller.addLogMessage("The scholars of " + civilization.getName() + " generated " + scholars.size() + " knowledge!");
+            }
+        }
+    }
+
+    private void generateFaith() {
+        if (civilization.getBuildings().containsKey(BuildingName.SEMINARY)) {
+            int chance = 5 * civilization.getBuildings().get(BuildingName.SEMINARY).getLevel();
+            List<Priest> priests = civilization.getPriests();
+            if (MathUtils.getRandomNumber(0, 100) <= chance && priests.size() > 0) {
+                int amount = priests.size() * 10;
+                civilization.getFaith().addAmount(amount);
+                controller.addLogMessage("The faithful of " + civilization.getName() + " produced " + amount + " faith!");
             }
         }
     }
