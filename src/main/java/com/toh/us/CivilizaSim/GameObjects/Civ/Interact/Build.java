@@ -137,4 +137,29 @@ public class Build {
         warehouse.getClay().removeAmount(cost.getClay().getAmount());
         warehouse.getGold().removeAmount(cost.getGold().getAmount());
     }
+
+    public static Cost getBuildingCost(BuildingName buildingName) {
+        Building building = switch (buildingName) {
+            case ACADEMY -> new Academy();
+            case AMPHITHEATER -> new Amphitheater();
+            case AQUEDUCT -> new Aqueduct();
+            case BANK -> new Bank();
+            case BARRACKS -> new Barracks();
+            case CHURCH -> new Church();
+            case EMBASSY -> new Embassy();
+            case FLOUR_MILL -> new FlourMill();
+            case KILN -> new Kiln();
+            case LUMBER_MILL -> new LumberMill();
+            case MARKETPLACE -> new Marketplace();
+            case MINISTRY_OF_COMMERCE -> new MinistryOfCommerce();
+            case MINISTRY_OF_FOREIGN_AFFAIRS -> new MinistryOfForeignAffairs();
+            case MINISTRY_OF_INTELLIGENCE -> new MinistryOfIntelligence();
+            case MINE -> new Mine();
+            case SEMINARY -> new Seminary();
+            case UNIVERSITY -> new University();
+            case WALLS -> new Walls();
+        };
+
+        return building.getCost();
+    }
 }

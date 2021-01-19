@@ -11,6 +11,7 @@ import com.toh.us.CivilizaSim.GameObjects.Buildings.Scientific.University;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivAction;
 import com.toh.us.CivilizaSim.GameObjects.Civ.CivActions;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
+import com.toh.us.CivilizaSim.GameObjects.Civ.Interact.Build;
 import com.toh.us.CivilizaSim.GameObjects.Simulate.GenerateCivilizations;
 import com.toh.us.CivilizaSim.GameObjects.Simulate.Simulation;
 import javafx.application.Platform;
@@ -323,31 +324,91 @@ public class PrimaryController {
         for (BuildingName buildingName : culturalBuildings) {
             RadioButton radioButton = new RadioButton(buildingName.toString());
             allBuildingRadioButtons.add(radioButton);
+            Cost cost = Build.getBuildingCost(buildingName);
+            Tooltip tooltip = new Tooltip();
+            tooltip.setWrapText(true);
+            tooltip.setText("Cost to Upgrade:\n" +
+                    "Wheat: " + cost.getWheat().getAmount() + "\n" +
+                    "Clay: " + cost.getClay().getAmount() + "\n" +
+                    "Wood: " + cost.getWood().getAmount() + "\n" +
+                    "Iron: " + cost.getIron().getAmount() + "\n" +
+                    "Gold: " + cost.getGold().getAmount());
+            radioButton.setTooltip(tooltip);
             culturalRadioButtons.add(radioButton);
         }
         for (BuildingName buildingName : economicBuildings) {
             RadioButton radioButton = new RadioButton(buildingName.toString());
             allBuildingRadioButtons.add(radioButton);
+            Cost cost = Build.getBuildingCost(buildingName);
+            Tooltip tooltip = new Tooltip();
+            tooltip.setWrapText(true);
+            tooltip.setText("Cost to Upgrade:\n" +
+                    "Wheat: " + cost.getWheat().getAmount() + "\n" +
+                    "Clay: " + cost.getClay().getAmount() + "\n" +
+                    "Wood: " + cost.getWood().getAmount() + "\n" +
+                    "Iron: " + cost.getIron().getAmount() + "\n" +
+                    "Gold: " + cost.getGold().getAmount());
+            radioButton.setTooltip(tooltip);
             economicRadioButtons.add(radioButton);
         }
         for (BuildingName buildingName : militaryBuildings) {
             RadioButton radioButton = new RadioButton(buildingName.toString());
             allBuildingRadioButtons.add(radioButton);
+            Cost cost = Build.getBuildingCost(buildingName);
+            Tooltip tooltip = new Tooltip();
+            tooltip.setWrapText(true);
+            tooltip.setText("Cost to Upgrade:\n" +
+                    "Wheat: " + cost.getWheat().getAmount() + "\n" +
+                    "Clay: " + cost.getClay().getAmount() + "\n" +
+                    "Wood: " + cost.getWood().getAmount() + "\n" +
+                    "Iron: " + cost.getIron().getAmount() + "\n" +
+                    "Gold: " + cost.getGold().getAmount());
+            radioButton.setTooltip(tooltip);
             militaryRadioButtons.add(radioButton);
         }
         for (BuildingName buildingName : politicalBuildings) {
             RadioButton radioButton = new RadioButton(buildingName.toString());
             allBuildingRadioButtons.add(radioButton);
+            Cost cost = Build.getBuildingCost(buildingName);
+            Tooltip tooltip = new Tooltip();
+            tooltip.setWrapText(true);
+            tooltip.setText("Cost to Upgrade:\n" +
+                    "Wheat: " + cost.getWheat().getAmount() + "\n" +
+                    "Clay: " + cost.getClay().getAmount() + "\n" +
+                    "Wood: " + cost.getWood().getAmount() + "\n" +
+                    "Iron: " + cost.getIron().getAmount() + "\n" +
+                    "Gold: " + cost.getGold().getAmount());
+            radioButton.setTooltip(tooltip);
             politicalRadioButtons.add(radioButton);
         }
         for (BuildingName buildingName : scientificBuildings) {
             RadioButton radioButton = new RadioButton(buildingName.toString());
             allBuildingRadioButtons.add(radioButton);
+            Cost cost = Build.getBuildingCost(buildingName);
+            Tooltip tooltip = new Tooltip();
+            tooltip.setWrapText(true);
+            tooltip.setText("Cost to Upgrade:\n" +
+                    "Wheat: " + cost.getWheat().getAmount() + "\n" +
+                    "Clay: " + cost.getClay().getAmount() + "\n" +
+                    "Wood: " + cost.getWood().getAmount() + "\n" +
+                    "Iron: " + cost.getIron().getAmount() + "\n" +
+                    "Gold: " + cost.getGold().getAmount());
+            radioButton.setTooltip(tooltip);
             scientificRadioButtons.add(radioButton);
         }
         for (BuildingName buildingName : specialBuildings) {
             RadioButton radioButton = new RadioButton(buildingName.toString());
             allBuildingRadioButtons.add(radioButton);
+            Cost cost = Build.getBuildingCost(buildingName);
+            Tooltip tooltip = new Tooltip();
+            tooltip.setWrapText(true);
+            tooltip.setText("Cost to Upgrade:\n" +
+                    "Wheat: " + cost.getWheat().getAmount() + "\n" +
+                    "Clay: " + cost.getClay().getAmount() + "\n" +
+                    "Wood: " + cost.getWood().getAmount() + "\n" +
+                    "Iron: " + cost.getIron().getAmount() + "\n" +
+                    "Gold: " + cost.getGold().getAmount());
+            radioButton.setTooltip(tooltip);
             specialRadioButtons.add(radioButton);
         }
 

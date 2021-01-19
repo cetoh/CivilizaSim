@@ -5,27 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3216952-906e-4b88-9f99-89ec83046581" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Cultural/Church.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/Cultural/Seminary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Technology/Calendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Technology/Fertilizer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Technology/Furnaces.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Technology/SoilAnalysis.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Technology/TechName.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Technology/Technologies.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Technology/Technology.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Technology/Writing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/People/Priest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Resources/Faith.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/Display/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/Display/PrimaryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/BuildingName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Buildings/BuildingName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Civilization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Civilization.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Interact/Build.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Interact/Build.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Interact/Produce.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Interact/Produce.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Interact/Train.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Civ/Interact/Train.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/toh/us/CivilizaSim/GameObjects/Simulate/Simulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/toh/us/app/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/toh/us/app/primary.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
