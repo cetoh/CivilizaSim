@@ -609,8 +609,8 @@ public class Simulation extends Service<Void> {
     public void updateResourceGUI() {
         Warehouse warehouse = player.getWarehouse();
 
-        Platform.runLater(() -> controller.getLabelKnowledgeAmount().setText("Knowledge: " + player.getKnowledge().getAmount()));
-        Platform.runLater(() -> controller.getLabelFaithAmount().setText("Faith: " + player.getFaith().getAmount()));
+        Platform.runLater(() -> controller.getButtonKnowledge().setText("Knowledge: " + player.getKnowledge().getAmount()));
+        Platform.runLater(() -> controller.getButtonFaith().setText("Faith: " + player.getFaith().getAmount()));
 
         Platform.runLater(() -> controller.getButtonWheat().setText("Wheat: " + warehouse.getWheat().getAmount()));
         Platform.runLater(() -> controller.getButtonClay().setText("Clay: " + warehouse.getClay().getAmount()));

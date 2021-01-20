@@ -1,5 +1,6 @@
 package com.toh.us.CivilizaSim.Display;
 
+import com.toh.us.CivilizaSim.Display.Research.ResearchDisplay;
 import com.toh.us.CivilizaSim.Display.Score.ScoreController;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Building;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
@@ -105,10 +106,10 @@ public class PrimaryController {
     private VBox vboxPlayerBuildings;
 
     @FXML
-    private Label labelKnowledgeAmount;
+    private Button buttonKnowledge;
 
     @FXML
-    private Label labelFaithAmount;
+    private Button buttonFaith;
 
     @FXML
     private Label labelCivilianCount;
@@ -139,7 +140,7 @@ public class PrimaryController {
     private void initialize() {
         playerCivilization = new Civilization("Player");
 
-        debug();
+        //debug();
 
         addListeners();
 
@@ -491,6 +492,12 @@ public class PrimaryController {
         }
     }
 
+    @FXML
+    private void openTechPanel() {
+        ResearchDisplay researchDisplay = new ResearchDisplay();
+        researchDisplay.run();
+    }
+
     private CivAction getAction() {
         CivAction action = new CivAction();
         if (rbAttack.isSelected()) {
@@ -590,12 +597,12 @@ public class PrimaryController {
         return labelScholarCount;
     }
 
-    public Label getLabelKnowledgeAmount() {
-        return labelKnowledgeAmount;
+    public Button getButtonKnowledge() {
+        return buttonKnowledge;
     }
 
-    public Label getLabelFaithAmount() {
-        return labelFaithAmount;
+    public Button getButtonFaith() {
+        return buttonFaith;
     }
 
     public Label getLabelPriestCount() {

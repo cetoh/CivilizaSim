@@ -30,11 +30,12 @@ public class GenerateCivilizations {
         civilizations.add(china);
 
         rome.setStrategy(new Strategy() {
+            int rebuild = 0;
+
             @Override
             public CivAction executeStrategy(CivPayouts lastPayout) {
                 CivAction ourAction = new CivAction();
                 switch (lastPayout) {
-                    case LOW:
                     case MODERATE:
                         if (rome.getWarehouse().getIron().getAmount() >= 250
                                 && rome.getWarehouse().getWood().getAmount() >= 250
@@ -42,7 +43,7 @@ public class GenerateCivilizations {
                                 && rome.getWarehouse().getGold().getAmount() >= 50) {
                             ourAction.setAction(CivActions.BUILD);
 
-                            switch (MathUtils.getRandomNumber(0, 8)) {
+                            switch (MathUtils.getRandomNumber(0, 17)) {
                                 case 0 -> ourAction.setBuildingName(BuildingName.AQUEDUCT);
                                 case 1 -> ourAction.setBuildingName(BuildingName.WALLS);
                                 case 2 -> ourAction.setBuildingName(BuildingName.BARRACKS);
@@ -52,6 +53,15 @@ public class GenerateCivilizations {
                                 case 6 -> ourAction.setBuildingName(BuildingName.MINE);
                                 case 7 -> ourAction.setBuildingName(BuildingName.KILN);
                                 case 8 -> ourAction.setBuildingName(BuildingName.BANK);
+                                case 9 -> ourAction.setBuildingName(BuildingName.AMPHITHEATER);
+                                case 10 -> ourAction.setBuildingName(BuildingName.CHURCH);
+                                case 11 -> ourAction.setBuildingName(BuildingName.SEMINARY);
+                                case 12 -> ourAction.setBuildingName(BuildingName.EMBASSY);
+                                case 13 -> ourAction.setBuildingName(BuildingName.MINISTRY_OF_COMMERCE);
+                                case 14 -> ourAction.setBuildingName(BuildingName.MINISTRY_OF_FOREIGN_AFFAIRS);
+                                case 15 -> ourAction.setBuildingName(BuildingName.MINISTRY_OF_INTELLIGENCE);
+                                case 16 -> ourAction.setBuildingName(BuildingName.ACADEMY);
+                                case 17 -> ourAction.setBuildingName(BuildingName.UNIVERSITY);
                             }
                         } else {
                             ourAction.setAction(CivActions.PRODUCE);
@@ -76,12 +86,28 @@ public class GenerateCivilizations {
                         ourAction.setAction(CivActions.ATTACK);
                         break;
                     default:
-                        ourAction.setAction(CivActions.PRODUCE);
+                        ourAction = enterRebuild();
                 }
                 return ourAction;
             }
 
-
+            private CivAction enterRebuild() {
+                CivAction ourAction = new CivAction();
+                switch (rebuild) {
+                    case 0 -> {
+                        ourAction.setAction(CivActions.PRODUCE);
+                        rebuild++;
+                    }
+                    case 1 -> {
+                        ourAction.setAction(CivActions.TRAIN);
+                        rebuild++;
+                    }
+                    case 2 -> {
+                        ourAction.setAction(CivActions.ATTACK);
+                    }
+                }
+                return ourAction;
+            }
         });
 
         greece.setStrategy(new Strategy() {
@@ -94,7 +120,7 @@ public class GenerateCivilizations {
                         break;
                     case MODERATE:
                         ourAction.setAction(CivActions.BUILD);
-                        switch (MathUtils.getRandomNumber(0, 8)) {
+                        switch (MathUtils.getRandomNumber(0, 17)) {
                             case 0 -> ourAction.setBuildingName(BuildingName.AQUEDUCT);
                             case 1 -> ourAction.setBuildingName(BuildingName.WALLS);
                             case 2 -> ourAction.setBuildingName(BuildingName.BARRACKS);
@@ -104,6 +130,15 @@ public class GenerateCivilizations {
                             case 6 -> ourAction.setBuildingName(BuildingName.MINE);
                             case 7 -> ourAction.setBuildingName(BuildingName.KILN);
                             case 8 -> ourAction.setBuildingName(BuildingName.BANK);
+                            case 9 -> ourAction.setBuildingName(BuildingName.AMPHITHEATER);
+                            case 10 -> ourAction.setBuildingName(BuildingName.CHURCH);
+                            case 11 -> ourAction.setBuildingName(BuildingName.SEMINARY);
+                            case 12 -> ourAction.setBuildingName(BuildingName.EMBASSY);
+                            case 13 -> ourAction.setBuildingName(BuildingName.MINISTRY_OF_COMMERCE);
+                            case 14 -> ourAction.setBuildingName(BuildingName.MINISTRY_OF_FOREIGN_AFFAIRS);
+                            case 15 -> ourAction.setBuildingName(BuildingName.MINISTRY_OF_INTELLIGENCE);
+                            case 16 -> ourAction.setBuildingName(BuildingName.ACADEMY);
+                            case 17 -> ourAction.setBuildingName(BuildingName.UNIVERSITY);
                         }
                         break;
                     case VERY_LOW:
@@ -179,8 +214,8 @@ public class GenerateCivilizations {
                         && warehouse.getWood().getAmount() > 300
                         && warehouse.getIron().getAmount() > 300
                         && warehouse.getWheat().getAmount() > 300) {
-                    switch (MathUtils.getRandomNumber(0, 8)) {
-                        case 0 -> ourAction.setBuildingName(BuildingName.AQUEDUCT);
+                    switch (MathUtils.getRandomNumber(0, 20)) {
+                        case 0, 18, 19, 20 -> ourAction.setBuildingName(BuildingName.AQUEDUCT);
                         case 1 -> ourAction.setBuildingName(BuildingName.WALLS);
                         case 2 -> ourAction.setBuildingName(BuildingName.BARRACKS);
                         case 3 -> ourAction.setBuildingName(BuildingName.MARKETPLACE);
@@ -189,8 +224,26 @@ public class GenerateCivilizations {
                         case 6 -> ourAction.setBuildingName(BuildingName.MINE);
                         case 7 -> ourAction.setBuildingName(BuildingName.KILN);
                         case 8 -> ourAction.setBuildingName(BuildingName.BANK);
+                        case 9 -> ourAction.setBuildingName(BuildingName.AMPHITHEATER);
+                        case 10 -> ourAction.setBuildingName(BuildingName.CHURCH);
+                        case 11 -> ourAction.setBuildingName(BuildingName.SEMINARY);
+                        case 12 -> ourAction.setBuildingName(BuildingName.EMBASSY);
+                        case 13 -> ourAction.setBuildingName(BuildingName.MINISTRY_OF_COMMERCE);
+                        case 14 -> ourAction.setBuildingName(BuildingName.MINISTRY_OF_FOREIGN_AFFAIRS);
+                        case 15 -> ourAction.setBuildingName(BuildingName.MINISTRY_OF_INTELLIGENCE);
+                        case 16 -> ourAction.setBuildingName(BuildingName.ACADEMY);
+                        case 17 -> ourAction.setBuildingName(BuildingName.UNIVERSITY);
                     }
-                } else {
+                }
+                else if (lastPayout.equals(CivPayouts.LOW)){
+                    if (egypt.getSoldiers().size() > 0) {
+                        ourAction.setAction(CivActions.ATTACK);
+                    }
+                    else {
+                        ourAction.setAction(CivActions.TRAIN);
+                    }
+                }
+                else {
                     ourAction.setAction(CivActions.PRODUCE);
                 }
 
@@ -220,7 +273,7 @@ public class GenerateCivilizations {
                 }
                 else {
                     ourAction.setAction(CivActions.BUILD);
-                    switch (MathUtils.getRandomNumber(0, 8)) {
+                    switch (MathUtils.getRandomNumber(0, 17)) {
                         case 0 -> ourAction.setBuildingName(BuildingName.AQUEDUCT);
                         case 1 -> ourAction.setBuildingName(BuildingName.WALLS);
                         case 2 -> ourAction.setBuildingName(BuildingName.BARRACKS);
@@ -230,6 +283,15 @@ public class GenerateCivilizations {
                         case 6 -> ourAction.setBuildingName(BuildingName.MINE);
                         case 7 -> ourAction.setBuildingName(BuildingName.KILN);
                         case 8 -> ourAction.setBuildingName(BuildingName.BANK);
+                        case 9 -> ourAction.setBuildingName(BuildingName.AMPHITHEATER);
+                        case 10 -> ourAction.setBuildingName(BuildingName.CHURCH);
+                        case 11 -> ourAction.setBuildingName(BuildingName.SEMINARY);
+                        case 12 -> ourAction.setBuildingName(BuildingName.EMBASSY);
+                        case 13 -> ourAction.setBuildingName(BuildingName.MINISTRY_OF_COMMERCE);
+                        case 14 -> ourAction.setBuildingName(BuildingName.MINISTRY_OF_FOREIGN_AFFAIRS);
+                        case 15 -> ourAction.setBuildingName(BuildingName.MINISTRY_OF_INTELLIGENCE);
+                        case 16 -> ourAction.setBuildingName(BuildingName.ACADEMY);
+                        case 17 -> ourAction.setBuildingName(BuildingName.UNIVERSITY);
                     }
                 }
 
