@@ -93,6 +93,7 @@ public class Build {
                 case SEMINARY -> new Seminary();
                 case UNIVERSITY -> new University();
                 case WALLS -> new Walls();
+                case WATER_MILL -> new WaterMill();
             };
 
             if (checkIfWarehouseHasSufficientResources(building.getCost())) {
@@ -158,6 +159,7 @@ public class Build {
             case SEMINARY -> new Seminary();
             case UNIVERSITY -> new University();
             case WALLS -> new Walls();
+            case WATER_MILL -> new WaterMill();
         };
 
         return building.getCost();

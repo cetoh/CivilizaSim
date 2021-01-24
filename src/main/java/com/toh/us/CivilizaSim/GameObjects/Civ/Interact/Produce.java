@@ -40,30 +40,35 @@ public class Produce {
             controller.addLogMessage(civilization.getName() + " produced some resources...");
         }
 
-        double aqueductBonus = 1;
+
         HashMap<BuildingName, Building> buildings = civilization.getBuildings();
+        double waterMillBonus = 1;
+        if (buildings.containsKey(BuildingName.WATER_MILL)) {
+            waterMillBonus += (buildings.get(BuildingName.WATER_MILL).getLevel() * 0.01);
+        }
+        double aqueductBonus = 1;
         if (buildings.containsKey(BuildingName.AQUEDUCT)) {
-            aqueductBonus += (buildings.get(BuildingName.AQUEDUCT).getLevel() * 0.01);
+            aqueductBonus += (buildings.get(BuildingName.AQUEDUCT).getLevel() * 0.01) * waterMillBonus;
         }
         double flourMillBonus = 0;
         if (buildings.containsKey(BuildingName.FLOUR_MILL)) {
-            flourMillBonus += (buildings.get(BuildingName.FLOUR_MILL).getLevel() * 0.05);
+            flourMillBonus += (buildings.get(BuildingName.FLOUR_MILL).getLevel() * 0.05) * waterMillBonus;
         }
         double lumberMillBonus = 0;
         if (buildings.containsKey(BuildingName.LUMBER_MILL)) {
-            lumberMillBonus += (buildings.get(BuildingName.LUMBER_MILL).getLevel() * 0.05);
+            lumberMillBonus += (buildings.get(BuildingName.LUMBER_MILL).getLevel() * 0.05) * waterMillBonus;
         }
         double kilnBonus = 0;
         if (buildings.containsKey(BuildingName.KILN)) {
-            kilnBonus += (buildings.get(BuildingName.KILN).getLevel() * 0.05);
+            kilnBonus += (buildings.get(BuildingName.KILN).getLevel() * 0.05) * waterMillBonus;
         }
         double mineBonus = 0;
         if (buildings.containsKey(BuildingName.MINE)) {
-            mineBonus += (buildings.get(BuildingName.MINE).getLevel() * 0.05);
+            mineBonus += (buildings.get(BuildingName.MINE).getLevel() * 0.05) * waterMillBonus;
         }
         double bankBonus = 0;
         if (buildings.containsKey(BuildingName.BANK)) {
-            bankBonus += (buildings.get(BuildingName.BANK).getLevel() * 0.1);
+            bankBonus += (buildings.get(BuildingName.BANK).getLevel() * 0.1) * waterMillBonus;
         }
 
         int commerce = 0;
@@ -71,7 +76,7 @@ public class Produce {
             commerce = buildings.get(BuildingName.MINISTRY_OF_COMMERCE).getLevel();
         }
         Warehouse warehouse = civilization.getWarehouse();
-        warehouse.getClay().setAmount((int) (warehouse.getClay().getAmount() + ((50 + (10 * commerce))* (aqueductBonus + kilnBonus))));
+        warehouse.getClay().setAmount((int) (warehouse.getClay().getAmount() + ((50 + (10 * commerce)) * (aqueductBonus + kilnBonus))));
         warehouse.getWheat().setAmount((int) (warehouse.getWheat().getAmount() + ((50 + (10 * commerce)) * (aqueductBonus + flourMillBonus))));
         warehouse.getIron().setAmount((int) (warehouse.getIron().getAmount() + ((50 + (10 * commerce)) * (aqueductBonus + mineBonus))));
         warehouse.getWood().setAmount((int) (warehouse.getWood().getAmount() + ((50 + (10 * commerce)) * (aqueductBonus + lumberMillBonus))));

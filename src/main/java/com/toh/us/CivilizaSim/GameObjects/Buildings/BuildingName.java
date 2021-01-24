@@ -21,7 +21,8 @@ public enum BuildingName {
     MINE("Mine"),
     SEMINARY("Seminary"),
     UNIVERSITY("University"),
-    WALLS("Walls");
+    WALLS("Walls"),
+    WATER_MILL("Water Mill");
 
     public final String name;
 
@@ -43,6 +44,7 @@ public enum BuildingName {
         buildingNames.add(LUMBER_MILL);
         buildingNames.add(MARKETPLACE);
         buildingNames.add(MINE);
+        buildingNames.add(WATER_MILL);
 
         return  buildingNames;
     }
