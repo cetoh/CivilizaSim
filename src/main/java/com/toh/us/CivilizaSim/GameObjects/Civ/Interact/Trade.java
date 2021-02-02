@@ -43,9 +43,11 @@ public class Trade {
                 Person person = civ2.getPeople().remove(MathUtils.getRandomNumber(0, civ2.getPeople().size() - 1));
                 civ1.getPeople().add(person);
 
-                controller.addLogMessage(person.getName() + ", resident of " + civ2.getName()
-                        + ", originally from " + person.getOriginalCivilization()
-                        + ", was so enthralled by the culture of " + civ1.getName() + " and decided to stay there.");
+                if (showLog) {
+                    controller.addLogMessage(person.getName() + ", resident of " + civ2.getName()
+                            + ", originally from " + person.getOriginalCivilization()
+                            + ", was so enthralled by the culture of " + civ1.getName() + " and decided to stay there.");
+                }
             }
         }
 

@@ -21,7 +21,7 @@
          <buttons>
             <Label text="Civilization Name:" />
             <TextField fx:id="textFieldPlayerCivName" />
-            <Button fx:id="buttonKnowledge" mnemonicParsing="false" text="Knowledge: 0" textFill="#0526fc" />
+            <Button fx:id="buttonKnowledge" mnemonicParsing="false" onAction="#openTechPanel" text="Knowledge: 0" textFill="#0526fc" />
             <Button fx:id="buttonFaith" mnemonicParsing="false" text="Faith: 0" textFill="#f505fa" />
          </buttons></ButtonBar>
    </top>

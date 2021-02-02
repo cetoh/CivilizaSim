@@ -8,7 +8,7 @@ public class WaterMill extends Building {
     public WaterMill() {
         super(BuildingName.WATER_MILL,
                 BuildingType.ECONOMIC,
-                "Each level in this building increases all other economic buildings' bonus by 1%.");
+                "Each level in this building increases all other resource economic buildings' bonus by 1%.");
 
         this.getCost().getWheat().setAmount(50);
         this.getCost().getWood().setAmount(100);

@@ -8,6 +8,7 @@ import com.toh.us.CivilizaSim.GameObjects.People.Soldier;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
 import com.toh.us.CivilizaSim.GameObjects.Simulate.MathUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Attack {
@@ -34,63 +35,70 @@ public class Attack {
                             + attacker.getName() + ". Thus they were able to set up a successful defense!");
                 }
             }
+
+            int difference = calculatePowerDifference(attacker, defender, defended);
             if (defended) {
-                //Wall bonus
-                double bonus = 1;
-                if (defender.getBuildings().containsKey(BuildingName.WALLS))
-                    bonus += defender.getBuildings().get(BuildingName.WALLS).getLevel() * 0.01;
-
-                attackingSoldiers = attackingSoldiers.subList(0, (int) (attackingSoldiers.size() * 0.75 * bonus));
-                defendingSoldiers = defendingSoldiers.subList(0, (int) ((defendingSoldiers.size() / 2) * bonus));
-
-                try {
-                    defender.getPeople().removeAll(defendingSoldiers);
-                    attacker.getPeople().removeAll(attackingSoldiers);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
                 if (showLog) {
-                    controller.addLogMessage(attacker.getName() + " attacked " + defender.getName()
-                            + " but " + defender.getName() + " defended successfully!");
+                    if (difference < 0) {
+                        controller.addLogMessage(attacker.getName() + " attacked " + defender.getName()
+                                + " but " + defender.getName() + " defended successfully!");
+                    } else if (difference > 0) {
+                        controller.addLogMessage(attacker.getName() + " attacked " + defender.getName()
+                                + ". " + defender.getName() + " mounted a defense but were overwhelmed! All their defenders perished but their resources were saved!");
+                    } else {
+                        controller.addLogMessage(attacker.getName() + " attacked " + defender.getName()
+                                + ". " + defender.getName() + "! The battle was fierce and neither could gain an advantage!");
+                    }
                 }
             } else {
-                defendingSoldiers = defendingSoldiers.subList(0, (int) (defendingSoldiers.size() * 0.75));
-
-                try {
-                    defender.getPeople().removeAll(defendingSoldiers);
-                    List<Person> attackingPeople = attacker.getPeople();
-                    for (int i = 0; i < (int) (defender.getPeople().size() * 0.3); i++) {
-                        Person exile = defender.getPeople().remove(i);
-                        attackingPeople.add(exile);
+                if (difference > 0) {
+                    // Exile 30% of their people
+                    try {
+                        defender.getPeople().removeAll(defendingSoldiers);
+                        List<Person> attackingPeople = attacker.getPeople();
+                        for (int i = 0; i < (int) (defender.getPeople().size() * 0.3); i++) {
+                            Person exile = defender.getPeople().remove(i);
+                            attackingPeople.add(exile);
+                        }
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
                     }
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
 
-                //Steal their resources (75%)
-                Warehouse defenderWarehouse = defender.getWarehouse();
-                int gold = (int) (defenderWarehouse.getGold().getAmount() * 0.75);
-                int wheat = (int) (defenderWarehouse.getWheat().getAmount() * 0.75);
-                int wood = (int) (defenderWarehouse.getWood().getAmount() * 0.75);
-                int iron = (int) (defenderWarehouse.getIron().getAmount() * 0.75);
-                int clay = (int) (defenderWarehouse.getClay().getAmount() * 0.75);
+                    //Steal their resources (75%)
+                    Warehouse defenderWarehouse = defender.getWarehouse();
+                    int gold = (int) (defenderWarehouse.getGold().getAmount() * 0.75);
+                    int wheat = (int) (defenderWarehouse.getWheat().getAmount() * 0.75);
+                    int wood = (int) (defenderWarehouse.getWood().getAmount() * 0.75);
+                    int iron = (int) (defenderWarehouse.getIron().getAmount() * 0.75);
+                    int clay = (int) (defenderWarehouse.getClay().getAmount() * 0.75);
 
-                defenderWarehouse.getGold().removeAmount(gold);
-                defenderWarehouse.getWheat().removeAmount(wheat);
-                defenderWarehouse.getWood().removeAmount(wood);
-                defenderWarehouse.getIron().removeAmount(iron);
-                defenderWarehouse.getClay().removeAmount(clay);
+                    defenderWarehouse.getGold().removeAmount(gold);
+                    defenderWarehouse.getWheat().removeAmount(wheat);
+                    defenderWarehouse.getWood().removeAmount(wood);
+                    defenderWarehouse.getIron().removeAmount(iron);
+                    defenderWarehouse.getClay().removeAmount(clay);
 
-                Warehouse attackerWarehouse = attacker.getWarehouse();
-                attackerWarehouse.getGold().addAmount(gold);
-                attackerWarehouse.getWheat().addAmount(wheat);
-                attackerWarehouse.getWood().addAmount(wood);
-                attackerWarehouse.getIron().addAmount(iron);
-                attackerWarehouse.getClay().addAmount(clay);
+                    Warehouse attackerWarehouse = attacker.getWarehouse();
+                    attackerWarehouse.getGold().addAmount(gold);
+                    attackerWarehouse.getWheat().addAmount(wheat);
+                    attackerWarehouse.getWood().addAmount(wood);
+                    attackerWarehouse.getIron().addAmount(iron);
+                    attackerWarehouse.getClay().addAmount(clay);
 
-                if (showLog) {
-                    controller.addLogMessage(attacker.getName() + " attacked and raided "
-                            + defender.getName() + " exiling a portion of their people!");
+                    if (showLog) {
+                        controller.addLogMessage(attacker.getName() + " attacked and raided "
+                                + defender.getName() + " exiling a portion of their people!");
+                    }
+                } else if (difference < 0){
+                    if (showLog) {
+                        controller.addLogMessage(attacker.getName() + " attacked and raided "
+                                + defender.getName() + ", but the soldiers of " + defender.getName() + " rallied and repelled them!");
+                    }
+                } else {
+                    if (showLog) {
+                        controller.addLogMessage(attacker.getName() + " attacked " + defender.getName()
+                                + ". " + defender.getName() + "! The battle was fierce and neither could gain an advantage!");
+                    }
                 }
             }
         } else {
@@ -99,5 +107,119 @@ public class Attack {
                         + defender.getName() + " so they just awkwardly looked at each other...");
             }
         }
+    }
+
+    private int calculatePowerDifference(Civilization attacker, Civilization defender, boolean defended) {
+        List<Soldier> attackingSoldiers = attacker.getSoldiers();
+        List<Soldier> defendingSoldiers = defender.getSoldiers();
+
+        List<Soldier> attackerDeadSoldiers = new ArrayList<>();
+        List<Soldier> defenderDeadSoldiers = new ArrayList<>();
+
+        while (attackingSoldiers.size() > 0 && defendingSoldiers.size() > 0) {
+
+            for (Soldier attackSoldier : attackingSoldiers) {
+
+                if (attackSoldier.getHealth() > 0) {
+                    for (Soldier defendSoldier : defendingSoldiers) {
+
+                        if (defendSoldier.getHealth() > 0) {
+
+                            double defenseBonus = getDefenseBonus(defender);
+                            double attackBonus = getAttackBonus(attacker);
+
+                            int damageToAttacker = (int) (calculateDamageDealtToAttacker(attackSoldier, defendSoldier, defended) * defenseBonus);
+                            int damageToDefender = (int) (calculateDamageDealtToDefender(attackSoldier, defendSoldier, defended) * attackBonus);
+
+                            if (showLog) {
+                                controller.addLogMessage(defendSoldier.getName() + " dealt " + damageToAttacker + " damage to " + attackSoldier.getName());
+                                controller.addLogMessage(attackSoldier.getName() + " dealt " + damageToDefender + " damage to " + defendSoldier.getName());
+                            }
+
+                            attackSoldier.decreaseHealth(damageToAttacker);
+                            defendSoldier.decreaseHealth(damageToDefender);
+
+                            if (attackSoldier.getHealth() <= 0) {
+                                if (showLog) {
+                                    controller.addLogMessage(attackSoldier.getName() + " perished in battle!");
+                                }
+                                attackerDeadSoldiers.add(attackSoldier);
+                                break;
+                            }
+
+                            if (defendSoldier.getHealth() <= 0) {
+                                if (showLog) {
+                                    controller.addLogMessage(defendSoldier.getName() + " perished in battle!");
+                                }
+                                defenderDeadSoldiers.add(defendSoldier);
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            attacker.getPeople().removeAll(attackerDeadSoldiers);
+            defender.getPeople().removeAll(defenderDeadSoldiers);
+
+            attackerDeadSoldiers.clear();
+            defenderDeadSoldiers.clear();
+
+            attackingSoldiers = attacker.getSoldiers();
+            defendingSoldiers = defender.getSoldiers();
+        }
+
+        int numAttackingSoldiers = attacker.getSoldiers().size();
+        int numDefendingSoldiers = defender.getSoldiers().size();
+
+        return numAttackingSoldiers - numDefendingSoldiers;
+    }
+
+    private int calculateDamageDealtToAttacker(Soldier attackSoldier, Soldier defendSoldier, boolean defended) {
+        double attackModifier = 1;
+
+        if (defended) {
+            attackModifier = attackModifier / 10;
+        }
+
+        int damageToAttacker = (int) ((attackSoldier.getAttackStat() * attackModifier) - defendSoldier.getDefenseStat());
+
+        if (damageToAttacker < 0) {
+            damageToAttacker = 0;
+        }
+
+        return damageToAttacker;
+    }
+
+    private int calculateDamageDealtToDefender(Soldier attackSoldier, Soldier defendSoldier, boolean defended) {
+        double defenseModifier = 1;
+
+        if (!defended) {
+            defenseModifier = defenseModifier / 10;
+        }
+
+        int damageToDefender = (int) (attackSoldier.getAttackStat() - (defendSoldier.getDefenseStat() * defenseModifier));
+
+        if (damageToDefender < 0) {
+            damageToDefender = 0;
+        }
+
+        return damageToDefender;
+    }
+
+    private double getDefenseBonus(Civilization defender) {
+        //Wall bonus
+        double bonus = 1;
+        if (defender.getBuildings().containsKey(BuildingName.WALLS))
+            bonus += defender.getBuildings().get(BuildingName.WALLS).getLevel() * 0.01;
+
+        return bonus;
+    }
+
+    private double getAttackBonus(Civilization attacker) {
+        //Wall bonus
+        double bonus = 1;
+
+        return bonus;
     }
 }

@@ -444,25 +444,27 @@ public class PrimaryController {
 
     @FXML
     private void runSim() {
-        int numMoves = 3;
-        if (!textFieldNumberOfMoves.getText().equals("")) {
-            numMoves = Integer.parseInt(textFieldNumberOfMoves.getText());
-        }
-        simulation.setNumRounds(numMoves);
-        simulation.setPlayerAction(getAction());
+        if (!simulation.isRunning()) {
+            int numMoves = 3;
+            if (!textFieldNumberOfMoves.getText().equals("")) {
+                numMoves = Integer.parseInt(textFieldNumberOfMoves.getText());
+            }
+            simulation.setNumRounds(numMoves);
+            simulation.setPlayerAction(getAction());
 
-        if (!textFieldPlayerCivName.getText().equals("")) {
-            playerCivilization.setName(textFieldPlayerCivName.getText());
-        } else {
-            playerCivilization.setName("Player");
-        }
-        simulation.start();
+            if (!textFieldPlayerCivName.getText().equals("")) {
+                playerCivilization.setName(textFieldPlayerCivName.getText());
+            } else {
+                playerCivilization.setName("Player");
+            }
+            simulation.start();
 
-        //Increment Year
-        String[] year = labelYear.getText().split(": ");
-        int yearInt = Integer.parseInt(year[1]);
-        yearInt++;
-        labelYear.setText("Year: " + yearInt);
+            //Increment Year
+            String[] year = labelYear.getText().split(": ");
+            int yearInt = Integer.parseInt(year[1]);
+            yearInt++;
+            labelYear.setText("Year: " + yearInt);
+        }
     }
 
     @FXML
