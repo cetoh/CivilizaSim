@@ -38,7 +38,7 @@ I have no idea what the best strategy is and as more civilizations are added you
 
 # How To Play The Game
 
-*As of v1.0.4, this is now unnecessary and a GUI has been created to give the player an easier method without coding to play*
+*As of v1.0.4, this is now unnecessary. A GUI has been created to give the player an easier method without coding to play*
 
 You can instantiate your own civilization in the `GenerateCivilizations.java` class.
 
@@ -106,24 +106,32 @@ Whe Building, you must also specify a Building Name in your ```CivAction()``` fo
 * _**ACADEMY**_                     - Each level in this building increases the chance a Civilian becomes a Scholar by 5%.
 * _**AMPHITHEATER**_                - Each level in this building increases your increases the chance a person from another civilization joins yours during a trade initiated by you by 1%.
 * _**AQUEDUCT**_                    - Each level in this building increases your production gain by 1.5%.
+* _**ARMORY**_                      - Each level in this building will increase the number of soldiers who gain +1 defense stat by 1 during a Produce action.
 * _**BANK**_                        - Each level in this building increase Gold production by 10%.
 * _**BARRACKS**_                    - Each level in this building will increase the number of soldiers you can train for each Train Action by 1.
+* _**BLACKSMITH**_                  - Each level in this building will increase the number of soldiers who gain +1 attack stat by 1 during a Produce action.
+* _**CHURCH**_                      - Each level in this building increases the chance a Civilian becomes a Priest by 5%.
 * _**FLOUR MILL**_                  - Each level in this building increases wheat production by 5%.
 * _**KILN**_                        - Each level in this building increases Clay production by 5%.  
 * _**LUMBER MILL**_                 - Each level in this building increases Wood production by 5%.
 * _**MARKETPLACE**_                 - Each level in this building increases your trade yield with other civilizations by 5%.
 * _**MINE**_                        - Each level in this building increases Iron production by 5%.
+* _**MILITARY HOSPITAL**_           - Each level in this building will increase the number of soldiers who regain +5 health by 1 a Produce action.
 * _**MINISTRY OF COMMERCE**_        - Each level in this building increases the amount of resources you get from a trade by 10 for each normal resource and 2 for each luxury resource BEFORE other bonuses are applied.
 * _**MINISTRY OF INTELLIGENCE**_    - Each level in this building increases the chance you spot an attack coming and successfully defend by 3%.  
+* _**SEMINARY**_                    - Each level in this building increases the chance faith is generated during production by 5%. It will also increase chance of a new priest by 1%.
 * _**UNIVERSITY**_                  - Each level in this building increases the chance knowledge is generated during production by 5%.
 * _**WALLS**_                       - Each level in this building increases your defensive capabilities by 1%.
 
 ## Future Plans
 (DONE)I intend to eventually implement more complicated game mechanics such as scoring based off population, possibly buildings and resources as well. For example during produce you could potentially see a Civ also growing in population but during an a successful attack some Civilians are carried off into exile into the new Civilization that wins.
 
-* Plan to add more buildings in all categories
+* Plan to add more buildings in all categories (In Progress)
 * Plan to improve AI's
 * Plan to add graphics (pending Andrew Toh's availability)
+* Plan to add more units
+* Plan to implement a technology tree (In Progress)
+* Plan to implement faith benefits (In Progress)
 
 ## [v1.0.0](https://github.com/cetoh/CivilizaSim/tree/v1.0.0)
 * This version has a basic game with only the 5 actions in the table and the basic scoring mentioned.
@@ -159,3 +167,8 @@ Whe Building, you must also specify a Building Name in your ```CivAction()``` fo
 * Added University
 * Added Scholars who generate a new resource called Knowledge during Produce. Knowledge currently has no uses yet.
 * Changed Marketplace to give a 5% bonus instead of 1%
+* Added Armory
+* Added Blacksmith
+* Added Military Hospital
+* Implemented health based combat with attack and defense stats which determine the outcome of battles
+

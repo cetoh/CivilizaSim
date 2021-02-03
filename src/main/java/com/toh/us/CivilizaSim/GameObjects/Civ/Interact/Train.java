@@ -162,9 +162,9 @@ public class Train {
                         priestsToAdd.add(priest);
                         civiliansToRemove.add(person);
 
-                        warehouse.getClay().removeAmount(25);
-                        warehouse.getIron().removeAmount(20);
-                        warehouse.getWood().removeAmount(20);
+                        warehouse.getClay().removeAmount(20);
+                        warehouse.getIron().removeAmount(15);
+                        warehouse.getWood().removeAmount(30);
                         warehouse.getWheat().removeAmount(10);
                         warehouse.getGold().removeAmount(5);
 

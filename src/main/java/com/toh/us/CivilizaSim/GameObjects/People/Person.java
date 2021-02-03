@@ -48,6 +48,9 @@ public abstract class Person {
 
     public void increaseHealth(int amount) {
         this.health += amount;
+        if (this.health > this.maxHealth) {
+            this.health = this.maxHealth;
+        }
     }
 
     public void decreaseHealth(int amount) {

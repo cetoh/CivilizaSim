@@ -4,10 +4,7 @@ import com.toh.us.CivilizaSim.Display.PrimaryController;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.Building;
 import com.toh.us.CivilizaSim.GameObjects.Buildings.BuildingName;
 import com.toh.us.CivilizaSim.GameObjects.Civ.Civilization;
-import com.toh.us.CivilizaSim.GameObjects.People.Civilian;
-import com.toh.us.CivilizaSim.GameObjects.People.Person;
-import com.toh.us.CivilizaSim.GameObjects.People.Priest;
-import com.toh.us.CivilizaSim.GameObjects.People.Scholar;
+import com.toh.us.CivilizaSim.GameObjects.People.*;
 import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
 import com.toh.us.CivilizaSim.GameObjects.Simulate.MathUtils;
 
@@ -33,6 +30,7 @@ public class Produce {
         growPopulation();
         generateKnowledge();
         generateFaith();
+        improveSoldierStats();
     }
 
     private void growResources() {
@@ -122,6 +120,32 @@ public class Produce {
                 int amount = priests.size() * 10;
                 civilization.getFaith().addAmount(amount);
                 controller.addLogMessage("The faithful of " + civilization.getName() + " produced " + amount + " faith!");
+            }
+        }
+    }
+
+    private void improveSoldierStats() {
+        HashMap<BuildingName,Building> buildingHashMap = civilization.getBuildings();
+        List<Soldier> soldiers = civilization.getSoldiers();
+        if (buildingHashMap.containsKey(BuildingName.ARMORY)) {
+            for (int i = 0; i < buildingHashMap.get(BuildingName.ARMORY).getLevel(); i++) {
+                Soldier soldier = soldiers.get(MathUtils.getRandomNumber(0, soldiers.size() - 1));
+                soldier.increaseDefenseStat(1);
+                controller.addLogMessage(soldier.getName() + " was equipped with better armor. Gained +1 defense!");
+            }
+        }
+        if (buildingHashMap.containsKey(BuildingName.BLACKSMITH)) {
+            for (int i = 0; i < buildingHashMap.get(BuildingName.BLACKSMITH).getLevel(); i++) {
+                Soldier soldier = soldiers.get(MathUtils.getRandomNumber(0, soldiers.size() - 1));
+                soldier.increaseAttackStat(1);
+                controller.addLogMessage(soldier.getName() + " was equipped with better weapons. Gained +1 attack!");
+            }
+        }
+        if (buildingHashMap.containsKey(BuildingName.MILITARY_HOSPITAL)) {
+            for (int i = 0; i < buildingHashMap.get(BuildingName.BLACKSMITH).getLevel(); i++) {
+                Soldier soldier = soldiers.get(MathUtils.getRandomNumber(0, soldiers.size() - 1));
+                soldier.increaseHealth(5);
+                controller.addLogMessage(soldier.getName() + " recovered 5 health!");
             }
         }
     }
