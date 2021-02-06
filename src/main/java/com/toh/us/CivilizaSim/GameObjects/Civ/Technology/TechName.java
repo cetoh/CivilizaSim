@@ -7,6 +7,7 @@ public enum TechName {
     CALENDAR("Calendar"),
     FERTILIZER("Fertilizer"),
     FURNACES("Furnaces"),
+    SERRATED_EDGES("Serrated Edges"),
     SOIL_ANALYSIS("Soil Analysis"),
     WRITING("Writing");
 

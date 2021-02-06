@@ -91,7 +91,7 @@ public class ScoreController implements Initializable {
 
             // Buildings
             TitledPane tpBuildings = new TitledPane();
-            tpScholars.setText("Buildings");
+            tpBuildings.setText("Buildings");
 
             List<String> buildingsList = map.get("Buildings");
             VBox buildings = new VBox();

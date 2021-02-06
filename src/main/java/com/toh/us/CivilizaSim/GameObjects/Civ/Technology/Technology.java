@@ -6,13 +6,16 @@ public abstract class Technology {
 
     private TechName name;
 
+    private String description;
+
     private int level;
 
     private Knowledge knowledgeRequired = new Knowledge();
 
-    public Technology(TechName name, int knowledgeRequired) {
+    public Technology(TechName name, int knowledgeRequired, String description) {
         this.name               = name;
         this.knowledgeRequired.setAmount(knowledgeRequired);
+        this.description        = description;
     }
 
     public int getLevel() {
@@ -29,5 +32,13 @@ public abstract class Technology {
 
     public void setKnowledgeRequired(Knowledge knowledgeRequired) {
         this.knowledgeRequired = knowledgeRequired;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -203,7 +203,7 @@ public class Simulation extends Service<Void> {
 
     private int calculatePopulationPoints(Civilization civ) {
         int points = 2 * civ.getPeople().size();
-        controller.addLogMessage(points + " points awarded to " + civ.getName() + " for population.");
+        //controller.addLogMessage(points + " points awarded to " + civ.getName() + " for population.");
         return points;
     }
 
@@ -220,7 +220,7 @@ public class Simulation extends Service<Void> {
         // Luxury Resources
         points += warehouse.getGold().getAmount() / 10;
 
-        controller.addLogMessage(points + " points awarded to " + civ.getName() + " for resources.");
+        //controller.addLogMessage(points + " points awarded to " + civ.getName() + " for resources.");
         return points;
     }
 
@@ -234,7 +234,7 @@ public class Simulation extends Service<Void> {
             points += building.getLevel() * 5;
         }
 
-        controller.addLogMessage(points + " points awarded to " + civ.getName() + " for buildings.");
+        //controller.addLogMessage(points + " points awarded to " + civ.getName() + " for buildings.");
         return points;
     }
 

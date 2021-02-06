@@ -54,7 +54,10 @@ public enum BuildingName {
 
     public static List<BuildingName> getMilitaryBuildings() {
         List<BuildingName> buildingNames = new ArrayList<>();
+        buildingNames.add(ARMORY);
         buildingNames.add(BARRACKS);
+        buildingNames.add(BLACKSMITH);
+        buildingNames.add(MILITARY_HOSPITAL);
         buildingNames.add(WALLS);
 
         return  buildingNames;
