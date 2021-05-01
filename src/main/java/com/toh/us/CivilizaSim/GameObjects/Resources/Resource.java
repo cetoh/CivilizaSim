@@ -21,10 +21,15 @@ public abstract class Resource {
 
     public void addAmount(int amount) { this.amount += amount; }
 
-    public void removeAmount(int amount) {
+    public int removeAmount(int amount) {
         this.amount -= amount;
+        int removed;
         if (this.amount < 0){
+            removed = amount + this.amount;
             this.amount = 0;
-        }
+        } else
+            removed = amount;
+
+        return removed;
     }
 }

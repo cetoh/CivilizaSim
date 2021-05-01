@@ -64,26 +64,32 @@ public class Attack {
                         System.out.println(e.getMessage());
                     }
 
-                    //Steal their resources (75%)
+                    //Steal their resources based on the capacity of remaining soldiers
+                    int capacity = 0;
+                    attackingSoldiers = attacker.getSoldiers();
+                    for (Soldier soldier: attackingSoldiers) {
+                        capacity += soldier.getPackAmount();
+                    }
+                    capacity /= 5;
                     Warehouse defenderWarehouse = defender.getWarehouse();
-                    int gold = (int) (defenderWarehouse.getGold().getAmount() * 0.75);
-                    int wheat = (int) (defenderWarehouse.getWheat().getAmount() * 0.75);
-                    int wood = (int) (defenderWarehouse.getWood().getAmount() * 0.75);
-                    int iron = (int) (defenderWarehouse.getIron().getAmount() * 0.75);
-                    int clay = (int) (defenderWarehouse.getClay().getAmount() * 0.75);
+                    int gold = capacity;
+                    int wheat = capacity;
+                    int wood = capacity;
+                    int iron = capacity;
+                    int clay = capacity;
 
-                    defenderWarehouse.getGold().removeAmount(gold);
-                    defenderWarehouse.getWheat().removeAmount(wheat);
-                    defenderWarehouse.getWood().removeAmount(wood);
-                    defenderWarehouse.getIron().removeAmount(iron);
-                    defenderWarehouse.getClay().removeAmount(clay);
+                    int goldTaken = defenderWarehouse.getGold().removeAmount(gold);
+                    int wheatTaken = defenderWarehouse.getWheat().removeAmount(wheat);
+                    int woodTaken = defenderWarehouse.getWood().removeAmount(wood);
+                    int ironTaken = defenderWarehouse.getIron().removeAmount(iron);
+                    int clayTaken = defenderWarehouse.getClay().removeAmount(clay);
 
                     Warehouse attackerWarehouse = attacker.getWarehouse();
-                    attackerWarehouse.getGold().addAmount(gold);
-                    attackerWarehouse.getWheat().addAmount(wheat);
-                    attackerWarehouse.getWood().addAmount(wood);
-                    attackerWarehouse.getIron().addAmount(iron);
-                    attackerWarehouse.getClay().addAmount(clay);
+                    attackerWarehouse.getGold().addAmount(goldTaken);
+                    attackerWarehouse.getWheat().addAmount(wheatTaken);
+                    attackerWarehouse.getWood().addAmount(woodTaken);
+                    attackerWarehouse.getIron().addAmount(ironTaken);
+                    attackerWarehouse.getClay().addAmount(clayTaken);
 
                     if (showLog) {
                         controller.addLogMessage(attacker.getName() + " attacked and raided "

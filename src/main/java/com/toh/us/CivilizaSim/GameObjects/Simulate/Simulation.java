@@ -10,8 +10,6 @@ import com.toh.us.CivilizaSim.GameObjects.Resources.Warehouse;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +20,7 @@ public class Simulation extends Service<Void> {
     HashMap<Civilization, Integer> score = new HashMap<>();
 
     //Default 3 rounds
-    private int numRounds = 3;
+    private int numRounds = 1;
 
     private List<Civilization> civilizationList;
     private PrimaryController controller;
@@ -59,14 +57,6 @@ public class Simulation extends Service<Void> {
             dummy.getPeople().clear();
             this.civilizationList.add(dummy); // If odd number of teams add a dummy
         }
-    }
-
-    public Simulation(int numRounds) {
-        this.numRounds  = numRounds;
-    }
-
-    public void setNumRounds(int numRounds){
-        this.numRounds = numRounds;
     }
 
     public void setPlayerAction(CivAction civAction) {
@@ -645,5 +635,9 @@ public class Simulation extends Service<Void> {
                 return null;
             }
         };
+    }
+
+    public void setNumRounds(int numMoves) {
+        this.numRounds = numMoves;
     }
 }

@@ -32,6 +32,10 @@ public class Civilization {
 
     private Faith faith = new Faith();
 
+    private HashMap<Civilization, Integer> allies = new HashMap<>();
+
+    private int maxAllies = 0;
+
     public Civilization(String name) {
         this.name   = name;
 
@@ -152,4 +156,19 @@ public class Civilization {
         return faith;
     }
 
+    public HashMap<Civilization, Integer> getAllies() {
+        return allies;
+    }
+
+    public void setAllies(HashMap<Civilization, Integer> allies) {
+        this.allies = allies;
+    }
+
+    public int getMaxAllies() {
+        return maxAllies;
+    }
+
+    public void setMaxAllies(int maxAllies) {
+        this.maxAllies = maxAllies;
+    }
 }

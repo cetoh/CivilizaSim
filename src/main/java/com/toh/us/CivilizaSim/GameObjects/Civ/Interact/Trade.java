@@ -23,10 +23,10 @@ public class Trade {
         //Get first warehouse
         Warehouse civ1Warehouse = civ1.getWarehouse();
 
-        // Get other warehouse
+        //Get other warehouse
         Warehouse civ2Warehouse = civ2.getWarehouse();
 
-        // Get both civilizations trade bonus
+        //Get both civilizations trade bonus
         double ourBonus = 1;
         double theirBonus = 1;
         if (civ1.getBuildings().containsKey(BuildingName.MARKETPLACE)) {
@@ -36,7 +36,7 @@ public class Trade {
             theirBonus += civ2.getBuildings().get(BuildingName.MARKETPLACE).getLevel() * 0.05;
         }
 
-        // Do Amphitheater check
+        //Do Amphitheater check
         if (civ1.getBuildings().containsKey(BuildingName.AMPHITHEATER)) {
             int check = civ1.getBuildings().get(BuildingName.AMPHITHEATER).getLevel();
             if (MathUtils.getRandomNumber(0, 100) <= check) {
@@ -50,6 +50,9 @@ public class Trade {
                 }
             }
         }
+
+        //Do Alliance Check
+        checkAlliance(civ1, civ2);
 
         //Both Civs will get a random amount of resources for each resource type
         //If the other Civ did not trade then both Civs will do a random amount exchange of a random set of resources
@@ -142,5 +145,47 @@ public class Trade {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void checkAlliance(Civilization civ1, Civilization civ2) {
+
+        //Both civs must have a Ministry Of Foreign Affairs
+        if (civ1.getBuildings().containsKey(BuildingName.MINISTRY_OF_FOREIGN_AFFAIRS)
+            && civ2.getBuildings().containsKey(BuildingName.MINISTRY_OF_FOREIGN_AFFAIRS)) {
+
+            //Both Min Of FA must be level 5 or higher
+            if (civ1.getBuildings().get(BuildingName.MINISTRY_OF_FOREIGN_AFFAIRS).getLevel() >= 5
+                && civ2.getBuildings().get(BuildingName.MINISTRY_OF_FOREIGN_AFFAIRS).getLevel() >= 5) {
+
+                //Check that both civs have space to have a new ally
+                if (civ1.getBuildings().get(BuildingName.MINISTRY_OF_FOREIGN_AFFAIRS).getLevel() / 5 > civ1.getAllies().size()
+                    && civ2.getBuildings().get(BuildingName.MINISTRY_OF_FOREIGN_AFFAIRS).getLevel() / 5 > civ2.getAllies().size()){
+
+                    //Chance to gain ally
+                    if (civ1.getBuildings().containsKey(BuildingName.EMBASSY)) {
+                        int chance = MathUtils.getRandomNumber(0, 100);
+                        if (chance < civ1.getBuildings().get(BuildingName.EMBASSY).getLevel()) {
+                            if (!civ1.getAllies().containsKey(civ2)) {
+                                civ1.getAllies().put(civ2, 1);
+                                controller.addLogMessage(civ1.getName() + " and " + civ2.getName() + " became allies!");
+                            }
+                        }
+                    }
+
+                    //Chance to gain ally
+                    if (civ2.getBuildings().containsKey(BuildingName.EMBASSY)) {
+                        int chance = MathUtils.getRandomNumber(0, 100);
+                        if (chance < civ2.getBuildings().get(BuildingName.EMBASSY).getLevel()) {
+                            if (!civ2.getAllies().containsKey(civ1)) {
+                                civ2.getAllies().put(civ1, 1);
+                                controller.addLogMessage(civ2.getName() + " and " + civ1.getName() + " became allies!");
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }

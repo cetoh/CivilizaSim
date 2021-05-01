@@ -14,6 +14,8 @@ public abstract class Person {
 
     private double defenseStat;
 
+    private int packAmount = 25;
+
     private Name name;
 
     private String originalCivilization = "";
@@ -119,5 +121,21 @@ public abstract class Person {
 
     public void decreaseMaxHealth(int amount) {
         this.maxHealth -= amount;
+    }
+
+    public int getPackAmount() {
+        return packAmount;
+    }
+
+    public void setPackAmount(int packAmount) {
+        this.packAmount = packAmount;
+    }
+
+    public void increasePackAmount(int amount) {
+        this.packAmount += amount;
+    }
+
+    public void decreasePackAmount(int amount) {
+        this.packAmount -= amount;
     }
 }

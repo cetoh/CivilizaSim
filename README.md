@@ -171,4 +171,4 @@ Whe Building, you must also specify a Building Name in your ```CivAction()``` fo
 * Added Blacksmith
 * Added Military Hospital
 * Implemented health based combat with attack and defense stats which determine the outcome of battles
-
+* Changed how resources are stolen from other civilizations. There is now a capacity that each soldier can carry (base 25) which will determine max resources which can be stolen.
