@@ -191,7 +191,7 @@ public class Attack {
         int damageToAttacker = (int) ((attackSoldier.getAttackStat() * attackModifier) - defendSoldier.getDefenseStat());
 
         if (damageToAttacker < 0) {
-            damageToAttacker = 0;
+            damageToAttacker = 1;
         }
 
         return damageToAttacker;
@@ -207,7 +207,7 @@ public class Attack {
         int damageToDefender = (int) (attackSoldier.getAttackStat() - (defendSoldier.getDefenseStat() * defenseModifier));
 
         if (damageToDefender < 0) {
-            damageToDefender = 0;
+            damageToDefender = 1;
         }
 
         return damageToDefender;
